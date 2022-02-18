@@ -1,77 +1,109 @@
 import React from "react";
-import PropTypes from "prop-types";
+import CandleStickChart from "./CandleStickChart";
+import {
+  ws,
+  getHistoricalData,
+  closeStream,
+  subscribeTickStream,
+  candleInterval,
+} from "./../utils/utils";
+import { TypeChooser } from "react-stockcharts/lib/helper";
 
-import { ChartCanvas, Chart } from "react-stockcharts";
-import { CandlestickSeries } from "react-stockcharts/lib/series";
-import { XAxis, YAxis } from "react-stockcharts/lib/axes";
+class ChartComponent extends React.Component {
+  componentDidMount() {
+    ws.onmessage = (msg) => {
+      let data = JSON.parse(msg.data);
 
-import { EdgeIndicator } from "react-stockcharts/lib/coordinates";
+      if (data.msg_type === "candles") {
+        console.log("response historical data received");
+        let data_candles = data.candles;
+        data_candles.map((e, i) => {
+          e.date = new Date(e.epoch * 1000);
+          e.volume = 0;
+        });
+        data = data_candles;
+        console.log("setting state.data");
+        console.log("new data ", data);
+        this.setState({ data });
+        console.log("complete setting state.data");
+      }
 
-import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
-import { fitWidth } from "react-stockcharts/lib/helper";
-import { last } from "react-stockcharts/lib/utils";
+      // get tick stream
+      if (data.msg_type === "tick") {
+        // set stream id
+        this.setState({ stream_id: data.subscription.id });
+        let data_tick = data.tick;
+        // get last candle
+        let lastCandle = this.state.data[this.state.data.length - 1];
+        // set candle interval
+        let candle_interval = candleInterval.one_minute;
 
-class CandleStickStockScaleChart extends React.Component {
+        // convert epoch to date
+        data_tick.date = new Date(data_tick.epoch * 1000);
+
+        // check if the datetime (minute) of last candle and new tick is the same
+        if (lastCandle.date.getMinutes() === data_tick.date.getMinutes()) {
+          lastCandle.close = data_tick.quote;
+          lastCandle.high = Math.max(lastCandle.high, data_tick.quote);
+          lastCandle.low = Math.min(lastCandle.low, data_tick.quote);
+        } else {
+          let newCandle = {
+            date: new Date(data_tick.date.setSeconds(0, 0)),
+            open: data_tick.quote,
+            close: data_tick.quote,
+            high: data_tick.quote,
+            low: data_tick.quote,
+            volume: 0,
+          };
+
+          this.state.data.push(newCandle);
+        }
+
+        console.log(this.state.data[this.state.data.length - 1]);
+      }
+    };
+
+    ws.onopen = function () {
+      getHistoricalData("R_50", "candles", candleInterval.one_minute);
+      subscribeTickStream("R_50");
+    };
+  }
+
+  changeCandleInterval(interval) {
+    // delete data from state
+    let state = { ...this.state };
+    delete this.state.data;
+    this.setState(state);
+
+    // call historical data on interval
+    getHistoricalData("R_50", "candles", interval);
+    console.log(this.state.data.length);
+  }
+
   render() {
-    const { type, data: initialData, width, ratio } = this.props;
-
-    const xScaleProvider = discontinuousTimeScaleProvider.inputDateAccessor(
-      (d) => d.date
-    );
-    const { data, xScale, xAccessor, displayXAccessor } =
-      xScaleProvider(initialData);
-    const xExtents = [
-      xAccessor(last(data)),
-      xAccessor(data[data.length - 100]),
-    ];
-
+    if (this.state == null) {
+      return <div>Loading...</div>;
+    }
     return (
-      <ChartCanvas
-        height={400}
-        ratio={ratio}
-        width={width}
-        margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
-        type={type}
-        seriesName="MSFT"
-        data={data}
-        xScale={xScale}
-        xAccessor={xAccessor}
-        displayXAccessor={displayXAccessor}
-        xExtents={xExtents}
-      >
-        <Chart id={1} yExtents={(d) => [d.high, d.low]}>
-          <XAxis axisAt="bottom" orient="bottom" ticks={6} />
-          <YAxis axisAt="left" orient="left" ticks={5} />
-          <CandlestickSeries />
-
-          <EdgeIndicator
-            itemType="last"
-            orient="right"
-            edgeAt="right"
-            yAccessor={(d) => d.close}
-            fill={(d) => (d.close > d.open ? "#A2F5BF" : "#F9ACAA")}
-            stroke={(d) => (d.close > d.open ? "#0B4228" : "#6A1B19")}
-            textFill={(d) => (d.close > d.open ? "#0B4228" : "#420806")}
-            strokeOpacity={1}
-            strokeWidth={3}
-            arrowWidth={2}
-          />
-        </Chart>
-      </ChartCanvas>
+      <div>
+        <TypeChooser>
+          {(type) => (
+            <CandleStickChart
+              style={{ passive: false }}
+              type={type}
+              data={this.state.data}
+            />
+          )}
+        </TypeChooser>
+        <button onClick={() => closeStream(this.state.stream_id)}>Close</button>
+        {/* <button
+          onClick={() => this.changeCandleInterval(candleInterval.one_hour)}
+        >
+          trial btn
+        </button> */}
+      </div>
     );
   }
 }
 
-CandleStickStockScaleChart.propTypes = {
-  data: PropTypes.array.isRequired,
-  width: PropTypes.number.isRequired,
-  ratio: PropTypes.number.isRequired,
-  type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
-};
-
-CandleStickStockScaleChart.defaultProps = {
-  type: "svg",
-};
-CandleStickStockScaleChart = fitWidth(CandleStickStockScaleChart);
-
-export default CandleStickStockScaleChart;
+export default ChartComponent;
