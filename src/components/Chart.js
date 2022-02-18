@@ -24,6 +24,8 @@ class ChartComponent extends React.Component {
         data = data_candles;
         console.log("setting state.data");
         console.log("new data ", data);
+        // data.pop();
+        console.log("popped data ", data);
         this.setState({ data });
         console.log("complete setting state.data");
       }
@@ -96,11 +98,11 @@ class ChartComponent extends React.Component {
           )}
         </TypeChooser>
         <button onClick={() => closeStream(this.state.stream_id)}>Close</button>
-        {/* <button
+        <button
           onClick={() => this.changeCandleInterval(candleInterval.one_hour)}
         >
           trial btn
-        </button> */}
+        </button>
       </div>
     );
   }

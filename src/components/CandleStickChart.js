@@ -5,11 +5,19 @@ import { ChartCanvas, Chart } from "react-stockcharts";
 import { CandlestickSeries } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 
-import { EdgeIndicator } from "react-stockcharts/lib/coordinates";
+import {
+  CrossHairCursor,
+  EdgeIndicator,
+  MouseCoordinateX,
+  MouseCoordinateY,
+} from "react-stockcharts/lib/coordinates";
 
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
+
+import { timeFormat } from "d3-time-format";
+import { format } from "d3-format";
 
 class CandleStickStockScaleChart extends React.Component {
   render() {
@@ -20,9 +28,11 @@ class CandleStickStockScaleChart extends React.Component {
     );
     const { data, xScale, xAccessor, displayXAccessor } =
       xScaleProvider(initialData);
+
+    let numCandlesOnDisplay = data.length > 60 ? 60 : data.length;
     const xExtents = [
       xAccessor(last(data)),
-      xAccessor(data[data.length - 100]),
+      xAccessor(data[data.length - numCandlesOnDisplay]),
     ];
 
     return (
@@ -56,7 +66,19 @@ class CandleStickStockScaleChart extends React.Component {
             strokeWidth={3}
             arrowWidth={2}
           />
+
+          <MouseCoordinateX
+            at="bottom"
+            orient="bottom"
+            displayFormat={timeFormat("%Y-%m-%d")}
+          />
+          <MouseCoordinateY
+            at="left"
+            orient="left"
+            displayFormat={format(".4s")}
+          />
         </Chart>
+        <CrossHairCursor />
       </ChartCanvas>
     );
   }
