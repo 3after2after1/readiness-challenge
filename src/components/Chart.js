@@ -71,15 +71,19 @@ class ChartComponent extends React.Component {
     };
   }
 
-  changeCandleInterval(interval) {
-    // delete data from state
-    let state = { ...this.state };
-    delete this.state.data;
-    this.setState(state);
+  changeCandleInterval(e) {
+    // get selected interval option
+    let interval = e.target.value;
+    console.log(interval);
 
     // call historical data on interval
     getHistoricalData("R_50", "candles", interval);
     console.log(this.state.data.length);
+  }
+
+  changeChartInterval(e) {
+    this.setState({ interval: e.target.value });
+    console.log(this.state.interval);
   }
 
   render() {
@@ -103,6 +107,14 @@ class ChartComponent extends React.Component {
         >
           trial btn
         </button>
+        <select
+          // value={this.state.interval}
+          onChange={this.changeCandleInterval}
+        >
+          <option value={candleInterval.one_minute}>1 minute</option>
+          <option value={candleInterval.one_hour}>1 hour</option>
+          <option value={candleInterval.one_day}>1 day</option>
+        </select>
       </div>
     );
   }

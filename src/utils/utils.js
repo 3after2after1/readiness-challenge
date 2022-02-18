@@ -25,9 +25,8 @@ export const getHistoricalData = (symbol, style, interval) => {
     JSON.stringify({
       ticks_history: symbol,
       adjust_start_time: 1,
-      count: 200,
+      count: 100,
       end: "latest",
-      start: 1,
       style: style,
       granularity: interval,
     })

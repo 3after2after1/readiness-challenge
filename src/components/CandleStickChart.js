@@ -70,7 +70,7 @@ class CandleStickStockScaleChart extends React.Component {
           <MouseCoordinateX
             at="bottom"
             orient="bottom"
-            displayFormat={timeFormat("%Y-%m-%d")}
+            displayFormat={timeFormat("%Y-%m-%d %H:%M %p")}
           />
           <MouseCoordinateY
             at="left"
