@@ -30,40 +30,28 @@ class ChartComponent extends React.Component {
         // convert epoch to date
         data_tick.date = new Date(data_tick.epoch * 1000);
 
-        // convert ticks to candle
-        let single_candle = create_candle_data(data_tick);
+        // get last candle
+        let lastCandle = this.state.data[this.state.data.length - 1];
 
-        // if candle object is not empty, update state data of candles
-        if (Object.keys(single_candle).length !== 0) {
-          console.log("index ", single_candle);
+        // check if the datetime (minute) of last candle and new tick is the same
+        if (lastCandle.date.getMinutes() === data_tick.date.getMinutes()) {
+          lastCandle.close = data_tick.quote;
+          lastCandle.high = Math.max(lastCandle.high, data_tick.quote);
+          lastCandle.low = Math.min(lastCandle.low, data_tick.quote);
+        } else {
+          let newCandle = {
+            date: new Date(data_tick.date.setSeconds(0, 0)),
+            open: data_tick.quote,
+            close: data_tick.quote,
+            high: data_tick.quote,
+            low: data_tick.quote,
+            volume: 0,
+          };
 
-          // combine candles if previous candle has the same minute with the new candle
-          if (
-            this.state.data[this.state.data.length - 1].date.getMinutes() ===
-            single_candle.date.getMinutes()
-          ) {
-            console.log("same second");
-            this.state.data[this.state.data.length - 1].close =
-              single_candle.close;
-            this.state.data[this.state.data.length - 1].high = Math.max(
-              this.state.data[this.state.data.length - 1].high,
-              single_candle.high
-            );
-            this.state.data[this.state.data.length - 1].low = Math.min(
-              this.state.data[this.state.data.length - 1].low,
-              single_candle.low
-            );
-          } else {
-            console.log(
-              "diff ",
-              this.state.data[this.state.data.length - 1].date,
-              single_candle.date
-            );
-            this.state.data.push(single_candle);
-          }
-
-          console.log(this.state.data.length);
+          this.state.data.push(newCandle);
         }
+
+        console.log(this.state.data[this.state.data.length - 1]);
       }
     };
 

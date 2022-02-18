@@ -5,6 +5,8 @@ import { ChartCanvas, Chart } from "react-stockcharts";
 import { CandlestickSeries } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
 
+import { EdgeIndicator } from "react-stockcharts/lib/coordinates";
+
 import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
@@ -41,6 +43,19 @@ class CandleStickStockScaleChart extends React.Component {
           <XAxis axisAt="bottom" orient="bottom" ticks={6} />
           <YAxis axisAt="left" orient="left" ticks={5} />
           <CandlestickSeries />
+
+          <EdgeIndicator
+            itemType="last"
+            orient="right"
+            edgeAt="right"
+            yAccessor={(d) => d.close}
+            fill={(d) => (d.close > d.open ? "#A2F5BF" : "#F9ACAA")}
+            stroke={(d) => (d.close > d.open ? "#0B4228" : "#6A1B19")}
+            textFill={(d) => (d.close > d.open ? "#0B4228" : "#420806")}
+            strokeOpacity={1}
+            strokeWidth={3}
+            arrowWidth={2}
+          />
         </Chart>
       </ChartCanvas>
     );
