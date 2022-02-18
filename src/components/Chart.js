@@ -100,6 +100,9 @@ class ChartComponent extends React.Component {
           )}
         </TypeChooser>
         <div>
+          <button onClick={() => closeStream(this.state.stream_id)}>
+            end connection
+          </button>
           Change candle interval:
           <select onChange={this.changeCandleInterval}>
             {Object.keys(candleInterval).map((interval) => {
