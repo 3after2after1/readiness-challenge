@@ -7,7 +7,15 @@ export const ws = new WebSocket(
 
 export const candleInterval = {
   one_minute: 60,
+  two_minute: 120,
+  three_minute: 180,
+  five_minute: 300,
+  ten_minute: 600,
+  fifteen_minute: 900,
+  thirty_minute: 1800,
   one_hour: 3600,
+  four_hour: 7200,
+  eight_hour: 28800,
   one_day: 86400,
 };
 

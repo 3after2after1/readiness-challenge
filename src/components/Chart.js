@@ -37,8 +37,6 @@ class ChartComponent extends React.Component {
         let data_tick = data.tick;
         // get last candle
         let lastCandle = this.state.data[this.state.data.length - 1];
-        // set candle interval
-        let candle_interval = candleInterval.one_minute;
 
         // convert epoch to date
         data_tick.date = new Date(data_tick.epoch * 1000);
@@ -101,20 +99,18 @@ class ChartComponent extends React.Component {
             />
           )}
         </TypeChooser>
-        <button onClick={() => closeStream(this.state.stream_id)}>Close</button>
-        <button
-          onClick={() => this.changeCandleInterval(candleInterval.one_hour)}
-        >
-          trial btn
-        </button>
-        <select
-          // value={this.state.interval}
-          onChange={this.changeCandleInterval}
-        >
-          <option value={candleInterval.one_minute}>1 minute</option>
-          <option value={candleInterval.one_hour}>1 hour</option>
-          <option value={candleInterval.one_day}>1 day</option>
-        </select>
+        <div>
+          Change candle interval:
+          <select onChange={this.changeCandleInterval}>
+            {Object.keys(candleInterval).map((interval) => {
+              return (
+                <option key={interval} value={candleInterval[interval]}>
+                  {interval}
+                </option>
+              );
+            })}
+          </select>
+        </div>
       </div>
     );
   }
