@@ -19,6 +19,11 @@ export const candleInterval = {
   one_day: 86400,
 };
 
+export const charts = {
+  candle_stick: "candle_stick",
+  line_graph: "line_graph",
+};
+
 export const closeStream = (stream_id) => {
   console.log("closing ", stream_id);
   ws.send(
