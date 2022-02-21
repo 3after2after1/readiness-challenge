@@ -72,7 +72,7 @@ class LineAndScatterChart extends React.Component {
           <MouseCoordinateX
             at="bottom"
             orient="bottom"
-            displayFormat={timeFormat("%Y-%m-%d %H:%M %p")}
+            displayFormat={timeFormat("%Y-%m-%d %H:%M:%S %p")}
           />
           <MouseCoordinateY
             at="right"
