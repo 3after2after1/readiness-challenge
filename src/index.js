@@ -4,7 +4,7 @@ import Chart from "./components/Chart";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chart />
+    <Chart symbol="R_50" />
   </React.StrictMode>,
   document.getElementById("root")
 );

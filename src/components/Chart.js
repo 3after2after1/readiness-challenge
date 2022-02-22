@@ -10,9 +10,9 @@ import {
   charts,
   createUpdateCandle,
 } from "./../utils/utils";
-import { TypeChooser } from "react-stockcharts/lib/helper";
 
 class ChartComponent extends React.Component {
+  // accepts props: symbol
   componentDidMount() {
     ws.onmessage = (msg) => {
       let data = JSON.parse(msg.data);
@@ -89,16 +89,19 @@ class ChartComponent extends React.Component {
 
     // get historical data and subscribe tick stream
     ws.onopen = function () {
-      getHistoricalData("R_50", "candles", candleInterval.one_minute);
-      subscribeTickStream("R_50");
-    };
+      getHistoricalData(
+        this.props.symbol,
+        "candles",
+        candleInterval.one_minute
+      );
+      subscribeTickStream(this.props.symbol);
+    }.bind(this);
   }
 
   // change candle group interval
   changeCandleInterval = (e) => {
     // get selected interval option
     let interval = e.target.value;
-    console.log(interval);
 
     // change interval state
     if (interval === candleInterval.one_minute)
@@ -106,8 +109,9 @@ class ChartComponent extends React.Component {
     else this.setState({ interval: interval });
 
     // call historical data on interval
-    if (interval === "one_tick") getHistoricalData("R_50", "ticks", 60);
-    else getHistoricalData("R_50", "candles", interval);
+    if (interval === "one_tick")
+      getHistoricalData(this.props.symbol, "ticks", 60);
+    else getHistoricalData(this.props.symbol, "candles", interval);
   };
 
   // change chart on display
@@ -116,7 +120,11 @@ class ChartComponent extends React.Component {
       this.setState({ chart: null });
       if (this.state.interval === "one_tick") {
         this.setState({ interval: candleInterval.one_minute });
-        getHistoricalData("R_50", "candles", candleInterval.one_minute);
+        getHistoricalData(
+          this.props.symbol,
+          "candles",
+          candleInterval.one_minute
+        );
       }
     } else {
       this.setState({ chart: e.target.value });
@@ -129,9 +137,11 @@ class ChartComponent extends React.Component {
     }
     return (
       <div>
-        {!this.state.chart && <CandleStickChart data={this.state.data} />}
+        {!this.state.chart && (
+          <CandleStickChart type="hybrid" data={this.state.data} />
+        )}
         {this.state.chart === charts.line_graph && (
-          <LineGraphChart data={this.state.data} />
+          <LineGraphChart type="hybrid" data={this.state.data} />
         )}
         <div>
           <button onClick={() => closeStream(this.state.stream_id)}>
