@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Home from "./views/home/Home";
+import Chart from "./components/Chart";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Home />
+    <Chart symbol="R_50" />
   </React.StrictMode>,
   document.getElementById("root")
 );
