@@ -57,27 +57,77 @@ export const subscribeTickStream = (symbol) => {
   );
 };
 
-export const create_candle_data = (tick) => {
-  let single_candle = {};
+// create or update candle data group
+export const createUpdateCandle = (previousCandle, newTick, interval) => {
+  let previousCandleTime = null;
+  let newTickTimeGroup = null;
+  let newCandle = null;
 
-  if (arrTicks.length === 0) arrTicks.push(tick);
-  else {
-    if (arrTicks[0].date.getMinutes() === tick.date.getMinutes())
-      arrTicks.push(tick);
-    else {
-      let quotes = arrTicks.map((tick) => tick.quote);
-
-      // set candle data
-      single_candle.date = new Date(arrTicks[0].date.setSeconds(0, 0));
-      single_candle.open = arrTicks[0].quote;
-      single_candle.close = arrTicks[arrTicks.length - 1].quote;
-      single_candle.high = Math.max(...quotes);
-      single_candle.low = Math.min(...quotes);
-      single_candle.volume = 0;
-
-      arrTicks = [];
-    }
+  // get time group from candle or tick datetime
+  switch (interval) {
+    case candleInterval.one_minute:
+      previousCandleTime = previousCandle.date.getMinutes();
+      newTickTimeGroup = newTick.date.getMinutes();
+      break;
+    case candleInterval.two_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 2);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 2);
+      break;
+    case candleInterval.three_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 3);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 3);
+      break;
+    case candleInterval.five_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 5);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 5);
+      break;
+    case candleInterval.ten_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 10);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 10);
+      break;
+    case candleInterval.fifteen_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 15);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 15);
+      break;
+    case candleInterval.thirty_minute:
+      previousCandleTime = Math.trunc(previousCandle.date.getMinutes() / 30);
+      newTickTimeGroup = Math.trunc(newTick.date.getMinutes() / 30);
+      break;
+    case candleInterval.one_hour:
+      previousCandleTime = previousCandle.date.getHours();
+      newTickTimeGroup = newTick.date.getHours();
+      break;
+    case candleInterval.four_hour:
+      previousCandleTime = Math.trunc(previousCandle.date.getHours() / 4);
+      newTickTimeGroup = Math.trunc(newTick.date.getHours() / 4);
+      break;
+    case candleInterval.eight_hour:
+      previousCandleTime = Math.trunc(previousCandle.date.getHours() / 8);
+      newTickTimeGroup = Math.trunc(newTick.date.getHours() / 8);
+      break;
+    case candleInterval.one_day:
+      previousCandleTime = previousCandle.date.getDate();
+      newTickTimeGroup = newTick.date.getDate();
+      break;
+    default:
+      console.log("error in interval");
   }
 
-  return single_candle;
+  // compare time
+  if (previousCandleTime === newTickTimeGroup) {
+    previousCandle.close = newTick.quote;
+    previousCandle.high = Math.max(previousCandle.high, newTick.quote);
+    previousCandle.low = Math.min(previousCandle.low, newTick.quote);
+  } else {
+    newCandle = {
+      date: new Date(newTick.date.setSeconds(0, 0)),
+      open: newTick.quote,
+      close: newTick.quote,
+      high: newTick.quote,
+      low: newTick.quote,
+      volume: 0,
+    };
+  }
+
+  return newCandle;
 };
