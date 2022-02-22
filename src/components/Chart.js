@@ -83,7 +83,7 @@ class ChartComponent extends React.Component {
         }
 
         if (newCandle) this.state.data.push(newCandle);
-        console.log(this.state.data[this.state.data.length - 1]);
+        // console.log(this.state.data[this.state.data.length - 1]);
       }
     };
 
@@ -129,29 +129,10 @@ class ChartComponent extends React.Component {
     }
     return (
       <div>
-        <TypeChooser>
-          {(type) => {
-            let chart = null;
-            if (!this.state.chart) {
-              chart = (
-                <CandleStickChart
-                  style={{ passive: false }}
-                  type={type}
-                  data={this.state.data}
-                />
-              );
-            } else if (this.state.chart === charts.line_graph) {
-              chart = (
-                <LineGraphChart
-                  style={{ passive: false }}
-                  type={type}
-                  data={this.state.data}
-                />
-              );
-            }
-            return chart;
-          }}
-        </TypeChooser>
+        {!this.state.chart && <CandleStickChart data={this.state.data} />}
+        {this.state.chart === charts.line_graph && (
+          <LineGraphChart data={this.state.data} />
+        )}
         <div>
           <button onClick={() => closeStream(this.state.stream_id)}>
             end connection
