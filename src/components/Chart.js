@@ -9,18 +9,26 @@ import {
   candleInterval,
   charts,
   createUpdateCandle,
+  chartIndicators,
 } from "./../utils/utils";
 
 class ChartComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      interval: candleInterval.one_minute,
+      chart: charts.candle_stick,
+      indicators: [],
+    };
+  }
   // accepts props: symbol
   componentDidMount() {
     ws.onmessage = (msg) => {
       let data = JSON.parse(msg.data);
-
       // process candle data
       if (data.msg_type === "candles") {
         let data_candles = data.candles;
-        data_candles.map((e, i) => {
+        data_candles.map((e) => {
           e.date = new Date(e.epoch * 1000);
           e.volume = 0;
         });
@@ -59,13 +67,8 @@ class ChartComponent extends React.Component {
 
         // create or update candles
         let newCandle = null;
-        if (!this.state.interval) {
-          newCandle = createUpdateCandle(
-            lastCandle,
-            data_tick,
-            candleInterval.one_minute
-          );
-        } else if (this.state.interval === "one_tick") {
+
+        if (this.state.interval === "one_tick") {
           newCandle = {
             date: new Date(data_tick.date),
             open: data_tick.quote,
@@ -105,7 +108,7 @@ class ChartComponent extends React.Component {
 
     // change interval state
     if (interval === candleInterval.one_minute)
-      this.setState({ interval: null });
+      this.setState({ interval: candleInterval.one_minute });
     else this.setState({ interval: interval });
 
     // call historical data on interval
@@ -116,8 +119,8 @@ class ChartComponent extends React.Component {
 
   // change chart on display
   changeChart = (e) => {
+    this.setState({ chart: e.target.value });
     if (e.target.value === charts.candle_stick) {
-      this.setState({ chart: null });
       if (this.state.interval === "one_tick") {
         this.setState({ interval: candleInterval.one_minute });
         getHistoricalData(
@@ -126,22 +129,46 @@ class ChartComponent extends React.Component {
           candleInterval.one_minute
         );
       }
+    }
+  };
+
+  // enable and disable chart indicators
+  enableDisableIndicator = (indicator) => {
+    if (this.state.indicators.includes(indicator)) {
+      let newIndicators = this.state.indicators.filter((i) => i !== indicator);
+      this.setState({ indicators: newIndicators });
     } else {
-      this.setState({ chart: e.target.value });
+      this.state.indicators.push(indicator);
     }
   };
 
   render() {
-    if (this.state == null) {
+    const enabledIndicatorStyle = {
+      backgroundColor: "#90EE90",
+    };
+
+    const disabledIndicatorStyle = {
+      backgroundColor: "#f8f8f8",
+    };
+
+    if (!this.state.data) {
       return <div>Loading...</div>;
     }
     return (
       <div>
-        {!this.state.chart && (
-          <CandleStickChart type="hybrid" data={this.state.data} />
+        {this.state.chart === charts.candle_stick && (
+          <CandleStickChart
+            type="hybrid"
+            data={this.state.data}
+            indicators={this.state.indicators}
+          />
         )}
         {this.state.chart === charts.line_graph && (
-          <LineGraphChart type="hybrid" data={this.state.data} />
+          <LineGraphChart
+            type="hybrid"
+            data={this.state.data}
+            indicators={this.state.indicators}
+          />
         )}
         <div>
           <button onClick={() => closeStream(this.state.stream_id)}>
@@ -175,6 +202,39 @@ class ChartComponent extends React.Component {
                 );
               })}
             </select>
+          </div>
+          <div>
+            {/* indicator options */}
+            <button
+              onClick={() =>
+                this.enableDisableIndicator(chartIndicators.simple_moving_avg)
+              }
+              style={
+                this.state.indicators.includes(
+                  chartIndicators.simple_moving_avg
+                )
+                  ? enabledIndicatorStyle
+                  : disabledIndicatorStyle
+              }
+            >
+              Simple Moving Average
+            </button>
+            <button
+              onClick={() =>
+                this.enableDisableIndicator(
+                  chartIndicators.relative_strength_index
+                )
+              }
+              style={
+                this.state.indicators.includes(
+                  chartIndicators.relative_strength_index
+                )
+                  ? enabledIndicatorStyle
+                  : disabledIndicatorStyle
+              }
+            >
+              Relative Strength Index
+            </button>
           </div>
         </div>
       </div>

@@ -23,6 +23,11 @@ export const charts = {
   line_graph: "line_graph",
 };
 
+export const chartIndicators = {
+  simple_moving_avg: "Simple Moving Average",
+  relative_strength_index: "Relative Strength Index",
+};
+
 export const closeStream = (stream_id) => {
   console.log("closing ", stream_id);
   ws.send(
