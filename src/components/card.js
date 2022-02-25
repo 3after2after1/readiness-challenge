@@ -8,7 +8,6 @@ import { blue } from "@mui/material/colors";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
 
-
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
@@ -28,7 +27,6 @@ const useStyles = makeStyles({
 });
 
 export default function ForexCard() {
-  
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardHeader
