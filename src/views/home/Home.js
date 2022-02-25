@@ -1,20 +1,24 @@
 import React from "react";
-import "./Home.css";
-import CardFilter from "../../components/card-filter";
-import ForexCard from "../../components/card";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Box } from "@mui/system";
+import "./Home.css";
+import SearchBar from "../../components/searchbar";
+import CardFilter from "../../components/card-filter";
+import ForexCard from "../../components/card";
+import News from "../../components/news-slider";
+// import Data from "../../components/Data.json";
 
-//apply CSS styling to material-ui components 
+//apply CSS styling to material-ui components
 const useStyles = makeStyles({
   gridContainer: {
-    paddingLeft: '40px',
-    paddingRight: '40px',
-    paddingBottom: '50px'
+    paddingLeft: "40px",
+    paddingRight: "40px",
+    paddingBottom: "50px",
   },
-  filterContainer:{
-    paddingRight: '50px',
-  }
+  filterContainer: {
+    paddingRight: "50px",
+  },
 });
 
 function Home() {
@@ -23,11 +27,21 @@ function Home() {
   return (
     <div className="main-container">
       <div className="header">
-        <p className="title"> title here </p>
+        <p className="title"> TRex </p>
       </div>
       <div className="sidebar"></div>
-
       <div className="content">
+        {/* <SearchBar data={Data} placeholder="Search here..">
+        </SearchBar> */}
+        <Box
+          p={2}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <SearchBar />
+        </Box>
         <div className="content-title">
           <div className="content-title left">
             <p>Forex</p>
@@ -105,10 +119,16 @@ function Home() {
             <ForexCard />
           </Grid>
         </Grid>
-      </div>
 
-      <div className="news">
-        <p>footer info</p>
+        <Box
+          p={2}
+          style={{
+            paddingLeft: "150px",
+            paddingRight: "150px",
+          }}
+        >
+          <News />
+        </Box>
       </div>
 
       <div className="footer">

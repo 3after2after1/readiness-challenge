@@ -34,7 +34,6 @@ export default function ForexCard() {
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-            L
           </Avatar>
         }
         action={
