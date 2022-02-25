@@ -10,96 +10,166 @@ import {
   charts,
   createUpdateCandle,
   chartIndicators,
+  candleIntervals,
+  processHistoricalOHLC,
+  processHistoricalTicks,
 } from "./../utils/utils";
+import {
+  getCryptoHistoricalData,
+  cryptoIntervals,
+  ws_cc,
+  closeCryptoStream,
+  createCryptoSubs,
+  subscribeCryptoTickStream,
+  createUpdateCryptoCandle,
+} from "../utils/utils-cryptocompare";
+import { last } from "react-stockcharts/lib/utils";
 
 class ChartComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      interval: candleInterval.one_minute,
+      interval: candleIntervals.one_minute,
       chart: charts.candle_stick,
       indicators: [],
     };
   }
   // accepts props: symbol
   componentDidMount() {
-    ws.onmessage = (msg) => {
-      let data = JSON.parse(msg.data);
-      // process candle data
-      if (data.msg_type === "candles") {
-        let data_candles = data.candles;
-        data_candles.map((e) => {
-          e.date = new Date(e.epoch * 1000);
-          e.volume = 0;
-        });
-        data = data_candles;
-        this.setState({ data });
-      }
+    if (this.props.market === "forex") {
+      ws.onmessage = (msg) => {
+        let data = JSON.parse(msg.data);
 
-      // process historical tick data
-      if (data.msg_type === "history") {
-        let data_ticks = data.history;
-        let data_ticks_parsed = [];
-        for (let i = 0; i < data_ticks.prices.length; i++) {
-          let price = data_ticks.prices[i];
-          data_ticks_parsed.push({
-            date: new Date(data_ticks.times[i] * 1000),
-            open: price,
-            close: price,
-            high: price,
-            low: price,
-            volume: 0,
-          });
-        }
-        this.setState({ data: data_ticks_parsed });
-      }
-
-      // get tick stream
-      if (data.msg_type === "tick") {
-        // set stream id
-        this.setState({ stream_id: data.subscription.id });
-        let data_tick = data.tick;
-        // get last candle
-        let lastCandle = this.state.data[this.state.data.length - 1];
-
-        // convert epoch to date
-        data_tick.date = new Date(data_tick.epoch * 1000);
-
-        // create or update candles
-        let newCandle = null;
-
-        if (this.state.interval === "one_tick") {
-          newCandle = {
-            date: new Date(data_tick.date),
-            open: data_tick.quote,
-            close: data_tick.quote,
-            high: data_tick.quote,
-            low: data_tick.quote,
-            volume: 0,
-          };
-        } else {
-          newCandle = createUpdateCandle(
-            lastCandle,
-            data_tick,
-            parseInt(this.state.interval)
+        // process candle data
+        if (data.msg_type === "candles") {
+          let data_candles = data.candles;
+          let data_processed = processHistoricalOHLC(
+            data_candles,
+            this.props.market
           );
+          this.setState({ data: data_processed });
         }
 
-        if (newCandle) this.state.data.push(newCandle);
-        // console.log(this.state.data[this.state.data.length - 1]);
-      }
-    };
+        // process historical tick data
+        if (data.msg_type === "history") {
+          let data_ticks = data.history;
+          let processedData = processHistoricalTicks(data_ticks);
+          this.setState({ data: processedData });
+        }
 
-    // get historical data and subscribe tick stream
-    ws.onopen = function () {
-      getHistoricalData(
-        this.props.symbol,
-        "candles",
-        candleInterval.one_minute
+        // get tick stream
+        if (data.msg_type === "tick") {
+          // set stream id
+          this.setState({ stream_id: data.subscription.id });
+          let data_tick = data.tick;
+          let lastCandle = this.state.data[this.state.data.length - 1];
+          // let lastOHLC = this.state.data[this.state.data.length - 1];
+
+          // convert epoch to date
+          data_tick.date = new Date(data_tick.epoch * 1000);
+          data_tick.price = data_tick.quote;
+
+          // check if new tick belongs to the same time group of last OHLC
+
+          // create or update candles
+          let newCandle = null;
+
+          if (this.state.interval === "one_tick") {
+            newCandle = {
+              date: new Date(data_tick.date),
+              open: data_tick.quote,
+              close: data_tick.quote,
+              high: data_tick.quote,
+              low: data_tick.quote,
+              volume: 0,
+            };
+          } else {
+            newCandle = createUpdateCandle(
+              lastCandle,
+              data_tick,
+              parseInt(this.state.interval.seconds)
+            );
+          }
+
+          if (newCandle) this.state.data.push(newCandle);
+          // console.log(this.state.data[this.state.data.length - 1]);
+        }
+      };
+
+      // get historical data and subscribe tick stream
+      ws.onopen = function () {
+        getHistoricalData(
+          this.props.symbol,
+          "candles",
+          candleIntervals.one_minute.seconds
+        );
+        subscribeTickStream(this.props.symbol);
+      }.bind(this);
+    } else {
+      // process crypto data
+      console.log("process crypto");
+
+      // get historical data
+      getCryptoHistoricalData("BTC", cryptoIntervals.one_minute).then(
+        (data) => {
+          let processedData = processHistoricalOHLC(data, this.props.market);
+          this.setState({ data: processedData });
+
+          ws.onopen = function () {
+            console.log(createCryptoSubs("BTC"));
+
+            subscribeCryptoTickStream(createCryptoSubs("BTC"));
+          };
+        }
       );
-      subscribeTickStream(this.props.symbol);
-    }.bind(this);
+
+      ws_cc.onmessage = (msg) => {
+        this.setState({ stream_id: createCryptoSubs("BTC") });
+        let data = JSON.parse(msg.data);
+
+        if (data.TYPE === "5") {
+          console.log("new tick: ", data);
+          let lastCandle = this.state.data[this.state.data.length - 1];
+
+          // response must contain date and price
+          if (data.LASTUPDATE && data.PRICE) {
+            data.DATE = new Date(data.LASTUPDATE * 1000);
+
+            // create new candle
+            let newCandle = null;
+
+            if (this.state.interval === "one_tick") {
+              newCandle = {
+                date: data.DATE,
+                open: data.PRICE,
+                close: data.PRICE,
+                high: data.PRICE,
+                low: data.PRICE,
+                volume: data.LASTVOLUME,
+              };
+            } else {
+              newCandle = createUpdateCryptoCandle(
+                lastCandle,
+                data,
+                parseInt(this.state.interval.seconds)
+              );
+            }
+
+            console.log("newCandle ", newCandle);
+            if (newCandle) this.state.data.push(newCandle);
+          }
+        }
+      };
+    }
   }
+
+  componentWillUnmount = () => {
+    if (this.props.market === "forex") {
+      closeStream(this.state.stream_id);
+    } else {
+      closeCryptoStream([this.state.subs]);
+    }
+  };
 
   // change candle group interval
   changeCandleInterval = (e) => {
@@ -107,14 +177,21 @@ class ChartComponent extends React.Component {
     let interval = e.target.value;
 
     // change interval state
-    if (interval === candleInterval.one_minute)
-      this.setState({ interval: candleInterval.one_minute });
+    if (interval === candleIntervals.one_minute)
+      this.setState({ interval: candleIntervals.one_minute });
     else this.setState({ interval: interval });
 
     // call historical data on interval
-    if (interval === "one_tick")
-      getHistoricalData(this.props.symbol, "ticks", 60);
-    else getHistoricalData(this.props.symbol, "candles", interval);
+    if (this.props.market === "forex") {
+      if (interval === "one_tick")
+        getHistoricalData(this.props.symbol, "ticks", 60);
+      else getHistoricalData(this.props.symbol, "candles", interval.seconds);
+    } else {
+      getCryptoHistoricalData("BTC", interval).then((data) => {
+        console.log("data in", data);
+        this.setState({ data });
+      });
+    }
   };
 
   // change chart on display
@@ -122,11 +199,11 @@ class ChartComponent extends React.Component {
     this.setState({ chart: e.target.value });
     if (e.target.value === charts.candle_stick) {
       if (this.state.interval === "one_tick") {
-        this.setState({ interval: candleInterval.one_minute });
+        this.setState({ interval: candleIntervals.one_minute });
         getHistoricalData(
           this.props.symbol,
           "candles",
-          candleInterval.one_minute
+          candleIntervals.one_minute.seconds
         );
       }
     }
@@ -171,7 +248,15 @@ class ChartComponent extends React.Component {
           />
         )}
         <div>
-          <button onClick={() => closeStream(this.state.stream_id)}>
+          <button
+            onClick={() => {
+              this.state.market === "forex"
+                ? closeStream(this.state.stream_id)
+                : closeCryptoStream([this.state.stream_id]);
+
+              console.log("stream_id ", this.state.stream_id);
+            }}
+          >
             end connection
           </button>
           <div>
@@ -194,9 +279,9 @@ class ChartComponent extends React.Component {
                   one_tick
                 </option>
               )}
-              {Object.keys(candleInterval).map((interval) => {
+              {Object.keys(candleIntervals).map((interval) => {
                 return (
-                  <option key={interval} value={candleInterval[interval]}>
+                  <option key={interval} value={candleIntervals[interval]}>
                     {interval}
                   </option>
                 );
