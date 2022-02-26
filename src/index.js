@@ -4,7 +4,7 @@ import Chart from "./components/Chart";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chart symbol="BTC" market="crypto" />
+    <Chart symbol="R_50" market="forex" />
   </React.StrictMode>,
   document.getElementById("root")
 );

@@ -129,13 +129,12 @@ export const isCurrentTickTimeGroupSame = (interval, lastOHLC, tick) => {
   }
 
   if (
-    lastCandleTimeGroup &&
-    tickTimeGroup &&
+    lastCandleTimeGroup !== null &&
+    tickTimeGroup !== null &&
     lastCandleTimeGroup === tickTimeGroup
   ) {
     same = true;
   }
-
   return same;
 };
 
