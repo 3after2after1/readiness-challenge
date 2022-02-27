@@ -44,8 +44,9 @@ export default function DetailsPage() {
         alt="Insert chart"
       /> */}
 
-      {/* insert any forex symbol ((available in Deriv API only)) */}
-      <Chart symbol="R_50" />
+      {/* [forex] symbol: R_50, market: forex */}
+      {/* [crypto] symbol: BTC, market: crypto */}
+      <Chart symbol="BTC" market="crypto" />
     </Card>
   );
 }

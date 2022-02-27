@@ -5,8 +5,6 @@ import Details from "./views/home/Details";
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <Chart symbol="R_50" market="forex" /> */}
-    {/* <Chart symbol="R_50" /> */}
     <Details />
   </React.StrictMode>,
   document.getElementById("root")
