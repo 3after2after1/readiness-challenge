@@ -42,7 +42,7 @@ const carouselProperties = {
 };
 
 const News = () => {
-const sliderRef = useRef(null);
+  const sliderRef = useRef(null);
   useEffect(() => {
     console.log(sliderRef);
   }, []);
@@ -54,7 +54,7 @@ const sliderRef = useRef(null);
           style={{
             display: "flex",
             justifyContent: "space-between",
-            padding: "0 70px",          
+            padding: "0 70px",
           }}
         >
           <h1>News</h1>
@@ -87,7 +87,8 @@ const sliderRef = useRef(null);
                 boxShadow: "0 2px 4px rgb(0 0 0 /10%)",
                 cursor: "pointer",
               }}
-              onClick={() => sliderRef.current.slickNext()}>
+              onClick={() => sliderRef.current.slickNext()}
+            >
               <ArrowForwardIos />
             </div>
           </div>
@@ -110,7 +111,7 @@ const sliderRef = useRef(null);
                   <Box
                     style={{
                       display: "flex",
-                      flexDirection: "row",              
+                      flexDirection: "row",
                     }}
                   >
                     <CardContent>
@@ -118,7 +119,8 @@ const sliderRef = useRef(null);
                         gutterBottom
                         variant="h5"
                         component="h2"
-                        minwidth="200">
+                        minwidth="200"
+                      >
                         News Title
                       </Typography>
                     </CardContent>
