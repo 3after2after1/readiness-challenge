@@ -10,6 +10,9 @@ import {
   IconButton,
 } from "@mui/material";
 import React, { useState } from "react";
+import { createUserWithEmailAndPassword } from "@firebase/auth";
+import { auth } from "../../firebase";
+import { UserState } from "../../UserContext";
 
 const Signup2 = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -24,7 +27,26 @@ const Signup2 = ({ handleClose }) => {
   const handleMouseDownPassword2 = () =>
     setShowConfirmPassword(!showConfirmPassword);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (password != confirmPassword) {
+      console.log("wrong password");
+      return;
+    }
+
+    try {
+      const result = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      console.log("Sign Up Success");
+      console.log(result);
+    } catch (error) {
+      console.log("Sign Up Error");
+      return;
+    }
+  };
   return (
     <Box
       className="signupresize"

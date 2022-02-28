@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import "./Auth.css";
+import { signInWithEmailAndPassword } from "@firebase/auth";
 
 const Login = ({ handleClose }) => {
   const [email, setEmail] = useState("");

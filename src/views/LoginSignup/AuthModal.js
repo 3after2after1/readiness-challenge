@@ -11,6 +11,7 @@ import Login from "./Login";
 import GoogleButton from "react-google-button";
 import Signup2 from "./Signup2";
 import "./Auth.css";
+import { UserState } from "../../UserContext";
 
 const style = {
   position: "absolute",
@@ -26,8 +27,12 @@ const style = {
 };
 
 const AuthModal = () => {
+  const { user } = UserState();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    setValue(1);
+  };
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(0);
 
@@ -44,6 +49,7 @@ const AuthModal = () => {
       >
         Login
       </Button>
+      <h1>{user ? user.email : "no user"}</h1>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
