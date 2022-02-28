@@ -23,25 +23,3 @@ export default function SearchBar() {
   );
 }
 
-// import { Autocomplete } from "@mui/material"
-
-// export default function SearchBar({data, placeholder}) {
-//     return (
-//       <div className="search">
-//         <div className="searchInput">
-//           <Autocomplete 
-//           id="custom-input-demo"
-//           options={data}
-//           getOptionLabel={(opt) => opt.title}
-
-//           renderInput={(params) => (
-//               <div ref={params.InputProps.ref}>
-//                   <input type="text" {...params.inputProps} placeholder={placeholder} autoFocus='true' />
-//               </div>
-//           )}
-//           >
-//           </Autocomplete>
-//         </div>
-//       </div>
-//     );
-// }
