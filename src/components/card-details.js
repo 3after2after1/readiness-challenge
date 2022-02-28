@@ -46,7 +46,7 @@ export default function DetailsPage() {
 
       {/* [forex] symbol: R_50, market: forex */}
       {/* [crypto] symbol: BTC, market: crypto */}
-      <Chart symbol="BTC" market="crypto" />
+      <Chart symbol="R_50" market="forex" />
     </Card>
   );
 }
