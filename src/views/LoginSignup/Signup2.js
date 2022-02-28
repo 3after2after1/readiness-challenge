@@ -1,4 +1,8 @@
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import {
+  RestaurantOutlined,
+  Visibility,
+  VisibilityOff,
+} from "@mui/icons-material";
 import {
   Box,
   Button,
@@ -10,9 +14,11 @@ import {
   IconButton,
 } from "@mui/material";
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword } from "@firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+} from "@firebase/auth";
 import { auth } from "../../firebase";
-import { UserState } from "../../UserContext";
 
 const Signup2 = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -39,6 +45,10 @@ const Signup2 = ({ handleClose }) => {
         email,
         password
       );
+
+      if (result.user.emailVerified === false) {
+        sendEmailVerification(result.user);
+      }
 
       console.log("Sign Up Success");
       console.log(result);

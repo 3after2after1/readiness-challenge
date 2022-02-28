@@ -11,7 +11,11 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import "./Auth.css";
-import { signInWithEmailAndPassword } from "@firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+} from "@firebase/auth";
+import { auth } from "../../firebase";
 
 const Login = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -20,7 +24,20 @@ const Login = ({ handleClose }) => {
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+
+      console.log("Login Success");
+      console.log(result);
+    } catch (error) {}
+  };
+
+  const forgetPass = async () => {
+    const result = await sendPasswordResetEmail(auth, "wong@besquare.com.my");
+
+    console.log("Password reset trigger");
+  };
   return (
     <Box
       className="loginresize"

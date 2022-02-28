@@ -11,7 +11,10 @@ import Login from "./Login";
 import GoogleButton from "react-google-button";
 import Signup2 from "./Signup2";
 import "./Auth.css";
+import { GoogleAuthProvider, signOut, signInWithPopup } from "@firebase/auth";
+import { auth } from "../../firebase";
 import { UserState } from "../../UserContext";
+import { useSearchParams } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -29,17 +32,30 @@ const style = {
 const AuthModal = () => {
   const { user } = UserState();
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => {
-    setOpen(true);
-    setValue(1);
-  };
+  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const signInWithGoogle = () => {};
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const linkvalue = searchParams.get("testval");
+  const logOut = () => {
+    signOut(auth);
+  };
+
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        console.log("Google Provider Login Success");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div>
       <Button
@@ -49,7 +65,15 @@ const AuthModal = () => {
       >
         Login
       </Button>
+      <Button
+        variant="contained"
+        startIcon={<AccountCircle />}
+        onClick={logOut}
+      >
+        Log Out
+      </Button>
       <h1>{user ? user.email : "no user"}</h1>
+      <h1>{linkvalue ? linkvalue : "no urldata"}</h1>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
