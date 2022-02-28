@@ -9,7 +9,6 @@ import ForexCard from "../../components/card";
 import News from "../../components/news-slider";
 // import Data from "../../components/Data.json";
 
-//apply CSS styling to material-ui components
 const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "40px",
@@ -19,6 +18,10 @@ const useStyles = makeStyles({
   filterContainer: {
     paddingRight: "50px",
   },
+  // newsContainer: {
+  //   paddingLeft: "40px",
+  //   paddingRight: "40px",
+  // },
 });
 
 function Home() {
@@ -120,15 +123,11 @@ function Home() {
           </Grid>
         </Grid>
 
-        <Box
-          p={2}
-          style={{
-            paddingLeft: "150px",
-            paddingRight: "150px",
-          }}
-        >
-          <News />
-        </Box>
+        <Grid className={classes.newsContainer}>
+          <Grid>
+            <News />
+          </Grid>
+        </Grid>
       </div>
 
       <div className="footer">

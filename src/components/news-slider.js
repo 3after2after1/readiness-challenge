@@ -12,10 +12,37 @@ import {
   CardMedia,
   Box,
 } from "@material-ui/core";
-import { flexbox } from "@mui/system";
+
+const carouselProperties = {
+  slidesToShow: 4,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 840,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 1190,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2,
+      },
+    },
+    {
+      breakpoint: 1550,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+      },
+    },
+  ],
+};
 
 const News = () => {
-  const sliderRef = useRef(null);
+const sliderRef = useRef(null);
   useEffect(() => {
     console.log(sliderRef);
   }, []);
@@ -27,7 +54,7 @@ const News = () => {
           style={{
             display: "flex",
             justifyContent: "space-between",
-            padding: "0 10px",
+            padding: "0 70px",          
           }}
         >
           <h1>News</h1>
@@ -44,7 +71,8 @@ const News = () => {
                 boxShadow: "0 2px 4px rgb(0 0 0 /10%)",
                 cursor: "pointer",
               }}
-              onClick={() => sliderRef.current.slickPrev()} >
+              onClick={() => sliderRef.current.slickPrev()}
+            >
               <ArrowBackIos />
             </div>
             <div
@@ -59,26 +87,30 @@ const News = () => {
                 boxShadow: "0 2px 4px rgb(0 0 0 /10%)",
                 cursor: "pointer",
               }}
-              onClick={() => sliderRef.current.slickNext()}
-            >
+              onClick={() => sliderRef.current.slickNext()}>
               <ArrowForwardIos />
             </div>
           </div>
         </div>
       </div>
-      <div style={{ margin: 30 }}>
-        <Slider ref={sliderRef} slidesToShow={4} slidesToScroll={4}>
+      <div style={{ marginLeft: 40, marginRight: 40 }}>
+        <Slider {...carouselProperties} ref={sliderRef}>
           {Array(10)
             .fill("")
             .map(() => (
-              <div style={{ margin: 20 }}>
+              <div>
                 <Card
-                  style={{ width: 350, objectFit: "contain", borderRadius: 15 }}
+                  style={{
+                    minwidth: 350,
+                    margin: 10,
+                    objectFit: "contain",
+                    borderRadius: 15,
+                  }}
                 >
                   <Box
                     style={{
                       display: "flex",
-                      flexDirection: "row",
+                      flexDirection: "row",              
                     }}
                   >
                     <CardContent>
@@ -86,24 +118,20 @@ const News = () => {
                         gutterBottom
                         variant="h5"
                         component="h2"
-                        minwidth="200"
-                      >
+                        minwidth="200">
                         News Title
                       </Typography>
                     </CardContent>
                     <CardMedia
                       component="img"
                       height="200"
-                      image="https://thumbs.dreamstime.com/b/pink-ice-cream-small-cone-pink-ice-cream-small-cone-154220273.jpg"
+                      image="https://i.pinimg.com/564x/54/b0/f9/54b0f98fc7530d471381bec95e27125a.jpg"
                       alt="Image"
                       objectFit="cover"
                     />
                   </Box>
                   <CardContent>
-                    <Typography
-                      variant="body2"
-                      component="p"
-                    >
+                    <Typography variant="body2" component="p">
                       News description
                     </Typography>
                   </CardContent>
@@ -111,28 +139,29 @@ const News = () => {
                     style={{
                       display: "flex",
                       flexDirection: "row",
-                      justifyContent:"space-between",
-                      padding:15                   
+                      justifyContent: "space-between",
+                      padding: 15,
                     }}
                   >
                     <Box
-                    style={{
-                      display: "flex",
-                      flexDirection: "row"
-                    }}>
-                    <Avatar
-                      sx={{ bgcolor: blue[500] }}
-                      aria-label="Logo"
-                    ></Avatar>
-                    <Typography
-                      variant="body2"
-                      color="textSecondary"
-                      component="p"
-                      objectFit="cover"
-                      margin="50"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                      }}
                     >
-                      Source
-                    </Typography>
+                      <Avatar
+                        sx={{ bgcolor: blue[500] }}
+                        aria-label="Logo"
+                      ></Avatar>
+                      <Typography
+                        variant="body2"
+                        color="textSecondary"
+                        component="p"
+                        objectFit="cover"
+                        margin="50"
+                      >
+                        Source
+                      </Typography>
                     </Box>
                     <Typography
                       variant="body2"
