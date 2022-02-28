@@ -37,6 +37,27 @@ import {
 class CandleStickStockScaleChart extends React.Component {
   render() {
     const { type, data: initialData, width, ratio, indicators } = this.props;
+    const margin = { left: 60, right: 60, top: 10, bottom: 20 };
+
+    const height = 500;
+    const gridHeight = height - margin.top - margin.bottom;
+    const gridWidth = width - margin.left - margin.right;
+
+    const showGrid = true;
+    const yGrid = showGrid
+      ? {
+          innerTickSize: -1 * gridWidth,
+          tickStrokeDasharray: "ShortDash",
+          tickStrokeOpacity: 0.2,
+        }
+      : {};
+    const xGrid = showGrid
+      ? {
+          innerTickSize: -1 * gridHeight,
+          tickStrokeDasharray: "ShortDash",
+          tickStrokeOpacity: 0.2,
+        }
+      : {};
 
     const ema20 = ema()
       .options({
@@ -113,10 +134,10 @@ class CandleStickStockScaleChart extends React.Component {
 
     return (
       <ChartCanvas
-        height={500}
+        height={height}
         ratio={ratio}
         width={width}
-        margin={{ left: 50, right: 50, top: 10, bottom: 30 }}
+        margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
         type={type}
         seriesName="MSFT"
         data={data}
@@ -132,8 +153,8 @@ class CandleStickStockScaleChart extends React.Component {
             indicators.includes(chartIndicators.relative_strength_index) && 300
           }
         >
-          <XAxis axisAt="bottom" orient="bottom" ticks={6} />
-          <YAxis axisAt="right" orient="right" ticks={5} />
+          <XAxis axisAt="bottom" orient="bottom" ticks={6} {...xGrid} />
+          <YAxis axisAt="right" orient="right" ticks={5} {...yGrid} />
           <OHLCTooltip origin={[-40, 0]} />
 
           <CandlestickSeries />
@@ -147,6 +168,19 @@ class CandleStickStockScaleChart extends React.Component {
               <CurrentCoordinate
                 yAccessor={sma20.accessor()}
                 fill={sma20.stroke()}
+              />
+
+              <MovingAverageTooltip
+                origin={[-38, 15]}
+                options={[
+                  {
+                    yAccessor: sma20.accessor(),
+                    type: "SMA",
+                    stroke: sma20.stroke(),
+                    windowSize: sma20.options().windowSize,
+                    echo: "some echo here",
+                  },
+                ]}
               />
             </>
           )}
@@ -173,19 +207,6 @@ class CandleStickStockScaleChart extends React.Component {
             at="left"
             orient="left"
             displayFormat={format(".4s")}
-          />
-          <MovingAverageTooltip
-            onClick={(e) => console.log(e)}
-            origin={[-38, 15]}
-            options={[
-              {
-                yAccessor: sma20.accessor(),
-                type: "SMA",
-                stroke: sma20.stroke(),
-                windowSize: sma20.options().windowSize,
-                echo: "some echo here",
-              },
-            ]}
           />
         </Chart>
         {indicators.includes(chartIndicators.relative_strength_index) && (

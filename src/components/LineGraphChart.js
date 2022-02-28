@@ -37,6 +37,27 @@ import { chartIndicators } from "../utils/utils";
 class LineAndScatterChart extends React.Component {
   render() {
     const { data: initialData, type, width, ratio, indicators } = this.props;
+    const margin = { left: 60, right: 60, top: 10, bottom: 20 };
+
+    const height = 500;
+    const gridHeight = height - margin.top - margin.bottom;
+    const gridWidth = width - margin.left - margin.right;
+
+    const showGrid = true;
+    const yGrid = showGrid
+      ? {
+          innerTickSize: -1 * gridWidth,
+          tickStrokeDasharray: "ShortDash",
+          tickStrokeOpacity: 0.2,
+        }
+      : {};
+    const xGrid = showGrid
+      ? {
+          innerTickSize: -1 * gridHeight,
+          tickStrokeDasharray: "ShortDash",
+          tickStrokeOpacity: 0.2,
+        }
+      : {};
 
     const ema20 = ema()
       .options({
@@ -113,7 +134,7 @@ class LineAndScatterChart extends React.Component {
       <ChartCanvas
         ratio={ratio}
         width={width}
-        height={500}
+        height={height}
         margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
         type={type}
         pointsPerPxThreshold={1}
@@ -131,13 +152,14 @@ class LineAndScatterChart extends React.Component {
             indicators.includes(chartIndicators.relative_strength_index) && 300
           }
         >
-          <XAxis axisAt="bottom" orient="bottom" />
+          <XAxis axisAt="bottom" orient="bottom" {...xGrid} />
           <YAxis
             axisAt="right"
             orient="right"
             // tickInterval={5}
             // tickValues={[40, 60]}
             ticks={5}
+            {...yGrid}
           />
           <OHLCTooltip origin={[-40, 0]} />
           <EdgeIndicator
@@ -175,6 +197,18 @@ class LineAndScatterChart extends React.Component {
                 yAccessor={sma20.accessor()}
                 fill={sma20.stroke()}
               />
+              <MovingAverageTooltip
+                origin={[-38, 15]}
+                options={[
+                  {
+                    yAccessor: sma20.accessor(),
+                    type: "SMA",
+                    stroke: sma20.stroke(),
+                    windowSize: sma20.options().windowSize,
+                    echo: "some echo here",
+                  },
+                ]}
+              />
             </>
           )}
 
@@ -182,20 +216,6 @@ class LineAndScatterChart extends React.Component {
             yAccessor={(d) => d.close}
             marker={CircleMarker}
             markerProps={{ r: 3 }}
-          />
-
-          <MovingAverageTooltip
-            onClick={(e) => console.log(e)}
-            origin={[-38, 15]}
-            options={[
-              {
-                yAccessor: sma20.accessor(),
-                type: "SMA",
-                stroke: sma20.stroke(),
-                windowSize: sma20.options().windowSize,
-                echo: "some echo here",
-              },
-            ]}
           />
         </Chart>
         {indicators.includes(chartIndicators.relative_strength_index) && (
