@@ -24,6 +24,21 @@ import {
   subscribeCryptoTickStream,
 } from "../utils/utils-cryptocompare";
 
+import { Grid } from "@material-ui/core";
+import { Paper } from "@mui/material";
+import { styled } from "@material-ui/styles";
+import { InputLabel } from "@mui/material";
+import { MenuItem } from "@material-ui/core";
+import { Select } from "@mui/material";
+import { FormControl } from "@material-ui/core";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+
+const Item = styled(Paper)(() => ({
+  textAlign: "center",
+}));
+
 class ChartComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +54,7 @@ class ChartComponent extends React.Component {
       ws.onmessage = (msg) => {
         let data = JSON.parse(msg.data);
 
-        // process candle data
+        // process candle data and subscribe to data stream
         if (data.msg_type === "candles") {
           let data_candles = data.candles;
           let data_processed = processHistoricalOHLC(
@@ -59,8 +74,10 @@ class ChartComponent extends React.Component {
         // get tick stream
         if (data.msg_type === "tick") {
           // set stream id
+
           this.setState({ stream_id: data.subscription.id });
           let data_tick = data.tick;
+
           let lastCandle = this.state.data[this.state.data.length - 1];
           // let lastOHLC = this.state.data[this.state.data.length - 1];
 
@@ -87,9 +104,10 @@ class ChartComponent extends React.Component {
         }
       };
 
-      // get historical data and subscribe tick stream
+      // get historical data
       ws.onopen = function () {
         getHistoricalData(this.props.symbol, "candles", this.state.interval);
+
         subscribeTickStream(this.props.symbol);
       }.bind(this);
     } else {
@@ -198,6 +216,19 @@ class ChartComponent extends React.Component {
     }
   };
 
+  // enable and disable chart Indicators
+  selectUnselectIndicator = (e) => {
+    let indicator = e.target.value[0];
+    console.log("in ", indicator);
+    console.log("state in ", this.state.indicators);
+    if (this.state.indicators.includes(indicator)) {
+      let newIndicators = this.state.indicators.filter((i) => i !== indicator);
+      this.setState({ indicators: newIndicators });
+    } else {
+      this.state.indicators.push(indicator);
+    }
+  };
+
   render() {
     const enabledIndicatorStyle = {
       backgroundColor: "#90EE90",
@@ -244,7 +275,7 @@ class ChartComponent extends React.Component {
           >
             end connection
           </button>
-          <div>
+          {/* <div>
             <p>Change chart:</p>
             <select onChange={this.changeChart}>
               {Object.keys(charts).map((chart) => {
@@ -267,7 +298,7 @@ class ChartComponent extends React.Component {
                 );
               })}
             </select>
-          </div>
+          </div> */}
           <div>
             {/* indicator options */}
             <button
@@ -301,6 +332,86 @@ class ChartComponent extends React.Component {
               Relative Strength Index
             </button>
           </div>
+        </div>
+        <div>
+          <Grid container spacing={1}>
+            <Grid item xs={12} md={4}>
+              <FormControl fullWidth>
+                <InputLabel id="label-chart-type">Chart</InputLabel>
+                <Select
+                  labelId="label-chart-type"
+                  id="select-chart-type"
+                  label="Chart Type"
+                  value={this.state.chart}
+                  onChange={this.changeChart}
+                >
+                  {Object.keys(charts).map((chart) => {
+                    return (
+                      <MenuItem key={chart} value={charts[chart]}>
+                        {chart}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FormControl fullWidth>
+                <InputLabel id="label-chart-interval">Interval</InputLabel>
+                <Select
+                  labelId="label-chart-interval"
+                  id="select-chart-interval"
+                  label="Chart Interval"
+                  value={this.state.interval.name}
+                  onChange={this.changeOHLCInterval}
+                >
+                  {Object.keys(intervalOptions).map((interval) => {
+                    return (
+                      <MenuItem key={interval} value={interval}>
+                        {interval}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} md={4}>
+              <FormControl fullWidth>
+                <InputLabel id="label-chart-indicator">Indicator</InputLabel>
+                <Select
+                  labelId="label-chart-indicator"
+                  id="select-chart-indicator"
+                  multiple
+                  // label="Chart Indicator"
+                  value={this.state.indicators}
+                  onChange={this.selectUnselectIndicator}
+                  input={
+                    <OutlinedInput id="select-multiple-chip" label="Chip" />
+                  }
+                  renderValue={(selected) => {
+                    return (
+                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                        {selected.map((value) => {
+                          return <Chip key={value} label={value} />;
+                        })}
+                      </Box>
+                    );
+                  }}
+                >
+                  {Object.keys(chartIndicators).map((indicator) => {
+                    return (
+                      <MenuItem
+                        key={indicator}
+                        value={chartIndicators[indicator]}
+                      >
+                        {chartIndicators[indicator]}
+                      </MenuItem>
+                    );
+                  })}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
         </div>
       </div>
     );
