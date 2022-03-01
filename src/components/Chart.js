@@ -2,10 +2,6 @@ import React from "react";
 import CandleStickChart from "./CandleStickChart";
 import LineGraphChart from "./LineGraphChart";
 import {
-  ws,
-  getHistoricalData,
-  closeStream,
-  subscribeTickStream,
   charts,
   chartIndicators,
   candleIntervals,
@@ -17,12 +13,18 @@ import {
   markets,
 } from "./../utils/utils";
 import {
-  getCryptoHistoricalData,
+  ws,
+  closeStream,
+  getHistoricalData,
+  subscribeTickStream,
+} from "../config/derivApi";
+import { createCryptoSubs } from "../utils/utils-cryptocompare";
+import {
   ws_cc,
+  getCryptoHistoricalData,
   closeCryptoStream,
-  createCryptoSubs,
   subscribeCryptoTickStream,
-} from "../utils/utils-cryptocompare";
+} from "../config/cryptoCompareApi";
 
 import { Grid } from "@material-ui/core";
 import { Paper } from "@mui/material";
@@ -34,10 +36,6 @@ import { FormControl } from "@material-ui/core";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
-
-const Item = styled(Paper)(() => ({
-  textAlign: "center",
-}));
 
 class ChartComponent extends React.Component {
   constructor(props) {
@@ -54,8 +52,11 @@ class ChartComponent extends React.Component {
       ws.onmessage = (msg) => {
         let data = JSON.parse(msg.data);
 
+        console.log("inside ", data);
+
         // process candle data and subscribe to data stream
         if (data.msg_type === "candles") {
+          console.log("history candies in");
           let data_candles = data.candles;
           let data_processed = processHistoricalOHLC(
             data_candles,
@@ -108,6 +109,7 @@ class ChartComponent extends React.Component {
       // get historical data
       ws.onopen = function () {
         getHistoricalData(this.props.symbol, "candles", this.state.interval);
+        console.log("done req");
       }.bind(this);
     } else {
       // process crypto data
@@ -164,6 +166,7 @@ class ChartComponent extends React.Component {
     } else {
       closeCryptoStream([this.state.subs]);
     }
+    console.log("unmounting");
   };
 
   // change ohlc chart interval
@@ -262,7 +265,7 @@ class ChartComponent extends React.Component {
             indicators={this.state.indicators}
           />
         )}
-        <div>
+        {/* <div>
           <button
             onClick={() => {
               this.props.market === "forex"
@@ -272,7 +275,7 @@ class ChartComponent extends React.Component {
           >
             end connection
           </button>
-        </div>
+        </div> */}
         <div>
           <Grid container spacing={1}>
             <Grid item xs={12} md={4}>
