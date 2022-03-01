@@ -4,9 +4,9 @@ import ForexHome from "./ForexHome";
 const Home = () => {
   return (
     <>
-    <MiniDrawer />
-    {/* <ForexHome /> */}
+      <MiniDrawer />
+      {/* <ForexHome /> */}
     </>
-  )
+  );
 };
 export default Home;

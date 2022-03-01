@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+.symbol {
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin: 0;
+}
+
+.stonk {
+  background-color: white;
+  color: black;
+  margin: 0.3rem;
+  padding: 0.2rem;
+  border: 2px solid black;
+  border-radius: 10%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+  overflow: hidden;
+  width: 25%;
+  height: 15%;
+}
+
+.up {
+  color: lime;
+}
+
+.down {
+  color: red;
+}
+
+.chart {
+  padding: 0%;
+  margin-left: 0%;
+}
+
+#chart .apexcharts-tooltip {
+  color: black;
+  transform: translateX(10px) translateY(10px);
+  overflow: visible !important;
+  white-space: normal !important;
+}
+
+#chart .apexcharts-tooltip span {
+  padding: 5px 10px;
+  display: inline-block;
+}
