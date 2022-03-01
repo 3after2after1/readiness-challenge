@@ -125,7 +125,10 @@ class LineAndScatterChart extends React.Component {
     );
     const { data, xScale, xAccessor, displayXAccessor } =
       xScaleProvider(calculatedData);
-    let numCandlesOnDisplay = data.length > 60 ? 60 : data.length;
+    let numCandlesOnDisplay =
+      data.length > Math.trunc(width / 30)
+        ? Math.trunc(width / 30)
+        : data.length;
     const xExtents = [
       xAccessor(last(data)),
       xAccessor(data[data.length - numCandlesOnDisplay]),

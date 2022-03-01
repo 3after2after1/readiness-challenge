@@ -37,16 +37,10 @@ export default function DetailsPage() {
           </IconButton>
         }
       />
-      {/* <CardMedia
-        component="img"
-        height="400"
-        image="/static/images/cards/paella.jpg"
-        alt="Insert chart"
-      /> */}
 
       {/* [forex] symbol: R_50, market: forex */}
       {/* [crypto] symbol: BTC, market: crypto */}
-      <Chart symbol="R_50" market="forex" />
+      <Chart symbol="frxUSDSEK" market="forex" />
     </Card>
   );
 }
