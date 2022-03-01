@@ -1,11 +1,33 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
-import { ArrowBackSharp, LockResetOutlined } from "@mui/icons-material";
+import {
+  ArrowBackSharp,
+  CottageSharp,
+  LockResetOutlined,
+} from "@mui/icons-material";
 import { width } from "@mui/system";
+import { auth } from "../../firebase";
+import { sendPasswordResetEmail } from "@firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const ForgotPswd = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    try {
+      // const result = await sendPasswordResetEmail(auth, email, {
+      //   url: "http://localhost:3001/resetpswd",
+      //   handleCodeInApp: true,
+      // });
+      const result = await sendPasswordResetEmail(auth, email);
+
+      console.log("Password reset trigger");
+      navigate("/checkemail", { state: { resetEmail: email } });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Box
@@ -64,7 +86,6 @@ const ForgotPswd = () => {
             size="large"
             style={{ backgroundColor: "#0d47a1", fontWeight: "bold" }}
             onClick={handleSubmit}
-            href="/checkemail"
             fullWidth
           >
             Reset Password

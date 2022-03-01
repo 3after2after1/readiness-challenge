@@ -7,6 +7,8 @@ import ForgotPswd from "./views/ForgetPass/ForgotPswd";
 import CheckEmail from "./views/ForgetPass/CheckEmail";
 import SetNewPswd from "./views/ForgetPass/SetNewPswd";
 import SuccessPswd from "./views/ForgetPass/SuccessPswd";
+import AuthRoute from "./views/AuthenticationRoute/AuthRoute";
+import EmailVerify from "./views/AuthenticationRoute/EmailVerify";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -24,6 +26,8 @@ ReactDOM.render(
         <Route path="/checkemail" element={<CheckEmail />}></Route>
         <Route path="/resetpswd" element={<SetNewPswd />}></Route>
         <Route path="/successful" element={<SuccessPswd />}></Route>
+        <Route path="/emailverify" element={<EmailVerify />}></Route>
+        <Route path="/authroute" element={<AuthRoute />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

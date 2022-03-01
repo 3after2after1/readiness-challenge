@@ -1,8 +1,11 @@
 import { ArrowBackSharp, MailOutlineSharp } from "@mui/icons-material";
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
+import { useLocation } from "react-router-dom";
 
 const CheckEmail = () => {
+  const location = useLocation();
+
   return (
     <>
       <Box
@@ -57,13 +60,13 @@ const CheckEmail = () => {
             fontWeight: "bold",
           }}
         >
-          trex@gmail.com
+          {location.state.resetEmail}
         </span>
         <span style={{ color: "#6a6a6a", fontSize: "0.85rem" }}>
           {" "}
           Didn't receive the email?{"  "}
           <a
-            href="/resetpswd"
+            href="/forgotpswd"
             style={{ color: "#293A80", textDecoration: "none" }}
           >
             Click to resend

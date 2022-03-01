@@ -12,8 +12,14 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
+import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
+import { useSearchParams } from "react-router-dom";
+import { auth } from "../../firebase";
+import { useNavigate } from "react-router-dom";
 
 const SetNewPswd = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const resetCode = searchParams.get("oobCode");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -24,7 +30,34 @@ const SetNewPswd = () => {
     setShowConfirmPassword(!showConfirmPassword);
   const handleMouseDownPassword2 = () =>
     setShowConfirmPassword(!showConfirmPassword);
-  const handleSubmit = () => {};
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    if (password !== confirmPassword) {
+      console.log("Password does not match");
+      return;
+    } else {
+      await verifyPasswordResetCode(auth, resetCode)
+        .then((email) => {
+          //const accountEmail = email;
+          console.log(email);
+
+          // Save the new password.
+          confirmPasswordReset(auth, resetCode, password)
+            .then((resp) => {
+              console.log(resp);
+              navigate("/successful");
+            })
+            .catch((error) => {
+              console.log("reset password failed");
+            });
+        })
+        .catch((error) => {
+          console.log("something wrong with link");
+        });
+    }
+  };
+
   return (
     <>
       <Box
@@ -137,7 +170,6 @@ const SetNewPswd = () => {
             size="large"
             style={{ backgroundColor: "#0d47a1", fontWeight: "bold" }}
             onClick={handleSubmit}
-            href="/successful"
             fullWidth
           >
             Reset Password

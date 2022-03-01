@@ -14,7 +14,6 @@ import "./Auth.css";
 import { GoogleAuthProvider, signOut, signInWithPopup } from "@firebase/auth";
 import { auth } from "../../firebase";
 import { UserState } from "../../UserContext";
-import { useSearchParams } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -40,8 +39,6 @@ const AuthModal = () => {
     setValue(newValue);
   };
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const linkvalue = searchParams.get("testval");
   const logOut = () => {
     signOut(auth);
   };
@@ -73,7 +70,8 @@ const AuthModal = () => {
         Log Out
       </Button>
       <h1>{user ? user.email : "no user"}</h1>
-      <h1>{linkvalue ? linkvalue : "no urldata"}</h1>
+      <h1>{user ? auth.currentUser.emailVerified.toString() : "no user"}</h1>
+      <h1>placeholder</h1>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
