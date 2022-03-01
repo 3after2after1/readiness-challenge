@@ -62,6 +62,7 @@ class ChartComponent extends React.Component {
             this.props.market
           );
           this.setState({ data: data_processed });
+          if (this.stream_id !== null) subscribeTickStream(this.props.symbol);
         }
 
         // process historical tick data
@@ -107,8 +108,6 @@ class ChartComponent extends React.Component {
       // get historical data
       ws.onopen = function () {
         getHistoricalData(this.props.symbol, "candles", this.state.interval);
-
-        subscribeTickStream(this.props.symbol);
       }.bind(this);
     } else {
       // process crypto data
@@ -218,15 +217,13 @@ class ChartComponent extends React.Component {
 
   // enable and disable chart Indicators
   selectUnselectIndicator = (e) => {
-    let indicator = e.target.value[0];
+    let indicator = e.target.value;
     console.log("in ", indicator);
     console.log("state in ", this.state.indicators);
-    if (this.state.indicators.includes(indicator)) {
-      let newIndicators = this.state.indicators.filter((i) => i !== indicator);
-      this.setState({ indicators: newIndicators });
-    } else {
-      this.state.indicators.push(indicator);
-    }
+    this.setState({
+      indicators:
+        typeof indicator === "string" ? indicator.split(",") : indicator,
+    });
   };
 
   render() {
@@ -275,63 +272,6 @@ class ChartComponent extends React.Component {
           >
             end connection
           </button>
-          {/* <div>
-            <p>Change chart:</p>
-            <select onChange={this.changeChart}>
-              {Object.keys(charts).map((chart) => {
-                return (
-                  <option key={chart} value={charts[chart]}>
-                    {chart}
-                  </option>
-                );
-              })}
-            </select>
-          </div>
-          <div>
-            <p>Change candle interval:</p>
-            <select onChange={this.changeOHLCInterval}>
-              {Object.keys(intervalOptions).map((interval) => {
-                return (
-                  <option key={interval} value={interval}>
-                    {interval}
-                  </option>
-                );
-              })}
-            </select>
-          </div> */}
-          <div>
-            {/* indicator options */}
-            <button
-              onClick={() =>
-                this.enableDisableIndicator(chartIndicators.simple_moving_avg)
-              }
-              style={
-                this.state.indicators.includes(
-                  chartIndicators.simple_moving_avg
-                )
-                  ? enabledIndicatorStyle
-                  : disabledIndicatorStyle
-              }
-            >
-              Simple Moving Average
-            </button>
-            <button
-              onClick={() =>
-                this.enableDisableIndicator(
-                  chartIndicators.relative_strength_index
-                )
-              }
-              style={
-                this.state.indicators.includes(
-                  chartIndicators.relative_strength_index
-                )
-                  ? enabledIndicatorStyle
-                  : disabledIndicatorStyle
-              }
-            >
-              Relative Strength Index
-            </button>
-          </div>
         </div>
         <div>
           <Grid container spacing={1}>
@@ -377,37 +317,29 @@ class ChartComponent extends React.Component {
             </Grid>
             <Grid item xs={12} md={4}>
               <FormControl fullWidth>
-                <InputLabel id="label-chart-indicator">Indicator</InputLabel>
+                <InputLabel id="multiple-chip-label">Indicators</InputLabel>
                 <Select
-                  labelId="label-chart-indicator"
-                  id="select-chart-indicator"
+                  labelId="multiple-chip-label"
+                  id="multiple-chip"
                   multiple
-                  // label="Chart Indicator"
                   value={this.state.indicators}
                   onChange={this.selectUnselectIndicator}
                   input={
                     <OutlinedInput id="select-multiple-chip" label="Chip" />
                   }
-                  renderValue={(selected) => {
-                    return (
-                      <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
-                        {selected.map((value) => {
-                          return <Chip key={value} label={value} />;
-                        })}
-                      </Box>
-                    );
-                  }}
+                  renderValue={(selected) => (
+                    <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
+                      {selected.map((value) => {
+                        return <Chip key={value} label={value} />;
+                      })}
+                    </Box>
+                  )}
                 >
-                  {Object.keys(chartIndicators).map((indicator) => {
-                    return (
-                      <MenuItem
-                        key={indicator}
-                        value={chartIndicators[indicator]}
-                      >
-                        {chartIndicators[indicator]}
-                      </MenuItem>
-                    );
-                  })}
+                  {Object.values(chartIndicators).map((indicator) => (
+                    <MenuItem key={indicator} value={indicator}>
+                      {indicator}
+                    </MenuItem>
+                  ))}
                 </Select>
               </FormControl>
             </Grid>
