@@ -159,7 +159,7 @@ export default function MiniDrawer() {
 
 
       <Box
-       component="main" sx={{ flexGrow: 1 }}>
+       component="main" sx={{ flexGrow: 1 }} style={{ overflow: "hidden" }}>
         <Details />
       </Box>
     </Box>

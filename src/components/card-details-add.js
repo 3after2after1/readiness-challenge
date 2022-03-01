@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { makeStyles } from "@material-ui/core/styles";
 import AddBoxIcon from "@mui/icons-material/AddBox";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 export default function CardDetailsAdd() {
   return (
@@ -27,7 +28,7 @@ export default function CardDetailsAdd() {
               style={{ color: "blue[500]" }}
               aria-label="add to watchlist"
             >
-              <AddBoxIcon />
+              <StarBorderIcon />
             </IconButton>
           </Button>
         </React.Fragment>

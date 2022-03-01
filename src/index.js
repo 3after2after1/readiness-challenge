@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Chart from "./components/Chart";
+import App from "./App"
 
 ReactDOM.render(
   <React.StrictMode>
-    <Chart symbol="R_50" />
+    <App/>
   </React.StrictMode>,
   document.getElementById("root")
 );
