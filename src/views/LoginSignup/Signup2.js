@@ -1,4 +1,5 @@
 import {
+  Password,
   RestaurantOutlined,
   Visibility,
   VisibilityOff,
@@ -19,6 +20,7 @@ import {
   sendEmailVerification,
 } from "@firebase/auth";
 import { auth } from "../../services/firebase";
+import { passwordVerify } from "../../utils/PasswordChecker";
 
 const Signup2 = ({ handleClose }) => {
   const [email, setEmail] = useState("");
@@ -33,13 +35,25 @@ const Signup2 = ({ handleClose }) => {
   const handleMouseDownPassword2 = () =>
     setShowConfirmPassword(!showConfirmPassword);
 
-  const handleSubmit = async () => {
-    if (password != confirmPassword) {
-      console.log("wrong password");
-      return;
-    }
+  const [errorMsg, setErrorMsg] = useState({ message: "" });
 
+  React.useEffect(() => {
+    console.log(errorMsg.message);
+  }, [errorMsg]);
+
+  const handleSubmit = async () => {
     try {
+      if (password != confirmPassword) {
+        throw { message: "Password Mismatch" };
+      }
+
+      if (!passwordVerify(password)) {
+        throw {
+          message:
+            "Please ensure your password contains both Letter and Number",
+        };
+      }
+
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -51,9 +65,19 @@ const Signup2 = ({ handleClose }) => {
       }
 
       console.log("Sign Up Success");
-      console.log(result);
     } catch (error) {
-      console.log("Sign Up Error");
+      if (!!String(error.message).match("^Firebase:.*")) {
+        setErrorMsg((previousError) => ({
+          ...previousError,
+          message: error.message.replace("Firebase: ", ""),
+        }));
+      } else {
+        setErrorMsg((previousError) => ({
+          ...previousError,
+          message: error.message,
+        }));
+      }
+
       return;
     }
   };
