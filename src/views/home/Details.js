@@ -8,12 +8,13 @@ import { Box } from "@mui/system";
 import DetailsComment from "../../components/card-details-comment";
 import DetailsStats from "../../components/card-details-stats";
 import DetailsStatsContent from "../../components/details-stats-details";
+import Footer from "../../components/Footer";
 
 //apply CSS styling to material-ui components
 const useStyles = makeStyles({
   gridContainer: {
     
-     paddingLeft: "1rem",
+    paddingLeft: "1rem",
     paddingRight: "6rem",
     // paddingBottom: "50px",
     // display:"flex",
@@ -32,15 +33,14 @@ function Details() {
     <div style={{ display: "flex", flexDirection: "row"}}>
     
     <Box>
-    <div className="main-container">
+    <div className="main-container-details">
       
       <div className="header">
-        <p className="title"> TREX </p>
+        Trex
       </div>
-      <div className="sidebar"></div>
 
       <div className="content">
-        <div className="content-title">
+        <div className="content-title-details">
           <div className="content-title-left">
             <div className="icon-company" id="icon-company">Image</div>
             <div className="company-box">
@@ -59,7 +59,7 @@ function Details() {
               </div>
           </div>
 
-          <div className="content-title-right">
+          <div className="content-title-right-icon">
           <CardDetailsAdd />
           </div>
           
@@ -95,9 +95,10 @@ function Details() {
          
         </Grid>
       </div>
-      <div className="footer">
-        <p>footer info</p>
-      </div>
+
+      <div classname="footer-content">
+        <Footer />
+      </div> 
     </div>
     </Box>
     </ div>
