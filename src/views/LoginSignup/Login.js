@@ -12,7 +12,7 @@ import {
 import React, { useState } from "react";
 import "./Auth.css";
 import { signInWithEmailAndPassword } from "@firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 
 const Login = ({ handleClose }) => {
   const [email, setEmail] = useState("");

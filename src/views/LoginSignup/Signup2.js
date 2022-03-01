@@ -18,7 +18,7 @@ import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
 } from "@firebase/auth";
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 
 const Signup2 = ({ handleClose }) => {
   const [email, setEmail] = useState("");

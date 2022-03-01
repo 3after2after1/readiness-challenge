@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import UserContext from "./UserContext";
+import UserContext from "./contexts/UserContext";
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import ForgotPswd from "./views/ForgetPass/ForgotPswd";
 import CheckEmail from "./views/ForgetPass/CheckEmail";

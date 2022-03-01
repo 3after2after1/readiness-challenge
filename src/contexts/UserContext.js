@@ -1,6 +1,6 @@
 import * as React from "react";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth, db } from "./firebase";
+import { auth, db } from "../services/firebase";
 import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 const UserAccount = React.createContext();

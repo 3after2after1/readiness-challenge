@@ -14,7 +14,7 @@ import {
 } from "@mui/icons-material";
 import { verifyPasswordResetCode, confirmPasswordReset } from "firebase/auth";
 import { useSearchParams } from "react-router-dom";
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 import { useNavigate } from "react-router-dom";
 
 const SetNewPswd = () => {

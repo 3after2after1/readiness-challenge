@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 import { applyActionCode } from "@firebase/auth";
 import { ArrowBackSharp } from "@mui/icons-material";
 import { Button } from "@mui/material";

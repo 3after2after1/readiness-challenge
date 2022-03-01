@@ -6,7 +6,7 @@ import {
   LockResetOutlined,
 } from "@mui/icons-material";
 import { width } from "@mui/system";
-import { auth } from "../../firebase";
+import { auth } from "../../services/firebase";
 import { sendPasswordResetEmail } from "@firebase/auth";
 import { useNavigate } from "react-router-dom";
 

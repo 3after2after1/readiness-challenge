@@ -12,8 +12,8 @@ import GoogleButton from "react-google-button";
 import Signup2 from "./Signup2";
 import "./Auth.css";
 import { GoogleAuthProvider, signOut, signInWithPopup } from "@firebase/auth";
-import { auth } from "../../firebase";
-import { UserState } from "../../UserContext";
+import { auth } from "../../services/firebase";
+import { UserState } from "../../contexts/UserContext";
 
 const style = {
   position: "absolute",
