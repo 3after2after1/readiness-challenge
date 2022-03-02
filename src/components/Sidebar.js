@@ -22,6 +22,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Details from "../views/home/Details";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import "./Sidebar.css";
 
 const drawerWidth = 240;
 
@@ -92,6 +93,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   const theme = useTheme();
+
   const [open, setOpen] = React.useState(false);
   const [revealSideBar, setRevealSideBar] = React.useState("none");
 
@@ -113,25 +115,17 @@ export default function MiniDrawer() {
       <CssBaseline />
       <AppBar position="fixed" open={open}></AppBar>
       <div style={{ position: "relative" }}>
-        <IconButton
-          variant="outlined"
-          color="inherit"
-          edge="start"
-          style={{
-            position: "fixed",
-            right: "-45px",
-            position: "absolute",
-          }}
+        <button
           aria-label="reveal drawer"
           onClick={handleRevealSideBar}
-          sx={{ display: { xs: "block", sm: "none" } }}
+          className="sideBar"
         >
           {revealSideBar === "none" ? (
             <ArrowCircleRightIcon sx={{ color: "blue" }} fontSize="large" />
           ) : (
             <ArrowCircleLeftIcon sx={{ color: "blue" }} fontSize="large" />
           )}
-        </IconButton>
+        </button>
         <Drawer
           variant="permanent"
           open={open}
