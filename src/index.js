@@ -10,6 +10,7 @@ import SuccessPswd from "./views/ForgetPass/SuccessPswd";
 import AuthRoute from "./views/AuthenticationRoute/AuthRoute";
 import EmailVerify from "./views/AuthenticationRoute/EmailVerify";
 import LoginPage from "./views/LoginSignup/LoginPage";
+import SignUpPage from "./views/LoginSignup/SignUpPage";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -30,6 +31,7 @@ ReactDOM.render(
         <Route path="/emailverify" element={<EmailVerify />}></Route>
         <Route path="/authroute" element={<AuthRoute />}></Route>
         <Route path="/loginpage" element={<LoginPage />}></Route>
+        <Route path="/signuppage" element={<SignUpPage />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
