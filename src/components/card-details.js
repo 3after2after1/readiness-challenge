@@ -6,7 +6,8 @@ import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
-import WaterfallChartIcon from '@mui/icons-material/WaterfallChart';
+import WaterfallChartIcon from "@mui/icons-material/WaterfallChart";
+import Chart from "./Chart";
 
 const useStyles = makeStyles({
   root: {
@@ -27,22 +28,19 @@ const useStyles = makeStyles({
 });
 
 export default function DetailsPage() {
-  
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardHeader
-         action={
-           <IconButton aria-label="add to watchlist">
+        action={
+          <IconButton aria-label="add to watchlist">
             <WaterfallChartIcon />
-           </IconButton>
-         }
+          </IconButton>
+        }
       />
-      <CardMedia
-        component="img"
-        height="400"
-        image="/static/images/cards/paella.jpg"
-        alt="Insert chart"
-      />
+
+      {/* [forex] symbol: R_50, market: forex */}
+      {/* [crypto] symbol: BTC, market: crypto */}
+      <Chart symbol="R_50" market="forex" />
     </Card>
   );
 }
