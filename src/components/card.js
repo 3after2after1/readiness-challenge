@@ -26,7 +26,6 @@ const useStyles = makeStyles({
   },
 });
 
-
 export default function ForexCard() {
   return (
     <Card sx={{ minWidth: 200 }}>
