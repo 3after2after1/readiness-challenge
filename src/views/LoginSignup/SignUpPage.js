@@ -97,49 +97,59 @@ const SignUpPage = () => {
 
   return (
     <Container
+      className="signupcontainer"
       style={{
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "columnn",
         justifyContent: "center",
         alignItems: "center",
+        minWidth: "300px",
         width: "100%",
         height: "100%",
         padding: "20px",
         backgroundColor: "white",
+        paddingRight: "20px",
+        paddingBottom: "20px",
       }}
     >
       <Box
+        className="logotextbox"
         style={{
-          display: "flex",
+          display: "none",
           flexDirection: "column",
           gap: "20px",
           minWidth: "280px",
           maxWidth: "400px",
           minHeight: "400px",
-
-          backgroundColor: "#f5f6f7",
-          borderRadius: "10px",
-          boxShadow: "4px 6px 0px 0px #ECECEC",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "20px",
         }}
       >
         <Avatar sx={{ bgcolor: "green", height: "250px", width: "250px" }}>
           Logo
         </Avatar>
-        <h1 style={{ fontSize: "20px" }}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
+        <h1
+          style={{
+            fontSize: "20px",
+            textAlign: "justify",
+            textJustify: "inter-word",
+          }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+          ea commodo consequat.
         </h1>
       </Box>
       <Box
-        className="loginresize"
+        className="signupresize"
         p={5}
         style={{
           display: "flex",
           flexDirection: "column",
           gap: "10px",
-          minWidth: "150px",
+          minWidth: "200px",
           maxWidth: "400px",
           maxHeight: "500px",
           backgroundColor: "#f5f6f7",
@@ -259,7 +269,13 @@ const SignUpPage = () => {
             }}
           >
             <GoogleButton
-              style={{ minWidth: 50, outline: "none", width: "100%" }}
+              style={{
+                minWidth: 50,
+                outline: "none",
+                width: "100%",
+                textOverflow: "ellipsis",
+                overflow: "hidden",
+              }}
               onClick={signInWithGoogle}
             />
           </Box>

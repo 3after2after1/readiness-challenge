@@ -1,9 +1,6 @@
 @media (min-width: 320px) {
   /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */
-  .signupresize {
-    width: 80% !important;
-    gap: 10px !important;
-  }
+
   .boxrememberforgot {
     flex-direction: column !important;
   }
@@ -16,15 +13,29 @@
   .boxrememberforgot {
     flex-direction: row !important;
   }
+
+  .signupcontainer {
+    min-width: 400px !important;
+  }
 }
 @media (min-width: 600px) {
   /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */
+  .signupcontainer {
+    flex-direction: row !important;
+  }
+
+  .logotextbox {
+    display: flex !important;
+  }
 }
 @media (min-width: 750px) {
   /* tablet, landscape iPad, lo-res laptops ands desktops */
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
   /* big landscape tablets, laptops, and desktops */
+  .logotextbox {
+    margin-right: 100px !important;
+  }
 }
 @media (min-width: 1281px) {
   /* hi-res laptops and desktops */

@@ -176,7 +176,13 @@ const LoginPage = () => {
           }}
         >
           <GoogleButton
-            style={{ minWidth: 50, outline: "none", width: "100%" }}
+            style={{
+              minWidth: 50,
+              outline: "none",
+              width: "100%",
+              textOverflow: "ellipsis",
+              overflow: "hidden",
+            }}
             onClick={signInWithGoogle}
           />
         </Box>
