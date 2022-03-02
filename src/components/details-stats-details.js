@@ -5,10 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
-
+import AddCommentIcon from '@mui/icons-material/AddComment';
 
 const useStyles = makeStyles({
   root: {
@@ -28,16 +26,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DetailsStats() {
+export default function DetailsStatsContent() {
   
   return (
     <Card sx={{ minWidth: 200 }}>
-      
+     
       <CardMedia
         component="img"
         height="400"
         image="/static/images/cards/paella.jpg"
-        alt="Insert stats details"
+        alt="Details stats content"
       />
     </Card>
   );

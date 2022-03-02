@@ -7,37 +7,40 @@ import CardDetailsAdd from "../../components/card-details-add";
 import { Box } from "@mui/system";
 import DetailsComment from "../../components/card-details-comment";
 import DetailsStats from "../../components/card-details-stats";
+import DetailsStatsContent from "../../components/details-stats-details";
+import Footer from "../../components/Footer";
 
 //apply CSS styling to material-ui components
 const useStyles = makeStyles({
   gridContainer: {
-    // paddingLeft: "10px",
-    // paddingRight: "20px",
+    
+    paddingLeft: "1rem",
+    paddingRight: "6rem",
     // paddingBottom: "50px",
-    display:"flex",
+    // display:"flex",
+    
    
   },
-  filterContainer: {
-    paddingRight: "50px",
-  },
+  // filterContainer: {
+  //   paddingRight: "50px",
+  // },
 });
 
 function Details() {
   const classes = useStyles();
 
   return (
-    <div style={{display: "flex", flexDirection: "row"}}>
+    <div style={{ display: "flex", flexDirection: "row"}}>
     
     <Box>
-    <div className="main-container">
+    <div className="main-container-details">
       
       <div className="header">
-        <p className="title"> T-REX </p>
+        Trex
       </div>
-      <div className="sidebar"></div>
 
       <div className="content">
-        <div className="content-title">
+        <div className="content-title-details">
           <div className="content-title-left">
             <div className="icon-company" id="icon-company">Image</div>
             <div className="company-box">
@@ -56,7 +59,7 @@ function Details() {
               </div>
           </div>
 
-          <div className="content-title right">
+          <div className="content-title-right-icon">
           <CardDetailsAdd />
           </div>
           
@@ -67,33 +70,35 @@ function Details() {
           spacing={3}
           className={classes.gridContainer}
           justify="center"
+          
         >
-          <Grid item xs={10} md={7}>
+          <Grid item xs={10}sm={10} md={8}>
             <DetailsPage />
           </Grid>
-          <Grid item xs={10} md={3}>
+          <Grid item sm={10}xs={10} md={3}>
             <DetailsComment />
           </Grid>
         </Grid>
 
         <Grid
           container
-          spacing={4}
+          spacing={3}
           className={classes.gridContainer}
           justify="center"
         >
-          <Grid item xs={10}sm={10} md={7}>
-            <DetailsComment />
+          <Grid item xs={10}sm={10} md={8}>
+            <DetailsStatsContent />
           </Grid>
-          <Grid item sm={10}xs={6} md={3}>
+          <Grid item sm={10}xs={10} md={3}>
             <DetailsStats />
           </Grid>
          
         </Grid>
       </div>
-      <div className="footer">
-        <p>footer info</p>
-      </div>
+
+      <div classname="footer-content">
+        <Footer />
+      </div> 
     </div>
     </Box>
     </ div>

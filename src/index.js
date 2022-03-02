@@ -1,11 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import Chart from "./components/Chart";
-import Details from "./views/home/Details";
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Details />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

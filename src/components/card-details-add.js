@@ -1,14 +1,24 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
 import PopupState, { bindTrigger, bindMenu } from "material-ui-popup-state";
 import IconButton from "@mui/material/IconButton";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
-import { makeStyles } from "@material-ui/core/styles";
-import AddBoxIcon from "@mui/icons-material/AddBox";
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import { ChangeCircle, ConstructionRounded } from "@mui/icons-material";
+import StarIcon from '@mui/icons-material/Star';
+import { yellow } from "@material-ui/core/colors";
+
 
 export default function CardDetailsAdd() {
+
+
+  const [btn, setBtn] = React.useState(true);
+
+  const handleClick = () => {
+    setBtn(!btn);
+  };
+
+
+
   return (
     <PopupState variant="popover" popupId="demo-popup-menu">
       {(popupState) => (
@@ -17,18 +27,21 @@ export default function CardDetailsAdd() {
             style={{
               borderRadius: 15,
               backgroundColor: "white",
-              padding: "10px 15px",
+              padding: "5px",
               // height: "80px"
             }}
             variant="contained"
             {...bindTrigger(popupState)}
           >
             <IconButton
+            onClick={handleClick}
               style={{ color: "blue[500]" }}
               aria-label="add to watchlist"
+              children={btn ? <StarBorderIcon /> : <StarIcon 
+              sx={{color: yellow[800]}}/>}
             >
-              <AddBoxIcon />
             </IconButton>
+            
           </Button>
         </React.Fragment>
       )}

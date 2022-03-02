@@ -1,0 +1,56 @@
+
+.footer-box {
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-evenly;
+    margin-top: 3em;
+    color: white;
+    background-color: #184D47;;
+    height: 10em;
+    width: auto;
+    overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+.col-1{
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.col-1-title{
+    margin-top: 1.5em;
+    font-size: 20px;
+}
+
+.col-1-list-about{
+    font-size: 15px;
+    padding-top: 0.3em;
+}
+
+.col-1-list{
+    font-size: 15px;
+    padding-top: 0.3em ;
+    padding-left: 1em;
+    cursor: pointer;
+}
+
+.socials-icon{
+    padding-top: 0.3em;
+    padding-left: 1em;
+}
+
+.col-3{
+    font-size: 18px;
+    margin-top: 70px;
+}
+
+.logo-component{
+    width: 2em;
+    padding: 0.2em;
+}
