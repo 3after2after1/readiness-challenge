@@ -1,0 +1,9 @@
+.table-container {
+    min-width: 500px;
+}
+
+@media screen and (max-width: 480px) {
+  .table-container {
+    min-width: 200px;
+  }
+}
