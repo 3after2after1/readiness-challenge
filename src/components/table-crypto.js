@@ -62,7 +62,7 @@ const rows = [
 export default function CustomizedTables() {
   return (
     <>
-      <div className="table-container">
+      
         <Grid
           container
           sx={{ minWidth: "200px" }}
@@ -184,7 +184,7 @@ export default function CustomizedTables() {
             </TableContainer>
           </Grid>
         </Grid>
-      </div>
+  
     </>
   );
 }
