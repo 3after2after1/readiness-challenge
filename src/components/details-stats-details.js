@@ -6,7 +6,7 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import { makeStyles } from "@material-ui/core/styles";
-import AddCommentIcon from '@mui/icons-material/AddComment';
+import AddCommentIcon from "@mui/icons-material/AddComment";
 
 const useStyles = makeStyles({
   root: {
@@ -26,17 +26,65 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DetailsStatsContent() {
-  
+export default function DetailsStatsContent({ statsData }) {
+  React.useEffect(() => {
+    console.log("stats ", statsData);
+    if (statsData) {
+      statsData.pivot.forEach((item) => console.log(item.pivot));
+    } else console.log("null");
+  }, [statsData]);
   return (
     <Card sx={{ minWidth: 200 }}>
-     
-      <CardMedia
+      {/* <CardMedia
         component="img"
-        height="400"
+        height="100"
         image="/static/images/cards/paella.jpg"
         alt="Details stats content"
-      />
+      /> */}
+      <div>
+        <h5>Pivot points</h5>
+        {statsData ? (
+          statsData.pivot.map((item) => {
+            return (
+              <div>
+                <p>
+                  {item.pivot} {item.point}
+                </p>
+              </div>
+            );
+          })
+        ) : (
+          <p>loading...</p>
+        )}
+        <h5>Support</h5>
+        {statsData ? (
+          statsData.support.map((item) => {
+            return (
+              <div>
+                <p>
+                  {item.s} {item.value} {item.strength}
+                </p>
+              </div>
+            );
+          })
+        ) : (
+          <p>loading...</p>
+        )}
+        <h5>Resistance</h5>
+        {statsData ? (
+          statsData.resist.map((item) => {
+            return (
+              <div>
+                <p>
+                  {item.r} {item.value} {item.strength}
+                </p>
+              </div>
+            );
+          })
+        ) : (
+          <p>loading...</p>
+        )}
+      </div>
     </Card>
   );
 }

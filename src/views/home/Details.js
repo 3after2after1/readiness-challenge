@@ -9,7 +9,7 @@ import DetailsComment from "../../components/card-details-comment";
 import DetailsStats from "../../components/card-details-stats";
 import DetailsStatsContent from "../../components/details-stats-details";
 import Footer from "../../components/Footer";
-import { getForexInfo } from "../../utils/scrape-forex-info";
+import { getFrxInfo } from "../../utils/web-scrape-forex";
 
 //apply CSS styling to material-ui components
 const useStyles = makeStyles({
@@ -28,10 +28,9 @@ function Details() {
   const classes = useStyles();
   const [instrumentInfo, setInstrumentInfo] = useState({});
 
+  // get forex information
   useEffect(() => {
-    // TODO: set if market is forex !
-    getForexInfo("gbp", "usd").then((data) => {
-      console.log("hi", data);
+    getFrxInfo("gbpusd").then((data) => {
       setInstrumentInfo(data);
     });
   }, []);
@@ -102,10 +101,16 @@ function Details() {
               justify="center"
             >
               <Grid item xs={10} sm={10} md={8}>
-                <DetailsStatsContent />
+                <DetailsStatsContent
+                  statsData={instrumentInfo.stats ?? instrumentInfo.stats}
+                />
               </Grid>
               <Grid item sm={10} xs={10} md={3}>
-                <DetailsStats />
+                <DetailsStats
+                  description={
+                    instrumentInfo.description ?? instrumentInfo.description
+                  }
+                />
               </Grid>
             </Grid>
           </div>

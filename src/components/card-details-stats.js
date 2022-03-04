@@ -7,8 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
-
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 const useStyles = makeStyles({
   root: {
@@ -28,17 +27,16 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DetailsStats() {
-  
+export default function DetailsStats({ description }) {
   return (
     <Card sx={{ minWidth: 200 }}>
-      
       <CardMedia
         component="img"
-        height="400"
+        height="100"
         image="/static/images/cards/paella.jpg"
         alt="Insert stats details"
       />
+      <p>{description ? description : "loading..."}</p>
     </Card>
   );
 }

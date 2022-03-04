@@ -265,7 +265,7 @@ class ChartComponent extends React.Component {
             indicators={this.state.indicators}
           />
         )}
-        {/* <div>
+        <div>
           <button
             onClick={() => {
               this.props.market === "forex"
@@ -275,7 +275,7 @@ class ChartComponent extends React.Component {
           >
             end connection
           </button>
-        </div> */}
+        </div>
         <div>
           <Grid container spacing={1}>
             <Grid item xs={12} md={4}>
