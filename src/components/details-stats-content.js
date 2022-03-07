@@ -1,30 +1,5 @@
 import * as React from "react";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import { blue } from "@mui/material/colors";
-import { makeStyles } from "@material-ui/core/styles";
-import AddCommentIcon from "@mui/icons-material/AddComment";
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 300,
-    borderRadius: 300,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 20,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
 
 export default function DetailsStatsContent({ statsData }) {
   React.useEffect(() => {
@@ -35,12 +10,6 @@ export default function DetailsStatsContent({ statsData }) {
   }, [statsData]);
   return (
     <Card sx={{ minWidth: 200 }}>
-      {/* <CardMedia
-        component="img"
-        height="100"
-        image="/static/images/cards/paella.jpg"
-        alt="Details stats content"
-      /> */}
       <div>
         <h5>Pivot points</h5>
         {statsData ? (

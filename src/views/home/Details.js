@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import "./Details.css";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import DetailsPage from "../../components/card-details";
+import CardDetails from "../../components/card-details";
 import CardDetailsAdd from "../../components/card-details-add";
 import { Box } from "@mui/system";
-import DetailsComment from "../../components/card-details-comment";
-import DetailsStats from "../../components/card-details-stats";
-import DetailsStatsContent from "../../components/details-stats-details";
+import CardDetailsComment from "../../components/card-details-comment";
+import CardDetailsStats from "../../components/card-details-stats";
+import DetailsStatsContent from "../../components/details-stats-content";
 import Footer from "../../components/Footer";
 import { getFrxInfo } from "../../utils/web-scrape-forex";
 
@@ -16,12 +16,7 @@ const useStyles = makeStyles({
   gridContainer: {
     paddingLeft: "1rem",
     paddingRight: "6rem",
-    // paddingBottom: "50px",
-    // display:"flex",
   },
-  // filterContainer: {
-  //   paddingRight: "50px",
-  // },
 });
 
 function Details() {
@@ -87,10 +82,10 @@ function Details() {
               justify="center"
             >
               <Grid item xs={10} sm={10} md={8}>
-                <DetailsPage />
+                <CardDetails />
               </Grid>
               <Grid item sm={10} xs={10} md={3}>
-                <DetailsComment />
+                <CardDetailsComment />
               </Grid>
             </Grid>
 
@@ -106,7 +101,7 @@ function Details() {
                 />
               </Grid>
               <Grid item sm={10} xs={10} md={3}>
-                <DetailsStats
+                <CardDetailsStats
                   description={
                     instrumentInfo.description ?? instrumentInfo.description
                   }
