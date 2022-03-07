@@ -1,46 +1,43 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import IconButton from "@mui/material/IconButton";
-import { blue } from "@mui/material/colors";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import { makeStyles } from "@material-ui/core/styles";
-import WaterfallChartIcon from "@mui/icons-material/WaterfallChart";
 import Chart from "./Chart";
+import DetailsComment from "./card-details-comment";
+import Box from "@mui/material/Box";
+import "./card-details.css"
 
-const useStyles = makeStyles({
-  root: {
-    minWidth: 300,
-    borderRadius: 300,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 20,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
 
 export default function DetailsPage() {
   return (
-    <Card sx={{ minWidth: 200 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="add to watchlist">
-            <WaterfallChartIcon />
-          </IconButton>
-        }
-      />
-
-      {/* [forex] symbol: R_50, market: forex */}
-      {/* [crypto] symbol: BTC, market: crypto */}
-      <Chart symbol="R_50" market="forex" />
-    </Card>
+    <Box id="top-container" gap="20px">
+      <Box
+      id="graph-box"
+      bgcolor={"white"}
+        sx={{
+          color: (theme) =>
+            theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+          border: "1px solid",
+          borderColor: (theme) =>
+            theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+          borderRadius: 2,
+        }}
+       
+      >
+        <Chart symbol="R_50" market="forex" />
+      </Box>
+      <Box
+      id="comment-box"
+      bgcolor={"white"}
+        sx={{
+          color: (theme) =>
+            theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+          border: "1px solid",
+          borderColor: (theme) =>
+            theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+          borderRadius: 2,
+         
+        }}
+      >
+        <DetailsComment />
+      </Box>
+    </Box>
   );
 }

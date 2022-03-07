@@ -84,9 +84,7 @@ function Watchlist() {
         </Grid>
       </div>
 
-      <div className="footer">
-        <p>footer info</p>
-      </div>
+      
     </div>
   );
 }

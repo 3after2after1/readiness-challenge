@@ -7,7 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCommentIcon from '@mui/icons-material/AddComment';
-
+import { Box } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
@@ -29,14 +29,11 @@ const useStyles = makeStyles({
 export default function DetailsStatsContent() {
   
   return (
-    <Card sx={{ minWidth: 200 }}>
-     
-      <CardMedia
-        component="img"
-        height="400"
-        image="/static/images/cards/paella.jpg"
-        alt="Details stats content"
-      />
-    </Card>
+    <Box>
+    insert chat forum here hehe Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
+    dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
+    Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
+    sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue.
+  </Box>
   );
 }

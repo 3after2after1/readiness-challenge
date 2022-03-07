@@ -1,44 +1,43 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import { blue } from "@mui/material/colors";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import { makeStyles } from "@material-ui/core/styles";
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
-
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 300,
-    borderRadius: 300,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 20,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+import Box from "@mui/material/Box";
+import DetailsStatsContent from "./details-stats-details";
+import "./card-details-stats.css"
 
 export default function DetailsStats() {
   
   return (
-    <Card sx={{ minWidth: 200 }}>
-      
-      <CardMedia
-        component="img"
-        height="400"
-        image="/static/images/cards/paella.jpg"
-        alt="Insert stats details"
-      />
-    </Card>
-  );
+      <Box id="top-container-stats" gap="20px">
+        <Box
+        id="stats-box"
+        bgcolor={"white"}
+          sx={{
+            color: (theme) =>
+              theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+            border: "1px solid",
+            borderColor: (theme) =>
+              theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+            borderRadius: 2,
+          }}
+        
+        >
+          lllll
+         
+        </Box>
+        <Box
+        id="stats-contents-box"
+        bgcolor={"white"}
+          sx={{
+            color: (theme) =>
+              theme.palette.mode === "dark" ? "grey.300" : "grey.800",
+            border: "1px solid",
+            borderColor: (theme) =>
+              theme.palette.mode === "dark" ? "grey.800" : "grey.300",
+            borderRadius: 2,
+           
+          }}
+        >
+          <DetailsStatsContent />
+        </Box>
+      </Box>
+    );
 }

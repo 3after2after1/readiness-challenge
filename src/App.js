@@ -8,7 +8,7 @@ import MiniDrawer from "./components/Sidebar";
 const App = () => {
   return (
     <div>
-      <MiniDrawer />
+      <Watchlist />
     </div>
   );
 };

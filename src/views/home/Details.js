@@ -9,35 +9,15 @@ import DetailsComment from "../../components/card-details-comment";
 import DetailsStats from "../../components/card-details-stats";
 import DetailsStatsContent from "../../components/details-stats-details";
 import Footer from "../../components/Footer";
+import Container from "@mui/material/Box";
 
 //apply CSS styling to material-ui components
-const useStyles = makeStyles({
-  gridContainer: {
-    
-    paddingLeft: "1rem",
-    paddingRight: "6rem",
-    // paddingBottom: "50px",
-    // display:"flex",
-    
-   
-  },
-  // filterContainer: {
-  //   paddingRight: "50px",
-  // },
-});
 
 function Details() {
-  const classes = useStyles();
+ 
 
   return (
-    <div style={{ display: "flex", flexDirection: "row"}}>
-    
-    <Box>
     <div className="main-container-details">
-      
-      <div className="header">
-        Trex
-      </div>
 
       <div className="content">
         <div className="content-title-details">
@@ -62,46 +42,23 @@ function Details() {
           <div className="content-title-right-icon">
           <CardDetailsAdd />
           </div>
-          
         </div>
 
-        <Grid
-          container
-          spacing={3}
-          className={classes.gridContainer}
-          justify="center"
-          
-        >
-          <Grid item xs={10}sm={10} md={8}>
-            <DetailsPage />
-          </Grid>
-          <Grid item sm={10}xs={10} md={3}>
-            <DetailsComment />
-          </Grid>
-        </Grid>
+        <Container>
+          <DetailsPage />
+        </Container>
 
-        <Grid
-          container
-          spacing={3}
-          className={classes.gridContainer}
-          justify="center"
-        >
-          <Grid item xs={10}sm={10} md={8}>
-            <DetailsStatsContent />
-          </Grid>
-          <Grid item sm={10}xs={10} md={3}>
-            <DetailsStats />
-          </Grid>
-         
-        </Grid>
+        <Container>
+          <DetailsStats />
+        </Container>
       </div>
 
       <div classname="footer-content">
         <Footer />
       </div> 
     </div>
-    </Box>
-    </ div>
+    
+    
   );
 }
 

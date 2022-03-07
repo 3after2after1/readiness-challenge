@@ -8,7 +8,7 @@ import { blue } from "@mui/material/colors";
 import { makeStyles } from "@material-ui/core/styles";
 import AddCommentIcon from '@mui/icons-material/AddComment';
 import CommentIcon from '@mui/icons-material/Comment';
-
+import { Box } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
@@ -30,20 +30,11 @@ const useStyles = makeStyles({
 export default function DetailsComment() {
   
   return (
-    <Card sx={{ minWidth: 200 }}>
-      <CardHeader
-        action={
-          <IconButton aria-label="add comments">
-            <CommentIcon />
-          </IconButton>
-        }
-      />
-      <CardMedia
-        component="img"
-        height="400"
-        image="/static/images/cards/paella.jpg"
-        alt="Insert comment"
-      />
-    </Card>
+  <Box>
+    insert chat forum here hehe Lorem ipsum odor amet, consectetuer adipiscing elit. Ac purus in massa egestas mollis varius;
+    dignissim elementum. Mollis tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare.
+    Hendrerit parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis elit
+    sodales taciti duis praesent id. Consequat urna vitae morbi nunc congue.
+  </Box>
   );
 }
