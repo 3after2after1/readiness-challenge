@@ -1,0 +1,256 @@
+@media (min-width: 0px) {
+  #signUpButton1 {
+    display: none;
+  }
+  #forexButton1 {
+    display: none;
+  }
+  #dashPic1 {
+    display: none;
+  }
+  #dashPic3 {
+    display: none;
+  }
+  #cryptoButton1 {
+    display: none;
+  }
+}
+
+@media (min-width: 320px) {
+  #signUpButton1 {
+    display: none;
+  }
+  #forexButton1 {
+    display: none;
+  }
+  #dashPic1 {
+    display: none;
+  }
+  #dashPic3 {
+    display: none;
+  }
+  #cryptoButton1 {
+    display: none;
+  }
+}
+
+@media (min-width: 480px) {
+  #signUpButton1 {
+    display: none;
+  }
+  #forexButton1 {
+    display: none;
+  }
+  #dashPic1 {
+    display: none;
+  }
+  #dashPic3 {
+    display: none;
+  }
+  #cryptoButton1 {
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  #signUpButton1 {
+    display: none;
+  }
+  #forexButton1 {
+    display: none;
+  }
+  #dashPic1 {
+    display: none;
+  }
+  #dashPic3 {
+    display: none;
+  }
+  #cryptoButton1 {
+    display: none;
+  }
+}
+
+@media (min-width: 750px) {
+  /* #landingPageContent {
+    margin: 25px 100px 25px 100px;
+    box-shadow: 2px 2px 10px 2px #888888;
+  } */
+
+  #firstsection {
+    height: 400px !important;
+  }
+  #signUpContent {
+    text-align: start;
+    flex-direction: row !important;
+  }
+  #typographyBox1 {
+    padding-top: 25px;
+    padding-right: 25px;
+  }
+  #sentence1 {
+    font-size: 3.5rem;
+  }
+  #sentence2 {
+    font-size: 2.5rem;
+  }
+  #sentence3 {
+    width: 270px;
+    font-size: 1.3rem !important;
+  }
+
+  #smartmockup {
+    height: 315px !important;
+    width: 400px !important;
+  }
+
+  #signUpButton1 {
+    display: initial;
+  }
+  #signUpButton2 {
+    display: none;
+  }
+
+  #secondsection {
+    height: 450px !important;
+  }
+  #divider1 {
+    padding: 25px !important;
+  }
+  #forexAndDashboard {
+    padding-left: 20px;
+    flex-direction: row !important;
+  }
+
+  #forexTitle {
+    padding-left: 25px !important;
+  }
+  #forexExplanation {
+    padding-left: 25px !important;
+    width: 400px;
+    margin: 0;
+  }
+
+  #forexContentBox {
+    padding-left: 25px;
+    flex-direction: row !important;
+    align-items: initial !important;
+    justify-content: space-between !important;
+    width: 430px;
+  }
+  #forexButton1 {
+    width: 390px;
+    display: initial;
+  }
+  #forexButton2 {
+    display: none;
+  }
+  #dashPic1 {
+    display: initial;
+    height: 315px !important;
+  }
+  #dashPic2 {
+    display: none;
+  }
+  #thirdsection {
+    height: 380px !important;
+  }
+  #cryptoAndDashboard {
+    padding-top: 25px;
+    padding-right: 25px;
+    flex-direction: row !important;
+  }
+
+  #cryptoTitle {
+    padding-left: 25px !important;
+  }
+  #cryptoExplanation {
+    padding-left: 25px !important;
+    width: 400px;
+    margin: 0;
+  }
+
+  #cryptoContentBox {
+    padding-left: 25px;
+    flex-direction: row !important;
+    align-items: initial !important;
+    justify-content: space-between !important;
+    width: 430px;
+  }
+  #dashPic3 {
+    display: none;
+  }
+  #dashPic4 {
+    display: initial;
+    height: 315px !important;
+  }
+  #cryptoButton1 {
+    width: 390px;
+    display: initial;
+  }
+  #cryptoButton2 {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  #signUpContent {
+    padding-right: 300px;
+    padding-left: 300px;
+  }
+  #typographyBox1 {
+    width: 455px;
+    padding-left: 25px;
+    padding-top: 24px;
+    padding-right: 25px;
+  }
+  /* #firstsection {
+    align-items: start !important;
+  }
+  #section23 {
+    padding: 100px 300px 100px 300px;
+  }
+  #thirdsection {
+  } */
+  #forexAndDashboard {
+    padding-left: 20px;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+  #dashPic1 {
+    display: initial;
+    height: 315px !important;
+    width: 400px !important;
+  }
+  #cryptoAndDashboard {
+    padding-top: 25px;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+  #dashPic4 {
+    display: initial;
+    height: 315px !important;
+    width: 400px !important;
+  }
+}
+@media (min-width: 1281px) {
+  #forexAndDashboard {
+    padding-left: 20px;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+  #dashPic1 {
+    display: initial;
+    height: 315px !important;
+    width: 400px !important;
+  }
+  #cryptoAndDashboard {
+    padding-top: 25px;
+    flex-direction: row !important;
+    justify-content: center !important;
+  }
+  #dashPic4 {
+    display: initial;
+    height: 315px !important;
+    width: 400px !important;
+  }
+}
