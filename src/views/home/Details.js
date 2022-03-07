@@ -30,7 +30,7 @@ function Details() {
 
   // get forex information
   useEffect(() => {
-    getFrxInfo("gbpusd").then((data) => {
+    getFrxInfo("eurusd").then((data) => {
       setInstrumentInfo(data);
     });
   }, []);
