@@ -1,0 +1,592 @@
+.main-container-details {
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background: #f6f8fb;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  flex-grow: 1;
+}
+
+
+.header {
+  background-color: #F9F7F7;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.content {
+  background-color: #f6f8fb;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+
+
+
+/* ========== Content Title ============ */
+
+.content-title-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+
+}
+.company-name{
+  font-size:x-large;
+  font-weight: 800;
+  padding-right: 0.5em;
+}
+.company-box{
+  align-items: center;
+  display: flex;
+  font-size: medium;
+  font-weight: 400;
+}
+.icon-company{
+justify-content: center;
+align-items: center;
+display: flex;
+margin-right: 1em;
+}
+
+.currency-price{
+  font-size: large;
+  font-weight: 300;
+  padding-right: 0.5em ;
+}
+
+.currency{
+  font-size: large;
+  font-weight: 800;
+  padding-right: 0.5em ;
+}
+.currency-price{
+  font-size: large;
+  font-weight: 500;
+  padding-right: 0.5em ;
+}
+.currency-volatality{
+  font-size: large;
+  font-weight: 500;
+  padding-right: 0.5em ;
+}
+
+.content-title-left{
+  display: flex;
+  justify-content: center;
+  margin-left: 2em; 
+  margin-top: 0.8em;
+  font-size: medium;
+  /* font-weight: 400; */
+}
+.content-title-right-icon {
+  width: 12.5vw; 
+  padding: 5px;
+  margin-left: 2em; 
+  margin-top: 1em;
+
+}
+
+@media (min-width: 320px) {
+  .content-title-left {
+    font-size: 1rem; 
+    /* font-weight: 100; */
+    margin-left: 0.6em;
+  }
+  .company-name{
+    font-size:smaller;
+    font-weight: 600;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size:xx-small;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: xx-small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: xx-small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+
+  .content-title-right {
+    width: 41vw; 
+    margin: 9px;
+  }
+  .icon-company{
+    margin-right: 0.2em;
+    }
+ 
+}
+@media (min-width: 425px) {
+  .content-title-left {
+    font-size: 1rem; 
+    margin-left: 2em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 29vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.2em;
+    }
+ 
+ 
+}
+
+/* @media (min-width: 640px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 2.5em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 15vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+} */
+
+@media (min-width: 640px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 2.1em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 27vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 960px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 1.80em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 10vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 1008px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 1.80em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 10vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+@media (min-width: 1019px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 1.8em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 19vw; 
+    margin: 20px;
+    padding-right: 40px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 1024px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 2.3em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 9.5vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 1024px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 1.7em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 19vw; 
+    margin: 20px;
+    padding-right: 40px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 1024px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 3em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 18vw; 
+    margin: 20px;
+    padding-right: 40px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 1020px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 1.8em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 18.2vw; 
+    margin: 20px;
+    padding-right: 40px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+@media (min-width: 1440px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 3em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 15vw; 
+    margin: 20px;
+    padding-right: 40px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+
+@media (min-width: 2560px) {
+  .content-title-left {
+    font-size: 2rem; 
+    margin-left: 3.9em;
+  }
+  .company-name{
+    font-size:medium;
+    font-weight: 800;
+    padding-right: 0.5em;
+  }
+  .currency{
+    font-size: medium;
+    font-weight: 800;
+    padding-right: 0.5em ;
+  }
+
+  .currency-price{
+    font-size: small;
+    font-weight: 300;
+    padding-right: 0.5em ;
+  }
+  .currency-volatality{
+    font-size: small;
+    font-weight: 500;
+    padding-right: 0.5em ;
+  }
+  .content-title-right {
+    width: 10vw; 
+    margin: 20px;
+  }
+  .icon-company{
+    margin-right: 0.3em;
+    }
+ 
+ 
+}
+

@@ -7,41 +7,28 @@
   width: 100%;
   height: 100%;
   overflow-x: hidden;
-  flex-grow: 1;
 }
 
 .header {
   background-color: white;
   width: 100vw;
-  height: 150px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .title {
-  width: 40%;
-  padding: 5px;
-  margin-left: 12rem;
-  font-size: 40px;
-  font-weight: 700;
-  color: #1a2f66;
   text-transform: uppercase;
   font-size: 50px;
   font-weight: 900;
-}
-
-.search {
-  width: 40%;
-  padding: 5px;
-  margin: 30px;
 }
 
 .content {
   background-color: #f6f8fb;
   justify-content: center;
   align-items: center;
-  width: 100%; 
+  width: 100%;
   height: 100%;
   margin: 0;
   overflow-x: hidden;
@@ -82,14 +69,6 @@
   margin: 30px;
 }
 
-/* ============ News Slider ============= */
-
-.news-slider {
-  padding-left: 120px;
-  padding-right: 120px;
-}
-
-/* ========== Responsiveness =========== */
 
 @media screen and (max-width: 620px) {
   .title {
@@ -107,12 +86,5 @@
 @media screen and (max-width: 620px) {
   .content-title .right {
     padding-right: 5%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .news-slider {
-    padding-left: 30px;
-    padding-right: 30px;
   }
 }
