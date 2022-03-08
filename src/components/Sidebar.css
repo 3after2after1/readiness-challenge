@@ -1,0 +1,19 @@
+.sideBar {
+  position: fixed;
+  right: -45px;
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+@media (min-width: 0px) {
+  .sideBar {
+    display: none;
+  }
+}
+@media (min-width: 600px) {
+  .sideBar {
+    display: none;
+  }
+}

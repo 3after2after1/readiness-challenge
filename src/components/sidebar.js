@@ -16,15 +16,21 @@ import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import HomeIcon from "@mui/icons-material/Home";
-import NewspaperIcon from "@mui/icons-material/Newspaper";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ForexHome from "../views/home/ForexHome";
+import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import NotesIcon from "@mui/icons-material/Notes";
+import PaidIcon from "@mui/icons-material/Paid";
+import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
+import StarIcon from "@mui/icons-material/Star";
+import "./Sidebar.css";
+import Home from "../views/home/ForexHome";
+import Logo from "../assets/Logo.svg";
 
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
+  backgroundColor: "#184D47",
   transition: theme.transitions.create("width", {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.enteringScreen,
@@ -39,6 +45,7 @@ const closedMixin = (theme) => ({
   }),
   overflowX: "hidden",
   width: `calc(${theme.spacing(7)} + 1px)`,
+  backgroundColor: "#184D47",
   [theme.breakpoints.up("sm")]: {
     width: `calc(${theme.spacing(9)} + 1px)`,
   },
@@ -90,7 +97,9 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   const theme = useTheme();
+
   const [open, setOpen] = React.useState(false);
+  const [revealSideBar, setRevealSideBar] = React.useState("none");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -100,62 +109,138 @@ export default function MiniDrawer() {
     setOpen(false);
   };
 
+  const handleRevealSideBar = () => {
+    if (revealSideBar === "flex") setRevealSideBar("none");
+    else setRevealSideBar("flex");
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar position="fixed" open={open}></AppBar>
-      <Drawer variant="permanent" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{
-              marginRight: "36px",
-              ...(open && { display: "none" }),
+      <div style={{ position: "relative" }}>
+        <button
+          aria-label="reveal drawer"
+          onClick={handleRevealSideBar}
+          className="sideBar"
+        >
+          {revealSideBar === "none" ? (
+            <NotesIcon sx={{ color: "#184D47" }} fontSize="large" />
+          ) : (
+            <ArrowCircleLeftIcon sx={{ color: "#184D47" }} fontSize="large" />
+          )}
+        </button>
+        <Drawer
+          variant="permanent"
+          open={open}
+          sx={{ display: { xs: revealSideBar, sm: "flex" } }}
+        >
+          <Toolbar style={{ backgroundColor: "#0E312D", height: "70px" }}>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              onClick={handleDrawerOpen}
+              edge="start"
+              sx={{
+                marginRight: "36px",
+                ...(open && { display: "none" }),
+              }}
+              style={{ color: "white" }}
+            >
+              <MenuIcon />
+            </IconButton>
+            <DrawerHeader>
+              <Typography
+                noWrap
+                component="div"
+                style={{
+                  color: "white",
+                  fontSize: "27px",
+                  fontFamily: "Bree Serif",
+                  paddingRight: "10px",
+                  paddingLeft: "20px",
+                }}
+              >
+                TREX
+              </Typography>
+              <img className="logo-component" src={Logo} />
+              <IconButton
+                onClick={handleDrawerClose}
+                style={{ color: "white", paddingLeft: "40px" }}
+              >
+                {theme.direction === "rtl" ? (
+                  <ChevronRightIcon />
+                ) : (
+                  <ChevronLeftIcon />
+                )}
+              </IconButton>
+            </DrawerHeader>
+          </Toolbar>
+
+          <Divider />
+          <List
+            style={{
+              backgroundColor: "#184D47",
+              paddingTop: "18px",
+              paddingLeft: "5px",
             }}
           >
-            <MenuIcon />
-          </IconButton>
-          <DrawerHeader>
-            <IconButton onClick={handleDrawerClose}>
-              {theme.direction === "rtl" ? (
-                <ChevronRightIcon />
-              ) : (
-                <ChevronLeftIcon />
-              )}
-            </IconButton>
-          </DrawerHeader>
-          <Typography variant="h6" noWrap component="div">
-            T-REX
-          </Typography>
-        </Toolbar>
+            {["Home", "Forex"].map((text, index) => (
+              <ListItem
+                style={{ color: "#CFF4D2", paddingTop: "15px" }}
+                button
+                key={text}
+              >
+                <ListItemIcon style={{ color: "white" }}>
+                  {index % 2 === 0 ? <HomeIcon /> : <CandlestickChartIcon />}
+                </ListItemIcon>
+                <ListItemText
+                  disableTypography
+                  style={{ color: "white", fontSize: "23px" }}
+                  primary={text}
+                />
+              </ListItem>
+            ))}
+            {["Crypto", "Watchlist"].map((text, index) => (
+              <ListItem
+                style={{ color: "#CFF4D2", paddingTop: "15px" }}
+                button
+                key={text}
+              >
+                <ListItemIcon style={{ color: "white" }}>
+                  {index % 2 === 0 ? <PaidIcon /> : <StarIcon />}
+                </ListItemIcon>
+                <ListItemText
+                  disableTypography
+                  style={{ color: "white", fontSize: "23px" }}
+                  primary={text}
+                />
+              </ListItem>
+            ))}
+            {["Login"].map((text, index) => (
+              <ListItem
+                style={{ color: "#CFF4D2", paddingTop: "15px" }}
+                button
+                key={text}
+              >
+                <ListItemIcon style={{ color: "white" }}>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+                <ListItemText
+                  disableTypography
+                  style={{ color: "white", fontSize: "23px" }}
+                  primary={text}
+                />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+        </Drawer>
+      </div>
 
-        <Divider />
-        <List>
-          {["Home", "News"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <NewspaperIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-          {["Watchlist", "Login"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <BookmarkIcon /> : <AccountCircleIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-      </Drawer>
-
-      <Box component="main" sx={{ flexGrow: 1 }} style={{ overflow: "auto" }}>
-        <ForexHome />
+      <Box component="main" sx={{ flexGrow: 1 }} style={{ overflow: "hidden" }}>
+        {/* <Navbar /> */}
+        <Home />
       </Box>
     </Box>
   );

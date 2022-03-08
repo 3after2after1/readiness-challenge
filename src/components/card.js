@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { makeStyles } from "@material-ui/core/styles";
+import StarButton from "./star-btn";
 
 const useStyles = makeStyles({
   root: {
@@ -26,16 +27,17 @@ const useStyles = makeStyles({
   },
 });
 
-
+ 
 export default function ForexCard() {
+
+   
   return (
+    
     <Card sx={{ minWidth: 200 }}>
       <CardHeader
         avatar={<Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo"></Avatar>}
         action={
-          <IconButton aria-label="add to watchlist">
-            <StarBorderIcon />
-          </IconButton>
+          <StarButton />
         }
         title="What forex"
       />

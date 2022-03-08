@@ -42,7 +42,7 @@ const carouselProperties = {
 };
 
 const News = () => {
-const sliderRef = useRef(null);
+  const sliderRef = useRef(null);
   useEffect(() => {
     console.log(sliderRef);
   }, []);
@@ -55,10 +55,13 @@ const sliderRef = useRef(null);
             display: "flex",
             justifyContent: "space-between",
             padding: "0 40px",
+            fontsize: "40px",
+            fontweight: "700",
+            color: "#1a2f66",
           }}
         >
           <h1>News</h1>
-          <div style={{ display: "flex" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
             <div
               style={{
                 width: 40,
@@ -103,6 +106,8 @@ const sliderRef = useRef(null);
                 <Card
                   style={{
                     minwidth: 350,
+                    height: "100%",
+                    maxHeight: 400,
                     margin: 10,
                     objectFit: "contain",
                     borderRadius: 15,
@@ -129,12 +134,12 @@ const sliderRef = useRef(null);
                       height="200"
                       image="https://i.pinimg.com/564x/54/b0/f9/54b0f98fc7530d471381bec95e27125a.jpg"
                       alt="Image"
-                      // objectFit="cover"
                     />
                   </Box>
-                  <CardContent>
+                  <CardContent style={{ maxHeight: 80, overflow: "hidden" }}>
                     <Typography variant="body2" component="p">
-                      News description
+                      Overflow can be hidden or auto for scroll. Im not sure how
+                      else better add dot dot or something sdnkjdna asn
                     </Typography>
                   </CardContent>
                   <Box
@@ -160,7 +165,7 @@ const sliderRef = useRef(null);
                         color="textSecondary"
                         component="p"
                         objectFit="cover"
-                        margin="50"
+                        style={{ padding: "10px" }}
                       >
                         Source
                       </Typography>
@@ -169,6 +174,7 @@ const sliderRef = useRef(null);
                       variant="body2"
                       color="textSecondary"
                       component="p"
+                      style={{ padding: "10px" }}
                     >
                       Date
                     </Typography>
