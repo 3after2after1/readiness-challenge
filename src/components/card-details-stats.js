@@ -1,9 +1,9 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import DetailsStatsContent from "./details-stats-details";
 import "./card-details-stats.css";
+import StatsForex from "./stats-forex";
 
-export default function DetailsStats() {
+export default function DetailsStats({ dataStats, dataDescription }) {
   return (
     <Box id="top-container-stats" gap="20px">
       <Box
@@ -18,7 +18,7 @@ export default function DetailsStats() {
           borderRadius: 2,
         }}
       >
-        lllll
+        <StatsForex statsData={dataStats} />
       </Box>
       <Box
         id="stats-contents-box"
@@ -32,7 +32,7 @@ export default function DetailsStats() {
           borderRadius: 2,
         }}
       >
-        <DetailsStatsContent />
+        <p>{dataDescription}</p>
       </Box>
     </Box>
   );

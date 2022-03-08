@@ -52,7 +52,7 @@ const getBgColor = (strength) => {
 export default function StatsForex({ statsData }) {
   return (
     <Grid container spacing={2}>
-      <Grid className="" item xs={12} lg={7}>
+      <Grid className="" item xs={12} xl={7}>
         <div className="stats-group">
           <div>
             <h3>Support and Resistance</h3>
@@ -102,7 +102,7 @@ export default function StatsForex({ statsData }) {
           </div>
         </div>
       </Grid>
-      <Grid item xs={12} lg={5}>
+      <Grid item xs={12} xl={5}>
         <div className="stats-group">
           <div>
             <h3>Pivot Points</h3>

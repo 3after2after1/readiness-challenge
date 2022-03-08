@@ -69,7 +69,10 @@ function Details() {
         </Container>
 
         <Container>
-          <DetailsStats />
+          <DetailsStats
+            dataStats={instrumentInfo.stats}
+            dataDescription={instrumentInfo.description}
+          />
         </Container>
       </div>
 

@@ -50,7 +50,7 @@
   border-radius: 20px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1279px) {
   .strength-indicator {
     padding: 2px;
     border-radius: 20px;

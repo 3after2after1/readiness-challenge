@@ -9,7 +9,7 @@ export default function DetailsComment() {
       tincidunt mattis hendrerit dolor eros enim, nisi ligula ornare. Hendrerit
       parturient habitant pharetra rutrum gravida porttitor eros feugiat. Mollis
       elit sodales taciti duis praesent id. Consequat urna vitae morbi nunc
-      congue.
+      congue. [card details comment component]
     </Box>
   );
 }
