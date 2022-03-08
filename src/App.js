@@ -4,11 +4,12 @@ import Details from "./views/home/Details";
 import Watchlist from "./views/home/Watchlist";
 import Home from "./views/home/Home";
 import MiniDrawer from "./components/Sidebar";
+import Favourite from "./views/home/Favourite";
 
 const App = () => {
   return (
     <div>
-      <Watchlist />
+      <Details />
     </div>
   );
 };
