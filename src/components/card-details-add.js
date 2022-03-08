@@ -19,9 +19,9 @@ export default function CardDetailsAdd() {
         <React.Fragment>
           <Button
             style={{
-              borderRadius: 15,
+              borderRadius: 10,
               backgroundColor: "white",
-              padding: "5px",
+              padding: "2px",
               // height: "80px"
             }}
             variant="contained"

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Watchlist.css";
 import CardFilter from "../../components/card-filter";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,7 +29,7 @@ function Watchlist() {
 
       <div className="content">
         <div className="content-title">
-          <div className="content-title left">
+          <div className="content-title-left">
             <p>Watchlist</p>
           </div>
           <div className="content-title right">
@@ -39,54 +39,40 @@ function Watchlist() {
 
         <Grid
           container
-          spacing={4}
+          spacing={3}
           className={classes.gridContainer}
           justify="center"
         >
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={2}>
+          <Grid item xs={12} sm={6} md={3}>
+            <WatchlistCard />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <WatchlistCard />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <WatchlistCard />
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
         </Grid>
 
-        <Grid
-          container
-          spacing={4}
-          className={classes.gridContainer}
-          justify="center"
-        >
-          <Grid item xs={12} sm={6} md={2}>
-            <WatchlistCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <WatchlistCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <WatchlistCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <WatchlistCard />
-          </Grid>
-          <Grid item xs={12} sm={6} md={2}>
-            <WatchlistCard />
-          </Grid>
-        </Grid>
+       
       </div>
 
-      <div className="footer">
-        <p>footer info</p>
-      </div>
+      
     </div>
   );
 }

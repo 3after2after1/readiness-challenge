@@ -9,7 +9,7 @@ function Footer() {
     <div className="footer-box">
       <div className="col-1">
         <img className="logo-component" src={Logo}/>
-        <span>TREX</span>
+        <span className="trex-name">TREX</span>
       </div>
       <div className="col-2">
         <div className="col-1-title">About us</div>
@@ -27,15 +27,7 @@ function Footer() {
           <a href="">Watchlist</a>
         </div>
       </div>
-      <div className="col-2">
-        <div className="col-1-title">Socials</div>
-        <div className="socials-icon">
-          <FaFacebook />
-        </div>
-        <div className="socials-icon">
-          <AiFillTwitterCircle />
-        </div>
-      </div>
+     
       <div className="col-3">
         <div className="col-1-title-copy">© Copyright 2022 TREX</div>
       </div>

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Box } from "@material-ui/core";
 
-export default function DetailsComment() {
+export default function DetailsStatsContent() {
   return (
     <Box>
       insert chat forum here hehe Lorem ipsum odor amet, consectetuer adipiscing
