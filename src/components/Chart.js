@@ -1,6 +1,6 @@
 import React from "react";
-import CandleStickChart from "./CandleStickChart";
-import LineGraphChart from "./LineGraphChart";
+import CandleStickChart from "./chart-types/CandleStickChart";
+import LineGraphChart from "./chart-types/LineGraphChart";
 import {
   charts,
   chartIndicators,
@@ -27,8 +27,6 @@ import {
 } from "../config/cryptoCompareApi";
 
 import { Grid } from "@material-ui/core";
-import { Paper } from "@mui/material";
-import { styled } from "@material-ui/styles";
 import { InputLabel } from "@mui/material";
 import { MenuItem } from "@material-ui/core";
 import { Select } from "@mui/material";

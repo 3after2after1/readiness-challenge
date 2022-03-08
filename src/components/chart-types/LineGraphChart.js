@@ -1,19 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { format } from "d3-format";
+import { timeFormat } from "d3-time-format";
+
 import { ChartCanvas, Chart } from "react-stockcharts";
 import {
-  CandlestickSeries,
+  ScatterSeries,
+  CircleMarker,
   LineSeries,
   RSISeries,
 } from "react-stockcharts/lib/series";
 import { XAxis, YAxis } from "react-stockcharts/lib/axes";
-
 import {
   CrossHairCursor,
-  EdgeIndicator,
   MouseCoordinateX,
   MouseCoordinateY,
+  EdgeIndicator,
   CurrentCoordinate,
 } from "react-stockcharts/lib/coordinates";
 
@@ -21,12 +24,7 @@ import { discontinuousTimeScaleProvider } from "react-stockcharts/lib/scale";
 import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
 
-import { timeFormat } from "d3-time-format";
-import { format } from "d3-format";
-
 import { ema, wma, sma, tma, rsi } from "react-stockcharts/lib/indicator";
-
-import { chartIndicators } from "../utils/utils";
 
 import {
   OHLCTooltip,
@@ -34,9 +32,11 @@ import {
   RSITooltip,
 } from "react-stockcharts/lib/tooltip";
 
-class CandleStickStockScaleChart extends React.Component {
+import { chartIndicators } from "../../utils/utils";
+
+class LineAndScatterChart extends React.Component {
   render() {
-    const { type, data: initialData, width, ratio, indicators } = this.props;
+    const { data: initialData, type, width, ratio, indicators } = this.props;
     const margin = { left: 60, right: 60, top: 10, bottom: 20 };
 
     const height = 500;
@@ -125,70 +125,46 @@ class CandleStickStockScaleChart extends React.Component {
     );
     const { data, xScale, xAccessor, displayXAccessor } =
       xScaleProvider(calculatedData);
-
     let numCandlesOnDisplay =
       data.length > Math.trunc(width / 30)
         ? Math.trunc(width / 30)
         : data.length;
-
     const xExtents = [
       xAccessor(last(data)),
       xAccessor(data[data.length - numCandlesOnDisplay]),
     ];
-
     return (
       <ChartCanvas
-        height={height}
         ratio={ratio}
         width={width}
+        height={height}
         margin={{ left: 70, right: 70, top: 20, bottom: 30 }}
         type={type}
+        pointsPerPxThreshold={1}
         seriesName="MSFT"
         data={data}
-        xScale={xScale}
         xAccessor={xAccessor}
         displayXAccessor={displayXAccessor}
+        xScale={xScale}
         xExtents={xExtents}
       >
         <Chart
           id={1}
-          yExtents={(d) => [d.high, d.low]}
+          yExtents={(d) => [d.high, d.low, d.AAPLClose, d.GEClose]}
           height={
             indicators.includes(chartIndicators.relative_strength_index) && 300
           }
         >
-          <XAxis axisAt="bottom" orient="bottom" ticks={6} {...xGrid} />
-          <YAxis axisAt="right" orient="right" ticks={5} {...yGrid} />
+          <XAxis axisAt="bottom" orient="bottom" {...xGrid} />
+          <YAxis
+            axisAt="right"
+            orient="right"
+            // tickInterval={5}
+            // tickValues={[40, 60]}
+            ticks={5}
+            {...yGrid}
+          />
           <OHLCTooltip origin={[-40, 0]} />
-
-          <CandlestickSeries />
-          {indicators.includes(chartIndicators.simple_moving_avg) && (
-            <>
-              <LineSeries
-                yAccessor={sma20.accessor()}
-                stroke={sma20.stroke()}
-              />
-
-              <CurrentCoordinate
-                yAccessor={sma20.accessor()}
-                fill={sma20.stroke()}
-              />
-
-              <MovingAverageTooltip
-                origin={[-38, 15]}
-                options={[
-                  {
-                    yAccessor: sma20.accessor(),
-                    type: "SMA",
-                    stroke: sma20.stroke(),
-                    windowSize: sma20.options().windowSize,
-                    echo: "some echo here",
-                  },
-                ]}
-              />
-            </>
-          )}
-
           <EdgeIndicator
             itemType="last"
             orient="right"
@@ -205,12 +181,44 @@ class CandleStickStockScaleChart extends React.Component {
           <MouseCoordinateX
             at="bottom"
             orient="bottom"
-            displayFormat={timeFormat("%Y-%m-%d %H:%M %p")}
+            displayFormat={timeFormat("%Y-%m-%d %H:%M:%S %p")}
           />
           <MouseCoordinateY
-            at="left"
-            orient="left"
-            displayFormat={format(".4s")}
+            at="right"
+            orient="right"
+            displayFormat={format(".2f")}
+          />
+
+          <LineSeries yAccessor={(d) => d.close} strokeDasharray="LongDash" />
+          {indicators.includes(chartIndicators.simple_moving_avg) && (
+            <>
+              <LineSeries
+                yAccessor={sma20.accessor()}
+                stroke={sma20.stroke()}
+              />
+              <CurrentCoordinate
+                yAccessor={sma20.accessor()}
+                fill={sma20.stroke()}
+              />
+              <MovingAverageTooltip
+                origin={[-38, 15]}
+                options={[
+                  {
+                    yAccessor: sma20.accessor(),
+                    type: "SMA",
+                    stroke: sma20.stroke(),
+                    windowSize: sma20.options().windowSize,
+                    echo: "some echo here",
+                  },
+                ]}
+              />
+            </>
+          )}
+
+          <ScatterSeries
+            yAccessor={(d) => d.close}
+            marker={CircleMarker}
+            markerProps={{ r: 3 }}
           />
         </Chart>
         {indicators.includes(chartIndicators.relative_strength_index) && (
@@ -218,7 +226,7 @@ class CandleStickStockScaleChart extends React.Component {
             id={2}
             yExtents={[0, 100]}
             height={125}
-            origin={(w, h) => [0, h - 140]}
+            origin={(w, h) => [0, h - 135]}
           >
             <XAxis
               axisAt="bottom"
@@ -248,16 +256,16 @@ class CandleStickStockScaleChart extends React.Component {
   }
 }
 
-CandleStickStockScaleChart.propTypes = {
+LineAndScatterChart.propTypes = {
   data: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
   ratio: PropTypes.number.isRequired,
   type: PropTypes.oneOf(["svg", "hybrid"]).isRequired,
 };
 
-CandleStickStockScaleChart.defaultProps = {
+LineAndScatterChart.defaultProps = {
   type: "svg",
 };
-CandleStickStockScaleChart = fitWidth(CandleStickStockScaleChart);
+LineAndScatterChart = fitWidth(LineAndScatterChart);
 
-export default CandleStickStockScaleChart;
+export default LineAndScatterChart;

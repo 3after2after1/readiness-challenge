@@ -6,25 +6,6 @@ import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import AddBoxIcon from "@mui/icons-material/AddBox";
-import { makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles({
-  root: {
-    minWidth: 300,
-    borderRadius: 300,
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 20,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
 
 export default function ForexCard() {
   return (
