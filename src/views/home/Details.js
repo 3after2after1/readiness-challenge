@@ -10,6 +10,8 @@ import DetailsStats from "../../components/card-details-stats";
 import DetailsStatsContent from "../../components/details-stats-details";
 import Footer from "../../components/Footer";
 import { getFrxInfo } from "../../utils/web-scrape-forex";
+import { useParams } from "react-router-dom";
+import { markets } from "../../utils/utils";
 
 //apply CSS styling to material-ui components
 const useStyles = makeStyles({
@@ -26,6 +28,9 @@ const useStyles = makeStyles({
 
 function Details() {
   const classes = useStyles();
+  const { symbol } = useParams();
+
+  let market = symbol.startsWith("frx") ? markets.forex : markets.crypto;
   const [instrumentInfo, setInstrumentInfo] = useState({});
 
   // get forex information
@@ -41,7 +46,7 @@ function Details() {
         <div className="main-container-details">
           <div className="header">Trex</div>
 
-          <div className="content">
+          <div className="content" style={{ width: "100vw" }}>
             <div className="content-title-details">
               <div className="content-title-left">
                 <div className="icon-company" id="icon-company">
@@ -76,7 +81,7 @@ function Details() {
               </div>
 
               <div className="content-title-right-icon">
-                <CardDetailsAdd />
+                <CardDetailsAdd symbol={symbol} market={market} />
               </div>
             </div>
 
@@ -87,7 +92,7 @@ function Details() {
               justify="center"
             >
               <Grid item xs={10} sm={10} md={8}>
-                <DetailsPage />
+                <DetailsPage symbol={symbol} market={market} />
               </Grid>
               <Grid item sm={10} xs={10} md={3}>
                 <DetailsComment />

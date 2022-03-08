@@ -11,9 +11,11 @@ import { blue } from "@mui/material/colors";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { useNavigate } from "react-router-dom";
 
 const { Buffer } = require("buffer/");
 const data = require("../../majorPair.json");
+const mapper = require("../../symbolMapper.json");
 // console.log(Object.keys(data));
 
 const formatPrice = (price, num) => {
@@ -50,6 +52,8 @@ function ForexPage() {
   const [stonks, setStonks] = useState([]);
   const [range, setRange] = useState("1d");
   const classes = useStyles();
+
+  let navigate = useNavigate();
   useEffect(() => {
     const ws = new WebSocket("wss://streamer.finance.yahoo.com");
     protobuf.load("./YPricingData.proto", (error, root) => {
@@ -74,7 +78,7 @@ function ForexPage() {
 
       ws.onmessage = function incoming(message) {
         const next = Yaticker.decode(new Buffer(message.data, "base64"));
-        console.log("component rendered ");
+        // console.log("component rendered ");
         setStonks((current) => {
           let stonk = current.find((stonk) => stonk.id === next.id);
           if (stonk) {
@@ -132,7 +136,13 @@ function ForexPage() {
         justify="center"
       >
         {stonks.map((stonk) => (
-          <div className="stonk" key={stonk.id}>
+          <div
+            className="stonk"
+            key={stonk.id}
+            onClick={(e) => {
+              navigate(`/forex/${"frx" + stonk.id.replace("=X", "")}`);
+            }}
+          >
             <img
               src={`https://etoro-cdn.etorostatic.com/market-avatars/${data[
                 stonk.id

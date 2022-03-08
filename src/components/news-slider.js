@@ -42,7 +42,7 @@ const carouselProperties = {
 };
 
 const News = () => {
-const sliderRef = useRef(null);
+  const sliderRef = useRef(null);
   useEffect(() => {
     console.log(sliderRef);
   }, []);
@@ -54,7 +54,7 @@ const sliderRef = useRef(null);
           style={{
             display: "flex",
             justifyContent: "space-between",
-            padding: "0 40px",          
+            padding: "0 40px",
           }}
         >
           <h1>News</h1>
@@ -87,13 +87,14 @@ const sliderRef = useRef(null);
                 boxShadow: "0 2px 4px rgb(0 0 0 /10%)",
                 cursor: "pointer",
               }}
-              onClick={() => sliderRef.current.slickNext()}>
+              onClick={() => sliderRef.current.slickNext()}
+            >
               <ArrowForwardIos />
             </div>
           </div>
         </div>
       </div>
-      <div >
+      <div>
         <Slider {...carouselProperties} ref={sliderRef}>
           {Array(10)
             .fill("")
@@ -102,6 +103,8 @@ const sliderRef = useRef(null);
                 <Card
                   style={{
                     minwidth: 350,
+                    height: "100%",
+                    maxHeight: 400,
                     margin: 10,
                     objectFit: "contain",
                     borderRadius: 15,
@@ -110,7 +113,7 @@ const sliderRef = useRef(null);
                   <Box
                     style={{
                       display: "flex",
-                      flexDirection: "row",              
+                      flexDirection: "row",
                     }}
                   >
                     <CardContent>
@@ -119,7 +122,7 @@ const sliderRef = useRef(null);
                         variant="h5"
                         component="h2"
                         minwidth="200"
-                        >
+                      >
                         News Title
                       </Typography>
                     </CardContent>
@@ -131,9 +134,12 @@ const sliderRef = useRef(null);
                       objectFit="cover"
                     />
                   </Box>
-                  <CardContent>
+                  <CardContent style={{ maxHeight: 80, overflow: "hidden" }}>
                     <Typography variant="body2" component="p">
-                      News description
+                      News description Lorem ipsum dolor sit, amet consectetur
+                      adipisicing elit. Hic, est quas. Labore molestias odio
+                      commodi autem ea libero, officia quae quia tempora tempore
+                      sit, iure veniam rem illo velit a!
                     </Typography>
                   </CardContent>
                   <Box

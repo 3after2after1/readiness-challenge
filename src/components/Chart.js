@@ -52,7 +52,7 @@ class ChartComponent extends React.Component {
       ws.onmessage = (msg) => {
         let data = JSON.parse(msg.data);
 
-        console.log("inside ", data);
+        // console.log("inside ", data);
 
         // process candle data and subscribe to data stream
         if (data.msg_type === "candles") {

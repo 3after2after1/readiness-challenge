@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Watchlist.css";
 import CardFilter from "../../components/card-filter";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -32,9 +32,7 @@ function Watchlist() {
           <div className="content-title left">
             <p>Watchlist</p>
           </div>
-          <div className="content-title right">
-           
-          </div>
+          <div className="content-title right"></div>
         </div>
 
         <Grid
@@ -82,10 +80,6 @@ function Watchlist() {
             <WatchlistCard />
           </Grid>
         </Grid>
-      </div>
-
-      <div className="footer">
-        <p>footer info</p>
       </div>
     </div>
   );

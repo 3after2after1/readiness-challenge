@@ -27,7 +27,8 @@ const useStyles = makeStyles({
   },
 });
 
-export default function DetailsPage() {
+export default function DetailsPage({ symbol, market }) {
+  console.log(symbol, market);
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardHeader
@@ -40,7 +41,8 @@ export default function DetailsPage() {
 
       {/* [forex] symbol: R_50, market: forex */}
       {/* [crypto] symbol: BTC, market: crypto */}
-      <Chart symbol="R_50" market="forex" />
+      {/* <Chart symbol="R_50" market="forex" /> */}
+      <Chart symbol={symbol} market={market} />
     </Card>
   );
 }
