@@ -7,8 +7,8 @@ import Navbar from "../../components/navbar-db";
 const Home = () => {
   return (
     <>
-      <MiniDrawer />
-      {/* <ForexHome /> */}
+      {/* <MiniDrawer /> */}
+      <ForexHome />
     </>
   );
 };

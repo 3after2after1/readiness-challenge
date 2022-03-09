@@ -12,6 +12,7 @@ import CardFilter from "../../components/card-filter";
 import News from "../../components/news-slider";
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar-db";
+import CustomizedTables from "../../components/table-crypto";
 
 const useStyles = makeStyles({
   root: {
@@ -86,150 +87,14 @@ function Home() {
               />
             </Card>
 
-            {/* divider */}
-            <Card
-              id="w-card-box"
-              sx={{
-                width: 300,
-                margin: "10px 0 0 0 ",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-                    L
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="add to watchlist">
-                    <StarButton />
-                  </IconButton>
-                }
-                title="What forex"
-              />
-              <CardMedia
-                id="card-media"
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Insert chart"
-              />
-            </Card>
-            <Card
-              id="w-card-box"
-              sx={{
-                width: 300,
-                margin: "10px 0 0 0 ",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-                    L
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="add to watchlist">
-                    <StarButton />
-                  </IconButton>
-                }
-                title="What forex"
-              />
-              <CardMedia
-                id="card-media"
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Insert chart"
-              />
-            </Card>
-
-            <Card
-              id="w-card-box"
-              sx={{
-                width: 300,
-                margin: "10px 0 0 0 ",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-                    L
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="add to watchlist">
-                    <StarButton />
-                  </IconButton>
-                }
-                title="What forex"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Insert chart"
-              />
-            </Card>
-
-            <Card
-              id="w-card-box"
-              sx={{
-                width: 300,
-                margin: "10px 0 0 0 ",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-                    L
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="add to watchlist">
-                    <StarButton />
-                  </IconButton>
-                }
-                title="What forex"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Insert chart"
-              />
-            </Card>
-
-            <Card
-              id="w-card-box"
-              sx={{
-                width: 300,
-                marginTop: "10px",
-              }}
-            >
-              <CardHeader
-                avatar={
-                  <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
-                    L
-                  </Avatar>
-                }
-                action={
-                  <IconButton aria-label="add to watchlist">
-                    <StarButton />
-                  </IconButton>
-                }
-                title="What forex"
-              />
-              <CardMedia
-                component="img"
-                height="194"
-                image="/static/images/cards/paella.jpg"
-                alt="Insert chart"
-              />
-            </Card>
+            {/* end card */}
+            
           </div>
         </div>
-
+        
+        <div>
+  <CustomizedTables />
+  </div>
         <div className="news-slider">
           <News />
         </div>

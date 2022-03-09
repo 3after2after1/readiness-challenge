@@ -7,18 +7,18 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Avatar } from "@mui/material";
+import { Avatar, Box } from "@mui/material";
 import { Grid } from "@material-ui/core";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 20,
     backgroundColor: "black",
     color: "white",
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 20,
     paddingLeft: 20,
   },
@@ -28,11 +28,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:first-child td, &:first-child th": {
     paddingTop: 30,
     paddingBottom: 30,
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: "bold",
     backgroundColor: "#e7f9eb",
     paddingBottom: "20px",
-    paddingRight: "20px"
+    paddingRight: "20px",
   },
 }));
 
@@ -40,7 +40,7 @@ const StyledTableRow2 = styled(TableRow)(({ theme }) => ({
   "&:first-child td, &:first-child th": {
     paddingTop: 20,
     paddingBottom: 20,
-    fontSize: 23,
+    fontSize: 20,
     fontWeight: "bold",
     backgroundColor: "#f8e4e6",
   },
@@ -69,7 +69,8 @@ export default function CustomizedTables() {
         style={{
           paddingLeft: "120px",
           paddingRight: "120px",
-          overflowX: "auto",
+          overflowY: "scroll",
+          overflowX: "hidden",
           gap: "30px",
         }}
       >
@@ -91,6 +92,7 @@ export default function CustomizedTables() {
             </StyledTableCell> */}
                 </TableRow>
               </TableHead>
+
               <TableBody>
                 {rows.map((row) => (
                   <StyledTableRow key={row.name} display="flex">
