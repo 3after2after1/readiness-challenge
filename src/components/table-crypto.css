@@ -1,0 +1,6 @@
+@media (min-width: 768px) {
+  #header-box {
+    padding: 20px !important ;
+    font-size: 20px !important ;
+  }
+}

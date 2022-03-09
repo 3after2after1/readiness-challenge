@@ -9,6 +9,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Avatar, Box } from "@mui/material";
 import { Grid } from "@material-ui/core";
+import "./table-crypto.css";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -16,6 +17,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontWeight: 20,
     backgroundColor: "black",
     color: "white",
+    width: "200px",
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 16,
@@ -26,7 +28,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   "&:first-child td, &:first-child th": {
-    paddingTop: 30,
+    paddingTop: 20,
     paddingBottom: 30,
     fontSize: 20,
     fontWeight: "bold",
@@ -67,8 +69,8 @@ export default function CustomizedTables() {
         alignItems="center"
         justify="center"
         style={{
-          paddingLeft: "120px",
-          paddingRight: "120px",
+          // paddingLeft: "120px",
+          // paddingRight: "120px",
           overflowY: "scroll",
           overflowX: "hidden",
           gap: "30px",
@@ -83,16 +85,22 @@ export default function CustomizedTables() {
             }}
             xs={{ maxWidth: "200px" }}
           >
-            <Table aria-label="customized table" borderRadius="150">
-              <TableHead>
-                <TableRow style={{ display: "flex" }}>
-                  {/* <StyledTableCell>TopGainingCoins</StyledTableCell>
-            <StyledTableCell align="right" colSpan={3}>
-              24H Change
-            </StyledTableCell> */}
-                </TableRow>
-              </TableHead>
+            <Box
+              id="header-box"
+              style={{
+                padding: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+                backgroundColor: "black",
+                color: "white",
+                fontSize: "18px",
+              }}
+            >
+              <Box>Top Gaining Coins</Box>
+              <Box> 24H Change</Box>
+            </Box>
 
+            <Table aria-label="customized table" borderRadius="150">
               <TableBody>
                 {rows.map((row) => (
                   <StyledTableRow key={row.name} display="flex">
@@ -137,15 +145,21 @@ export default function CustomizedTables() {
             }}
             xs={{ maxWidth: "200px" }}
           >
+            <Box
+              id="header-box"
+              style={{
+                padding: "20px",
+                display: "flex",
+                justifyContent: "space-between",
+                backgroundColor: "black",
+                color: "white",
+                fontSize: "18px",
+              }}
+            >
+              <Box>Top Gaining Coins</Box>
+              <Box> 24H Change</Box>
+            </Box>
             <Table aria-label="customized table" borderRadius="150">
-              <TableHead>
-                <TableRow style={{ display: "flex" }}>
-                  {/* <StyledTableCell>TopGainingCoins</StyledTableCell>
-            <StyledTableCell align="right" colSpan={3}>
-              24H Change
-            </StyledTableCell> */}
-                </TableRow>
-              </TableHead>
               <TableBody>
                 {rows.map((row) => (
                   <StyledTableRow2 key={row.name} display="flex">
