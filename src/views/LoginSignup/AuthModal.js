@@ -15,6 +15,7 @@ import { GoogleAuthProvider, signOut, signInWithPopup } from "@firebase/auth";
 import { auth } from "../../services/firebase";
 import { UserState } from "../../contexts/UserContext";
 import { passwordVerify } from "../../utils/PasswordChecker";
+import ChatWindow from "../ChatWindow";
 import axios from "axios";
 const style = {
   position: "absolute",
@@ -37,7 +38,10 @@ const AuthModal = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [value, setValue] = React.useState(0);
-  const [reloadFrame, setReloadFrame] = React.useState(0);
+
+  // React.useEffect(() => {
+  //   console.log(userRocketChatToken);
+  // }, [userRocketChatToken]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -74,41 +78,6 @@ const AuthModal = () => {
       .catch((error) => {});
   };
 
-  const resetIframe = () => {
-    setReloadFrame(reloadFrame + 1);
-  };
-
-  const rocketGetAuth = async () => {
-    await axios
-      .post("http://192.168.100.164:3032/rocket_auth_get", null, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        return response.data.loginToken;
-      })
-      .catch((error) => {});
-
-    resetIframe();
-  };
-
-  const onMyFrameLoad = async () => {
-    const chatbox = document.getElementById("rocket");
-    const usertoken = await axios
-      .post("http://192.168.100.164:3032/rocket_auth_get", null, {
-        withCredentials: true,
-      })
-      .then((response) => response.data.loginToken)
-      .catch((error) => {});
-
-    chatbox.contentWindow.postMessage(
-      {
-        event: "login-with-token",
-        loginToken: usertoken,
-      },
-      "http://192.168.100.164:3005/"
-    );
-  };
-
   return (
     <div>
       <Button
@@ -132,13 +101,13 @@ const AuthModal = () => {
       >
         Log in rocket chat
       </Button>
-      <Button
+      {/* <Button
         variant="contained"
         startIcon={<AccountCircle />}
-        onClick={rocketGetAuth}
+        onClick={experimentdelete}
       >
-        Get Auth
-      </Button>
+        Delete Test
+      </Button> */}
       <TextField
         className="textfield"
         required
@@ -165,14 +134,7 @@ const AuthModal = () => {
       <h1>{user ? auth.currentUser.emailVerified.toString() : "no user"}</h1>
       <h1>placeholder</h1>
       <div style={{ height: "400px", width: "400px" }}>
-        <iframe
-          id="rocket"
-          key={reloadFrame}
-          style={{ width: "100%", height: "100%" }}
-          src="http://192.168.100.164:3005/channel/general/?layout=embedded"
-          title="myframe"
-          onLoad={onMyFrameLoad}
-        ></iframe>
+        <ChatWindow />
       </div>
 
       <Modal
