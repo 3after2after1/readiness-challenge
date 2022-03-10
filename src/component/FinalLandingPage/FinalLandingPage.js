@@ -8,7 +8,9 @@ const FinalLandingPage = () => {
       <Box
         id="firstsection"
         style={{
-          backgroundImage: "url(public/Vector 25.png)",
+          // backgroundImage: `url(${
+          //   process.env.PUBLIC_URL + "/wickedbackground1.png"
+          // })`,
           backgroundColor: "#184D47",
           width: "100%",
           height: "500px",
@@ -64,17 +66,18 @@ const FinalLandingPage = () => {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
             </Typography>
             <Box
+              id="signUpBox"
               style={{
                 paddingTop: "20px",
               }}
             >
               <Button
                 id="signUpButton1"
-                color="inherit"
-                variant="outlined"
+                variant="contained"
                 style={{
-                  color: "#FFCE45",
-                  fontSize: "1rem",
+                  backgroundColor: "#FFCE45",
+                  color: "#184D47",
+                  fontSize: "1.3rem",
                   fontFamily: "Bree Serif",
                   fontWeight: "bold",
                   width: "275px",
@@ -85,6 +88,7 @@ const FinalLandingPage = () => {
             </Box>
           </Box>
           <Box
+            id="pictureBox1"
             style={{
               paddingTop: "20px",
             }}
@@ -94,10 +98,15 @@ const FinalLandingPage = () => {
               style={{
                 width: "275px",
                 height: "200px",
-                backgroundColor: "white",
+                display: "flex",
+                alignItems: "center",
               }}
             >
-              Dashboard Picture
+              <img
+                id=""
+                // src={process.env.PUBLIC_URL + "/smartmockups3.png"}
+                // style={{ width: "600px", height: "300px" }}
+              />
             </Box>
             <Box
               style={{
@@ -106,11 +115,11 @@ const FinalLandingPage = () => {
             >
               <Button
                 id="signUpButton2"
-                color="inherit"
-                variant="outlined"
+                variant="contained"
                 style={{
-                  color: "#FFCE45",
-                  fontSize: "1rem",
+                  backgroundColor: "#FFCE45",
+                  color: "#184D47",
+                  fontSize: "1.3rem",
                   fontFamily: "Bree Serif",
                   fontWeight: "bold",
                   width: "275px",
@@ -128,10 +137,9 @@ const FinalLandingPage = () => {
           style={{
             backgroundColor: "#F9F7F7",
             width: "100%",
-            height: "800px",
+            height: "1750px",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
           }}
         >
           <Box>
@@ -152,6 +160,8 @@ const FinalLandingPage = () => {
             style={{
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Box
@@ -164,7 +174,7 @@ const FinalLandingPage = () => {
             >
               Dashboard Picture
             </Box>
-            <Box>
+            <Box id="forexBox">
               <Typography
                 id="forexTitle"
                 variant="h3"
@@ -201,22 +211,31 @@ const FinalLandingPage = () => {
                   paddingTop: "15px",
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "center",
                   alignItems: "center",
                 }}
               >
-                <Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Box
+                    id="forexFeature1"
                     style={{
-                      width: "150px",
-                      height: "50px",
+                      boxShadow:
+                        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+                      width: "185px",
+                      height: "100px",
                       backgroundColor: "white",
+                      borderRadius: "5px",
                     }}
                   >
                     1) Main Feature
                   </Box>
                   <Typography
-                    id=""
+                    id="forexFeatureExplanation1"
                     variant="h6"
                     // component="div"
                     sx={{
@@ -224,7 +243,7 @@ const FinalLandingPage = () => {
                       fontFamily: "Bree Serif !important",
                       font: "caption",
                       color: "black",
-                      textAlign: "",
+                      textAlign: "center",
                       paddingTop: "10px",
                       paddingBottom: "20px",
                     }}
@@ -232,19 +251,28 @@ const FinalLandingPage = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   </Typography>
                 </Box>
-                <Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Box
+                    id="forexFeature1"
                     style={{
-                      width: "150px",
-                      height: "50px",
+                      boxShadow:
+                        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+                      borderRadius: "5px",
+                      width: "185px",
+                      height: "100px",
                       backgroundColor: "white",
                     }}
                   >
-                    {" "}
                     2) Main Feature
                   </Box>
                   <Typography
-                    id=""
+                    id="forexFeatureExplanation1"
                     variant="h6"
                     // component="div"
                     sx={{
@@ -252,7 +280,7 @@ const FinalLandingPage = () => {
                       fontFamily: "Bree Serif !important",
                       font: "caption",
                       color: "black",
-                      textAlign: "",
+                      textAlign: "center",
                       paddingTop: "10px",
                     }}
                   >
@@ -272,11 +300,11 @@ const FinalLandingPage = () => {
                 >
                   <Button
                     id="forexButton1"
-                    color="inherit"
-                    variant="outlined"
+                    variant="contained"
                     style={{
-                      color: "#FFCE45",
-                      fontSize: "1rem",
+                      backgroundColor: "#FFCE45",
+                      color: "#184D47",
+                      fontSize: "1.3rem",
                       fontFamily: "Bree Serif",
                       fontWeight: "bold",
                     }}
@@ -312,11 +340,11 @@ const FinalLandingPage = () => {
             >
               <Button
                 id="forexButton2"
-                color="inherit"
-                variant="outlined"
+                variant="contained"
                 style={{
-                  color: "#FFCE45",
-                  fontSize: "1rem",
+                  backgroundColor: "#FFCE45",
+                  color: "#184D47",
+                  fontSize: "1.3rem",
                   fontFamily: "Bree Serif",
                   fontWeight: "bold",
                   width: "275px",
@@ -326,24 +354,14 @@ const FinalLandingPage = () => {
               </Button>
             </Box>
           </Box>
-        </Box>
-        <Box
-          id="thirdsection"
-          style={{
-            backgroundColor: "#F9F7F7",
-            width: "100%",
-            height: "730px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
           <Box
             id="cryptoAndDashboard"
             style={{
               paddingTop: "25px",
               display: "flex",
               flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
             }}
           >
             <Box
@@ -356,7 +374,7 @@ const FinalLandingPage = () => {
             >
               Dashboard Picture
             </Box>
-            <Box>
+            <Box id="cryptoBox">
               <Typography
                 id="cryptoTitle"
                 variant="h3"
@@ -397,18 +415,27 @@ const FinalLandingPage = () => {
                   alignItems: "center",
                 }}
               >
-                <Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Box
                     style={{
-                      width: "150px",
-                      height: "50px",
+                      boxShadow:
+                        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+                      borderRadius: "5px",
+                      width: "185px",
+                      height: "100px",
                       backgroundColor: "white",
                     }}
                   >
                     1) Main Feature
                   </Box>
                   <Typography
-                    id=""
+                    id="cryptoFeatureExplanation1"
                     variant="h6"
                     // component="div"
                     sx={{
@@ -416,7 +443,7 @@ const FinalLandingPage = () => {
                       fontFamily: "Bree Serif !important",
                       font: "caption",
                       color: "black",
-                      textAlign: "",
+                      textAlign: "center",
                       paddingTop: "10px",
                       paddingBottom: "20px",
                     }}
@@ -424,11 +451,20 @@ const FinalLandingPage = () => {
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                   </Typography>
                 </Box>
-                <Box>
+                <Box
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
                   <Box
                     style={{
-                      width: "150px",
-                      height: "50px",
+                      boxShadow:
+                        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+                      borderRadius: "5px",
+                      width: "185px",
+                      height: "100px",
                       backgroundColor: "white",
                     }}
                   >
@@ -436,7 +472,7 @@ const FinalLandingPage = () => {
                     2) Main Feature
                   </Box>
                   <Typography
-                    id=""
+                    id="cryptoFeatureExplanation1"
                     variant="h6"
                     // component="div"
                     sx={{
@@ -444,7 +480,7 @@ const FinalLandingPage = () => {
                       fontFamily: "Bree Serif !important",
                       font: "caption",
                       color: "black",
-                      textAlign: "",
+                      textAlign: "center",
                       paddingTop: "10px",
                     }}
                   >
@@ -464,11 +500,11 @@ const FinalLandingPage = () => {
                 >
                   <Button
                     id="cryptoButton1"
-                    color="inherit"
-                    variant="outlined"
+                    variant="contained"
                     style={{
-                      color: "#FFCE45",
-                      fontSize: "1rem",
+                      backgroundColor: "#FFCE45",
+                      color: "#184D47",
+                      fontSize: "1.3rem",
                       fontFamily: "Bree Serif",
                       fontWeight: "bold",
                     }}
@@ -479,6 +515,7 @@ const FinalLandingPage = () => {
               </Box>
             </Box>
             <Box
+              id="dashBoxPic4"
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -504,11 +541,11 @@ const FinalLandingPage = () => {
             >
               <Button
                 id="cryptoButton2"
-                color="inherit"
-                variant="outlined"
+                variant="contained"
                 style={{
-                  color: "#FFCE45",
-                  fontSize: "1rem",
+                  backgroundColor: "#FFCE45",
+                  color: "#184D47",
+                  fontSize: "1.3rem",
                   fontFamily: "Bree Serif",
                   fontWeight: "bold",
                   width: "275px",
@@ -523,25 +560,36 @@ const FinalLandingPage = () => {
       <Box
         id="fourthsection"
         style={{
-          backgroundColor: "#CFF4D2",
           width: "100%",
-          height: "730px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+          height: "400px",
         }}
       >
         <Divider
           id=""
           style={{
-            color: "#999",
+            color: "white",
             padding: "20px",
             fontFamily: "Bree Serif",
-            fontSize: "2rem",
+            fontSize: "3rem",
           }}
         >
           About Us
         </Divider>
+        <Box style={{ display: "flex", justifyContent: "center" }}>
+          <Typography
+            id="aboutUs"
+            variant="h6"
+            // component="div"
+            sx={{
+              width: "500px",
+              fontFamily: "Bree Serif !important",
+              color: "white",
+              textAlign: "center",
+            }}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          </Typography>
+        </Box>
       </Box>
     </Box>
   );
