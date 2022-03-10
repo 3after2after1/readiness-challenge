@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./views/home/App";
+import App from "./App";
+import CryptoPage from "./views/CryptoPage";
+import "react-alice-carousel/lib/alice-carousel.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CryptoPage />
   </React.StrictMode>,
   document.getElementById("root")
 );
