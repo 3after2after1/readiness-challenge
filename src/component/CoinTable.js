@@ -82,8 +82,7 @@ const CoinTable = () => {
     row: {
       backgroundColor: "rgb(247, 247, 247)",
       cursor: "pointer",
-      "&:hover": { backgroundColor: "rgb(173, 173, 173)" },
-      fontFamily: "Monstserrat",
+      "&:hover": { backgroundColor: "#EAEAEA" },
     },
     pagination: {
       "& .MuiPaginationItem-root": {
@@ -200,7 +199,7 @@ const CoinTable = () => {
                           align="center"
                           style={{
                             fontWeight: "500",
-                            fontSize: "1.1rem",
+                            fontSize: "1.2rem",
                             fontFamily: "Bree Serif",
                           }}
                         >
@@ -209,9 +208,10 @@ const CoinTable = () => {
                         <TableCell
                           align="center"
                           style={{
-                            color: profit > 0 ? "rgb(14, 203, 129" : "red",
-                            fontWeight: "bold",
-                            fontSize: "1rem",
+                            color: profit > 0 ? "#4E9F3D" : "red",
+                            fontWeight: "500",
+                            fontSize: "1.2rem",
+                            fontFamily: "Bree Serif",
                           }}
                         >
                           {profit && "+"}
@@ -219,7 +219,11 @@ const CoinTable = () => {
                         </TableCell>
                         <TableCell
                           align="center"
-                          style={{ fontWeight: "bold", fontSize: "1rem" }}
+                          style={{
+                            fontWeight: "500",
+                            fontSize: "1.2rem",
+                            fontFamily: "Bree Serif",
+                          }}
                         >
                           {numberWithCommas(
                             row.market_cap.toString().slice(0, -6)
