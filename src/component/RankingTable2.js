@@ -7,8 +7,8 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Avatar, Box } from "@mui/material";
-import { Grid } from "@material-ui/core";
+import { Avatar, Box, Container } from "@mui/material";
+import { Grid, Typography } from "@material-ui/core";
 
 import { LinearProgress } from "@material-ui/core";
 
@@ -21,8 +21,9 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 18,
-    fontWeight: 20,
+    fontWeight: 500,
     paddingLeft: 20,
+    fontFamily: "Bree Serif",
   },
 }));
 
@@ -32,10 +33,11 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     paddingBottom: 30,
     fontSize: 20,
     fontWeight: "bold",
-    backgroundColor: "#e7f9eb",
+    backgroundColor: "#D2F6C5",
     paddingBottom: "20px",
     paddingRight: "20px",
     align: "center",
+    fontFamily: "Bree Serif",
   },
 }));
 
@@ -82,6 +84,19 @@ export default function CustomizedTables({ loading, list, rowClass }) {
         }}
       >
         <Grid style={{ width: "500px" }}>
+          <Container style={{ textAlign: "center" }}>
+            <Typography
+              variant="h3"
+              style={{
+                margin: 18,
+                fontFamily: "League Spartan",
+                fontWeight: "bold",
+                color: "black",
+              }}
+            >
+              Biggest Gainers
+            </Typography>
+          </Container>
           {loading ? (
             <LinearProgress style={{ background: "gold" }} />
           ) : (
@@ -96,17 +111,19 @@ export default function CustomizedTables({ loading, list, rowClass }) {
               <Box
                 id="header-box"
                 style={{
-                  padding: "10px",
+                  padding: "16px",
                   display: "flex",
                   justifyContent: "space-around",
-                  backgroundColor: "black",
+                  backgroundColor: "#184D47",
                   color: "white",
-                  fontSize: "1rem",
+                  fontSize: "1.1rem",
+                  fontFamily: "League Spartan",
+                  fontWeight: "bold",
                 }}
               >
-                <Box>Rank</Box>
-                <Box>Top Gainers</Box>
-                <Box> 24H Change</Box>
+                <Box>RANK</Box>
+                <Box>TOP GAINERS</Box>
+                <Box> 24H CHANGE</Box>
               </Box>
               <Table
                 aria-label="customized table"
@@ -162,7 +179,7 @@ export default function CustomizedTables({ loading, list, rowClass }) {
                         <StyledTableCell
                           align="center"
                           style={{
-                            color: "#3dae23",
+                            color: "#4E9F3D",
                             paddingLeft: "1rem",
                             paddingRight: "2rem",
                           }}
@@ -180,6 +197,19 @@ export default function CustomizedTables({ loading, list, rowClass }) {
         </Grid>
 
         <Grid style={{ width: "500px" }}>
+          <Container style={{ textAlign: "center" }}>
+            <Typography
+              variant="h3"
+              style={{
+                margin: 18,
+                fontFamily: "League Spartan",
+                fontWeight: "bold",
+                color: "black",
+              }}
+            >
+              Biggest Losers
+            </Typography>
+          </Container>
           {loading ? (
             <LinearProgress style={{ background: "gold" }} />
           ) : (
@@ -194,17 +224,19 @@ export default function CustomizedTables({ loading, list, rowClass }) {
               <Box
                 id="header-box"
                 style={{
-                  padding: "10px",
+                  padding: "16px",
                   display: "flex",
                   justifyContent: "space-around",
-                  backgroundColor: "black",
+                  backgroundColor: "#184D47",
                   color: "white",
-                  fontSize: "1rem",
+                  fontSize: "1.1rem",
+                  fontFamily: "League Spartan",
+                  fontWeight: "bold",
                 }}
               >
-                <Box>Rank</Box>
-                <Box>Top Losers</Box>
-                <Box> 24H Change</Box>
+                <Box>RANK</Box>
+                <Box>TOP LOSERS</Box>
+                <Box> 24H CHANGE</Box>
               </Box>
               <Table
                 aria-label="customized table"

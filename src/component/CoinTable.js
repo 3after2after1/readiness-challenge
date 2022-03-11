@@ -106,18 +106,17 @@ const CoinTable = () => {
       </div>
       <Container style={{ textAlign: "center" }}>
         <Typography
-          variant="h3"
+          variant="h4"
           style={{
             margin: 18,
-            fontFamily: "Bree Serif",
-
+            fontFamily: "League Spartan",
             fontWeight: "bold",
           }}
         >
           Cryptocurrency Prices by Market Cap
         </Typography>
         <TextField
-          label="search bar"
+          label="Search for a coin"
           variant="outlined"
           style={{ marginBottom: 20, width: "100%" }}
           onChange={(e) => setSearch(e.target.value)}
@@ -129,16 +128,17 @@ const CoinTable = () => {
             <Table>
               <TableHead
                 style={{
-                  background: "black",
+                  background: "#184D47",
                 }}
               >
                 <TableRow>
-                  {["Coin", "Price", "24H Change", "Market Cap"].map((head) => (
+                  {["COIN", "PRICE", "24H CHANGE", "MARKET CAP"].map((head) => (
                     <TableCell
                       style={{
                         color: "white",
-                        fontWeight: "700",
-                        fontFamily: "Montserrat",
+                        fontWeight: "bold",
+                        fontFamily: "League Spartan",
+                        fontSize: "1.2rem",
                       }}
                       key={head}
                       align={head === "Coin" ? "Left" : "center"}
@@ -181,16 +181,28 @@ const CoinTable = () => {
                               style={{
                                 textTransform: "uppercase",
                                 fontSize: 22,
+                                fontFamily: "Bree Serif",
                               }}
                             >
                               {row.symbol}
                             </span>
-                            <span style={{ color: "black" }}>{row.name}</span>
+                            <span
+                              style={{
+                                color: "black",
+                                fontFamily: "Bree Serif",
+                              }}
+                            >
+                              {row.name}
+                            </span>
                           </div>
                         </TableCell>
                         <TableCell
                           align="center"
-                          style={{ fontWeight: "bold", fontSize: "1rem" }}
+                          style={{
+                            fontWeight: "500",
+                            fontSize: "1.1rem",
+                            fontFamily: "Bree Serif",
+                          }}
                         >
                           ${numberWithCommas(row.current_price.toFixed(2))}
                         </TableCell>

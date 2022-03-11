@@ -33,8 +33,13 @@ const Carousel = () => {
       textTransform: "uppercase",
       color: "black",
       textDecoration: "none",
-      backgroundColor: "rgb(247, 247, 247)",
+      backgroundColor: "white",
       paddingTop: "0.4rem",
+      boxShadow:
+        "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
+      margin: "1rem",
+      borderRadius: "5px",
+      paddingBottom: "0.4rem",
     },
   }));
   const classes = useStyles();
@@ -51,15 +56,24 @@ const Carousel = () => {
         />
         <span>
           &nbsp;
-          <span style={{ fontSize: "1.2rem", fontWeight: 500 }}>
+          <span
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "bold",
+              fontFamily: "Bree Serif",
+            }}
+          >
             {coin.name}
           </span>
           &nbsp;
           <span
             style={{
+              paddingLeft: "0.5rem",
               color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-              fontWeight: 500,
+              fontSize: "1.2rem",
+              fontWeight: "500",
               textAlign: "center",
+              fontFamily: "Bree Serif",
             }}
           >
             {profit && "+"}

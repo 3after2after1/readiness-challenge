@@ -123,11 +123,12 @@ const Testing = ({ data }) => {
               <Card
                 style={{
                   maxWidth: 400,
-                  minHeight: 420,
-                  maxHeight: 420,
+                  minHeight: 300,
+                  maxHeight: 300,
                   margin: 5,
                   borderRadius: 15,
-                  border: "0.2rem solid black",
+                  boxShadow:
+                    "rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px",
                 }}
               >
                 <a
@@ -145,24 +146,34 @@ const Testing = ({ data }) => {
                       // minHeight: "300px",
                     }}
                   >
-                    <CardContent>
+                    <CardContent
+                      style={{
+                        backgroundColor: "#184D47",
+                        color: "white",
+                        minHeight: "130px",
+                      }}
+                    >
                       <Typography
                         gutterBottom
                         variant="body1"
                         component="h2"
                         minwidth="200"
-                        fontWeight="bold"
+                        style={{
+                          fontWeight: "lighter",
+                          fontFamily: "Bree Serif",
+                          fontSize: "1.3rem",
+                        }}
                       >
                         {news.name}
                       </Typography>
                     </CardContent>
-                    <CardMedia
+                    {/* <CardMedia
                       component="img"
                       height="200"
                       image={news?.image?.thumbnail?.contentUrl || demoImage}
                       alt="Image"
                       // objectFit="cover"
-                    />
+                    /> */}
                   </Box>
                   <CardContent style={{ maxHeight: 70, overflow: "hidden" }}>
                     <Typography variant="body2" component="p">
@@ -176,7 +187,7 @@ const Testing = ({ data }) => {
                       display: "flex",
                       flexDirection: "row",
                       justifyContent: "space-between",
-                      padding: 15,
+                      padding: "0 15px",
                     }}
                   >
                     <Box
@@ -203,6 +214,7 @@ const Testing = ({ data }) => {
                         style={{
                           marginLeft: "1rem",
                           paddingBottom: "0",
+                          fontFamily: "Bree Serif",
                         }}
                       >
                         {news.provider[0]?.name}
@@ -212,6 +224,9 @@ const Testing = ({ data }) => {
                       variant="body2"
                       color="textSecondary"
                       component="p"
+                      style={{
+                        fontFamily: "Bree Serif",
+                      }}
                     >
                       {moment(news.datePublished).startOf("ss").fromNow()}
                     </Typography>

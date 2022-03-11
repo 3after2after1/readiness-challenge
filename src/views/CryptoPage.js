@@ -33,8 +33,15 @@ const useStyles = makeStyles(() => ({
 const CryptoPage = () => {
   const classes = useStyles();
   return (
-    <div style={{ overflowX: "hidden" }}>
-      <Container style={{ marginTop: "1rem" }}>
+    <div style={{ overflowX: "hidden", backgroundColor: "#f9f7f7" }}>
+      <Container
+        style={{
+          marginTop: "1rem",
+          marginBottom: "1rem",
+          paddingLeft: "0",
+          paddingRight: "0",
+        }}
+      >
         <Carousel />
       </Container>
       <CoinTable />
