@@ -1,5 +1,5 @@
 import React from "react";
-import Carousel from "../component/Carousel2";
+import Carousel from "../component/Carousel";
 import CoinTable from "../component/CoinTable";
 import NewsPage from "./NewsPage";
 
