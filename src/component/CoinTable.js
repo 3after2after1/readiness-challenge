@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { Pagination } from "@mui/material";
-import RankingTable2 from "./RankingTable2";
+import RankingTable2 from "./RankingTable3";
 
 const formatPrice = (price) => {
   return `$${price.toFixed(5)}`;
