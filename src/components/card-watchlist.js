@@ -5,10 +5,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
-import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
-
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 const useStyles = makeStyles({
   root: {
@@ -29,7 +27,6 @@ const useStyles = makeStyles({
 });
 
 export default function WatchlistCard() {
-  
   return (
     <Card sx={{ minWidth: 200 }}>
       <CardHeader

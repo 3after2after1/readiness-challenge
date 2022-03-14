@@ -8,42 +8,45 @@ import IconButton from "@mui/material/IconButton";
 import { blue } from "@mui/material/colors";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import { makeStyles } from "@material-ui/core/styles";
-import PlaylistRemoveIcon from '@mui/icons-material/PlaylistRemove';
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 const useStyles = makeStyles({
-    root: {
-      minWidth: 300,
-      borderRadius: 300,
-    },
-    bullet: {
-      display: "inline-block",
-      margin: "0 2px",
-      transform: "scale(0.8)",
-    },
-    title: {
-      fontSize: 20,
-    },
-    pos: {
-      marginBottom: 12,
-    },
-  });
+  root: {
+    minWidth: 300,
+    borderRadius: 300,
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
+  },
+  title: {
+    fontSize: 20,
+  },
+  pos: {
+    marginBottom: 12,
+  },
+});
 
 function Favourite() {
   return (
     <div className="watchlist-page">
-     <div 
-     id="fav-box"
-     style={{
-         display: "flex",
-         flexDirection:"column",
-         alignItems:"center",
-         justifyContent:"center",
-     }}>
-         
-        <Card id="w-card-box" sx={{ 
+      <div
+        id="fav-box"
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Card
+          id="w-card-box"
+          sx={{
             width: 300,
             margin: "10px 0 0 0 ",
-             }}>
+          }}
+        >
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
@@ -65,11 +68,13 @@ function Favourite() {
           />
         </Card>
 
-
-        <Card id="w-card-box" sx={{ 
+        <Card
+          id="w-card-box"
+          sx={{
             width: 300,
             margin: "10px 0 0 0 ",
-             }}>
+          }}
+        >
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
@@ -91,10 +96,13 @@ function Favourite() {
           />
         </Card>
 
-        <Card id="w-card-box" sx={{ 
+        <Card
+          id="w-card-box"
+          sx={{
             width: 300,
             margin: "10px 0 0 0 ",
-             }}>
+          }}
+        >
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
@@ -116,10 +124,13 @@ function Favourite() {
           />
         </Card>
 
-        <Card id="w-card-box" sx={{ 
+        <Card
+          id="w-card-box"
+          sx={{
             width: 300,
-            marginTop: "10px"
-             }}>
+            marginTop: "10px",
+          }}
+        >
           <CardHeader
             avatar={
               <Avatar sx={{ bgcolor: blue[500] }} aria-label="Logo">
@@ -140,11 +151,8 @@ function Favourite() {
             alt="Insert chart"
           />
         </Card>
-        
-        
-        </div>
       </div>
-    
+    </div>
   );
 }
 

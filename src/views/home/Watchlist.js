@@ -32,9 +32,7 @@ function Watchlist() {
           <div className="content-title-left">
             <p>Watchlist</p>
           </div>
-          <div className="content-title right">
-           
-          </div>
+          <div className="content-title right"></div>
         </div>
 
         <Grid
@@ -43,36 +41,32 @@ function Watchlist() {
           className={classes.gridContainer}
           justify="center"
         >
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
-          <Grid item xs={12} sm={6} md={3}>
+          <Grid item xs={12} sm={6} md={4} lg={3}>
             <WatchlistCard />
           </Grid>
         </Grid>
-
-       
       </div>
-
-      
     </div>
   );
 }
