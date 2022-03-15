@@ -6,7 +6,10 @@ import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { ChangeCircle, ConstructionRounded } from "@mui/icons-material";
 import StarIcon from "@mui/icons-material/Star";
 import { yellow } from "@material-ui/core/colors";
+<<<<<<< HEAD
 import { Box } from "@material-ui/core";
+=======
+>>>>>>> 92570d40df7abcc07d9464bff854f9d6407c561e
 
 export default function CardDetailsAdd() {
   const [btn, setBtn] = React.useState(true);
