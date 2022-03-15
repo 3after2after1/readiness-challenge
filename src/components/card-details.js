@@ -7,7 +7,7 @@ import "./card-details.css"
 
 export default function DetailsPage() {
   return (
-    <Box id="top-container-details" gap="20px">
+    <Box id="top-container-details">
       <div 
       id="graph-box"
       style={{
@@ -22,7 +22,6 @@ export default function DetailsPage() {
       id="box-1"
       bgcolor={"white"}
         sx={{
-         
           width:320,
           color: (theme) =>
             theme.palette.mode === "dark" ? "grey.300" : "grey.800",

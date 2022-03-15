@@ -9,7 +9,6 @@
 
 @media (min-width: 768px){
     #fav-box{
-        
         flex-direction: row !important; 
         flex-wrap: wrap !important;
     }

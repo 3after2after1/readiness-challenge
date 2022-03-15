@@ -52,10 +52,6 @@ function Details() {
           <DetailsStats />
         </Container>
       </div>
-
-      <div classname="footer-content">
-        <Footer />
-      </div> 
     </div>
     
     

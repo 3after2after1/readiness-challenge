@@ -4,7 +4,7 @@ import CardFilter from "../../components/card-filter";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import WatchlistCard from "../../components/card-watchlist";
-
+import Favourite from "./Favourite";
 //apply CSS styling to material-ui components
 const useStyles = makeStyles({
   gridContainer: {
@@ -21,14 +21,14 @@ function Watchlist() {
   const classes = useStyles();
 
   return (
-    <div className="main-container">
+    <div className="main-container-watchlist">
       <div className="header">
         <p className="title"> TREX </p>
       </div>
       <div className="sidebar"></div>
 
       <div className="content">
-        <div className="content-title">
+        <div className="content-title-watchlist">
           <div className="content-title-left">
             <p>Watchlist</p>
           </div>
@@ -37,7 +37,11 @@ function Watchlist() {
           </div>
         </div>
 
-        <Grid
+        <div>
+         
+        </div>
+
+        {/* <Grid
           container
           spacing={3}
           className={classes.gridContainer}
@@ -67,7 +71,7 @@ function Watchlist() {
           <Grid item xs={12} sm={6} md={3}>
             <WatchlistCard />
           </Grid>
-        </Grid>
+        </Grid> */}
 
        
       </div>

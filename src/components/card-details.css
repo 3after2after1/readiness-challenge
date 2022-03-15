@@ -21,16 +21,18 @@
     #graph-box{
         /* flex-wrap: wrap !important;  */
         flex-direction: row !important; 
-        margin: 0.5em;
+        margin: 1em;
     }
     #box-1{
-        margin: 0.5em;
-        width: 6990px !important;
+        margin-left: 2em;
+        width: 6000px !important;
     }
 
     #comment-box{
-        margin-top: 0;
-        margin-right: 0.5em;
+        margin-top: 1em;
+        margin-left: 1em;
+        margin-right: 2em;
+        margin-bottom: 1em;
     }
 }
 
