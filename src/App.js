@@ -9,6 +9,7 @@ import Details from "./views/home/Details";
 import Watchlist from "./views/home/Watchlist";
 import TableCrypto from "./components/TableCrypto";
 import WatchList from "./views/home/Watchlist";
+import Favourite from "./views/home/Favourite";
 
 const App = () => {
   return (
@@ -22,7 +23,7 @@ const App = () => {
           <Route path="/forex/:symbol" element={<Details />} />
           <Route path="/table" element={<TableCrypto />} />
           <Route path="/news" element={<NewsSlider />} />
-          <Route path="/watchlist" element={<WatchList />} />
+          <Route path="/" element={<Favourite />} />
         </Routes>
       </div>
     </BrowserRouter>

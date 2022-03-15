@@ -1,10 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+// import App from "./App";
+import Favourite from "./views/home/Favourite";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Favourite />
   </React.StrictMode>,
   document.getElementById("root")
 );

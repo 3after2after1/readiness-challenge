@@ -1,0 +1,10 @@
+@media (min-width: 768px) {
+  #fav-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #w-card-box {
+    margin: 0.5em;
+    width: 300px !important;
+  }
+}
