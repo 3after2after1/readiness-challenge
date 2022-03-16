@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
 // import CryptoPage from "./views/CryptoPage";
-import "react-alice-carousel/lib/alice-carousel.css";
+// import "react-alice-carousel/lib/alice-carousel.css";
 
 ReactDOM.render(
   <React.StrictMode>

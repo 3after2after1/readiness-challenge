@@ -1,0 +1,202 @@
+.main-container {
+  margin: 0;
+  justify-content: center;
+  align-items: center;
+  background: green !important;
+  /* main color #f6f8f*/
+  display: grid;
+  width: 100%;
+  height: 100vh !important;
+  overflow-x: hidden;
+  flex-grow: 1;
+}
+
+.header {
+  background-color: white;
+  width: 100vw;
+  height: 120px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.title {
+  width: 87%;
+  padding: 5px;
+  margin-left: 12rem;
+  font-size: 40px;
+  font-weight: 700;
+  color: #1a2f66;
+  text-transform: uppercase;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.search {
+  width: 20%;
+  padding: 5px;
+  margin: 30px;
+}
+
+.content {
+  background-color: red !important;
+  /* color from here */
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* ========== Content Title ============ */
+
+.content-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.left {
+  width: 100%;
+  padding: 5px;
+  margin-left: 12rem;
+  margin-top: 2rem;
+  font-size: 40px;
+  font-weight: 700;
+  color: #1a2f66;
+}
+
+.right {
+  width: 16%;
+  padding: 10px;
+  margin: 30px;
+}
+
+/* ============ News Slider ============= */
+
+.news-slider {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* ========== Responsiveness =========== */
+
+@media screen and (min-width: 320px) {
+  .content-title .left {
+    margin-left: 0;
+    font-size: 35px;
+    padding-left: 20px;
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .news-slider {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .content-title .left {
+    margin-left: 0;
+    font-size: 35px;
+    padding-left: 50px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .content-title .left {
+    margin-left: 0;
+    font-size: 35px;
+    padding-left: 80px;
+  }
+}
+
+@media screen and (min-width: 620px) {
+  .header {
+    display: inline-grid;
+  }
+  .title {
+    font-size: 40px;
+  }
+  .content-title .left {
+    margin-left: 3rem;
+    font-size: 35px;
+    padding-left: 50px;
+  }
+  .content-title .right {
+    padding-right: 5%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .content-title .left {
+    padding-left: 70px;
+    font-size: 35px;
+  }
+}
+
+@media screen and (min-width: 1281px) {
+  .content-title .left {
+    padding-left: 30px;
+    font-size: 35px;
+  }
+}
+
+/* ========== Responsiveness Card  =========== */
+@media (min-width: 425px) {
+  #forex-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #forex-card-box {
+    margin: 0.5em;
+    width: 400px !important;
+    height: 400px;
+  }
+}
+
+@media (min-width: 375px) {
+  #forex-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #forex-card-box {
+    margin: 0.5em;
+    width: 372px !important;
+    height: 400px;
+  }
+}
+
+@media (min-width: 320px) {
+  #forex-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #forex-card-box {
+    margin: 0.5em;
+    width: 320px !important;
+    height: 350px;
+  }
+}
+
+/* @media (min-width: 600px) {
+  #card-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #w-card-box {
+    margin: 0.5em;
+    width: 350px !important;
+  }
+}
+
+@media (min-width: 480px) {
+  #card-box {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #w-card-box {
+    margin: 0.5em;
+    width: 350px !important;
+  }
+} */
