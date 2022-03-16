@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import App from "./App";
-import Favourite from "./views/home/Favourite";
+import App from "./App";
+import ForexHome from "./views/home/ForexHome";
+import ForexPage from "./views/home/ForexPage";
+// import Favourite from "./views/home/Favourite";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Favourite />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

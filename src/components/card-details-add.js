@@ -32,16 +32,6 @@ export default function CardDetailsAdd({ symbol, market }) {
             console.log(response.status);
             console.log(response.data);
           });
-
-        //   const success = response.status === 201;
-        //   if (success) {
-        //   }
-        // } else {
-        //   //follow
-        //   const response = axios.post(`http://localhost:5000/watchlist/remove`, {
-        //     id: 1,
-        //     symbol,
-        //   });
       }
       return !btn;
     });

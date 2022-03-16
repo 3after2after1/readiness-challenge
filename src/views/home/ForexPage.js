@@ -77,7 +77,9 @@ function ForexPage() {
       };
 
       ws.onmessage = function incoming(message) {
+        // console.log(typeof message);
         const next = Yaticker.decode(new Buffer(message.data, "base64"));
+        // console.log(next);
         // console.log("component rendered ");
         setStonks((current) => {
           let stonk = current.find((stonk) => stonk.id === next.id);

@@ -1,6 +1,7 @@
 import "../App.css";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import axios from "axios";
 
 const chart = {
   options: {
@@ -80,6 +81,7 @@ function StaticChart(props) {
       data: [],
     },
   ]);
+
   const [previousClose, setPreviousClose] = useState(null);
 
   useEffect(() => {
@@ -87,45 +89,18 @@ function StaticChart(props) {
     const getLatestPrice = async () => {
       try {
         console.log(props.range);
-        var x = new XMLHttpRequest();
-        let response = null;
-        x.open(
-          "GET",
-          `https://cors-anywhere.herokuapp.com/https://query1.finance.yahoo.com/v8/finance/chart/${props.symbol}?region=US&lang=en-US&includePrePost=false&interval=${props.interval}&useYfid=true&range=${props.range}`
-        );
 
-        x.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        x.onload = function () {
-          response = JSON.parse(x.responseText);
-          const data = response.chart.result[0];
-          setPreviousClose(data.meta.previousClose);
-          let y = data.indicators.quote[0].close;
-          const average = y.reduce((a, b) => a + b) / y.length;
-          // y = data.indicators.quote[0].close.map((value, index, arr) => {
-          //   return value.toFixed(4)
-          //     ? +value
-          //     : getRandomElement(y, Math.floor(Math.random(y.length)), average);
-          // });
+        let response = await axios.get("http://localhost:5001/livepricefeed");
+        console.log(response.data[0].Prices);
+        let filteredData = response[0].Prices.map((row) => {
+          return [row.ToTime, row.Price];
+        });
 
-          // const prices = data.timestamp
-          //   .map((x) => [new Date(x * 1000)])
-          //   .map((val, index) => val.concat(y[index]));
-
-          let prices = y.filter((price) => price !== null);
-          prices = prices.map((value, index) => {
-            return [new Date(data.timestamp[index] * 1000)].concat(
-              value.toFixed(4)
-            );
-          });
-
-          setSeries([
-            {
-              data: prices,
-            },
-          ]);
-        };
-        x.send();
-        // timeoutId = setTimeout(getLatestPrice, 10000);
+        setSeries([
+          {
+            data: filteredData,
+          },
+        ]);
       } catch (error) {
         console.log(error);
       }
@@ -135,7 +110,7 @@ function StaticChart(props) {
     // return () => {
     //   clearTimeout(timeoutId);
     // };
-  }, [props.range]);
+  }, []);
 
   return (
     <div className="static">
@@ -143,7 +118,9 @@ function StaticChart(props) {
         className="previousClose"
         style={{ marginTop: "1rem", backgroundColor: "lightgrey" }}
       >
-        Previous Close: {previousClose}
+        Previous Close:
+        <br />
+        {/* {previousClose} */}
       </h3>
       <Chart
         options={chart.options}
