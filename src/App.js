@@ -19,7 +19,7 @@ const App = () => {
     <BrowserRouter>
       <div>
         <Routes>
-          {/* <Route path="/main" element={<ForexHome />} /> */}
+          <Route path="/" element={<ForexHome />} />
           {/* <Route path="forex/" element={<ForexPage />} /> */}
           <Route path="/design" element={<MiniDrawer />} />
           {/* <Route path="/crypto" element={<CryptoPage />} /> */}
