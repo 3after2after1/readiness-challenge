@@ -19,16 +19,16 @@ const App = () => {
     <BrowserRouter>
       <div>
         <Routes>
-          <Route path="/main" element={<ForexHome />} />
-          <Route path="forex/" element={<ForexPage />} />
+          {/* <Route path="/main" element={<ForexHome />} /> */}
+          {/* <Route path="forex/" element={<ForexPage />} /> */}
           <Route path="/design" element={<MiniDrawer />} />
-          {/* <Route path="/crypto" element={<CryptoPage />} />
-          <Route path="/coins/:id" element={<CoinStats />} /> */}
-          <Route path="/forex/:symbol" element={<Details />} />
+          {/* <Route path="/crypto" element={<CryptoPage />} /> */}
+          {/* <Route path="/coins/:id" element={<CoinStats />} />
+          <Route path="/forex/:symbol" element={<Details />} /> */}
           <Route path="/table" element={<TableCrypto />} />
           <Route path="/news" element={<NewsSlider />} />
           <Route path="/favourite" element={<Favourite />} />
-          <Route path="/" element={<TestChart />} />
+          <Route path="/testchart" element={<TestChart />} />
           <Route path="/spark" element={<TestSparkline />} />
           <Route path="/test" element={<Test />} />
         </Routes>

@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./Home2.css";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";

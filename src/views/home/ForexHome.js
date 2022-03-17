@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 // import { Box } from "@mui/system";
-import "./Home.css";
+import "./Home2.css";
 import SearchBar from "../../components/searchbar";
 import ForexSearchBar from "../../components/ForexSearchBar";
 import CardFilter from "../../components/card-filter";
