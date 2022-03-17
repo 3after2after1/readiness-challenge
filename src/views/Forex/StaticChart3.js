@@ -1,4 +1,5 @@
 // import "../App.css";
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 // import axios from "axios";
@@ -17,7 +18,7 @@ const chart = {
         enabled: false,
       },
     },
-    // colors: ["#A9A9A9"],
+    // colors: ["#7BE495"],
     dataLabels: {
       enabled: false,
     },
@@ -98,19 +99,29 @@ function StaticChart3(props) {
 
   return (
     <div className="static">
-      <h3
-        className="previousClose"
-        style={{ marginTop: "1rem", backgroundColor: "lightgrey" }}
+      <Typography
+        id=""
+        variant="h6"
+        // component="div"
+        sx={{
+          fontFamily: "Bree Serif",
+          color: "black",
+          fontWeight: "",
+          backgroundColor: "#FFCE45",
+          textAlign: "center",
+        }}
       >
         Previous Close: $123
-      </h3>
-      <Chart
-        options={chart.options}
-        series={series}
-        type="area"
-        width={330}
-        height={170}
-      />
+      </Typography>
+      <Box style={{ backgroundColor: "white" }}>
+        <Chart
+          options={chart.options}
+          series={series}
+          type="area"
+          width={300}
+          height={200}
+        />
+      </Box>
     </div>
   );
 }

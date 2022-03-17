@@ -16,7 +16,7 @@ export default function ComboBox() {
       }}
       id="combo-box-demo"
       options={options}
-      sx={{ width: 500 }}
+      sx={{}}
       renderInput={(params) => <TextField {...params} label="Search" />}
     />
   );

@@ -1,9 +1,9 @@
-.main-container {
+/* .main-container {
   margin: 0;
   justify-content: center;
   align-items: center;
   background: green !important;
-  /* main color #f6f8f*/
+
   display: grid;
   width: 100%;
   height: 100vh !important;
@@ -39,19 +39,18 @@
 }
 
 .content {
-  background-color: red !important;
-  /* color from here */
+  background-color: #f9f7f7 !important;
   justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
   margin: 0;
   overflow-x: hidden;
-}
+} */
 
 /* ========== Content Title ============ */
 
-.content-title {
+/* .content-title {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -71,18 +70,18 @@
   width: 16%;
   padding: 10px;
   margin: 30px;
-}
+} */
 
 /* ============ News Slider ============= */
 
-.news-slider {
+/* .news-slider {
   padding-left: 30px;
   padding-right: 30px;
-}
+} */
 
 /* ========== Responsiveness =========== */
 
-@media screen and (min-width: 320px) {
+/* @media screen and (min-width: 320px) {
   .content-title .left {
     margin-left: 0;
     font-size: 35px;
@@ -140,10 +139,10 @@
     padding-left: 30px;
     font-size: 35px;
   }
-}
+} */
 
 /* ========== Responsiveness Card  =========== */
-@media (min-width: 425px) {
+/* @media (min-width: 425px) {
   #forex-box {
     flex-direction: row !important;
     flex-wrap: wrap !important;
@@ -151,7 +150,6 @@
   #forex-card-box {
     margin: 0.5em;
     width: 400px !important;
-    height: 400px;
   }
 }
 
@@ -163,7 +161,6 @@
   #forex-card-box {
     margin: 0.5em;
     width: 372px !important;
-    height: 400px;
   }
 }
 
@@ -175,9 +172,8 @@
   #forex-card-box {
     margin: 0.5em;
     width: 320px !important;
-    height: 350px;
   }
-}
+} */
 
 /* @media (min-width: 600px) {
   #card-box {
@@ -200,3 +196,60 @@
     width: 350px !important;
   }
 } */
+
+@media (min-width: 0px) {
+  /* #footer {
+    position: absolute;
+    bottom: 0;
+  } */
+}
+
+@media (min-width: 320px) {
+}
+
+@media (min-width: 480px) {
+}
+
+@media (min-width: 600px) {
+  #searchForexHome {
+    width: 400px !important;
+  }
+  #searchandfilterForex {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center;
+  }
+  #filterForexHome {
+    width: 100px !important;
+    padding-top: 20px !important;
+  }
+}
+
+@media (min-width: 750px) {
+  #searchForexHome {
+    width: 600px !important;
+  }
+
+  #forex-content {
+    flex-direction: row !important;
+    flex-wrap: wrap !important;
+  }
+  #forex-card-box {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  #searchandfilterForex {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center;
+  }
+  #filterForexHome {
+    width: 100px !important;
+    padding-top: 20px !important;
+  }
+}
+@media (min-width: 1281px) {
+}
